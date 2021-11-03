@@ -1,12 +1,10 @@
 <rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
     <channel>
-        <title>菜鸡，随便写写</title>
-        <link>https://Dazhuwei.github.io/</link>
-        <description>Blog of Zhangdw</description>
+        <title>通话 - 分类 - 菜鸡，随便写写</title>
+        <link>https://Dazhuwei.github.io/categories/%E9%80%9A%E8%AF%9D/</link>
+        <description>通话 - 分类 - 菜鸡，随便写写</description>
         <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>zhangdawei516@gmail (Zhangdw)</managingEditor>
-            <webMaster>zhangdawei516@gmail (Zhangdw)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Wed, 03 Nov 2021 14:34:02 &#43;0800</lastBuildDate>
-            <atom:link href="https://Dazhuwei.github.io/index.xml" rel="self" type="application/rss+xml" />
-        <item>
+            <webMaster>zhangdawei516@gmail (Zhangdw)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Wed, 03 Nov 2021 14:34:02 &#43;0800</lastBuildDate><atom:link href="https://Dazhuwei.github.io/categories/%E9%80%9A%E8%AF%9D/" rel="self" type="application/rss+xml" /><item>
     <title>Pbx临时保存wav录音格式文件说明</title>
     <link>https://Dazhuwei.github.io/pbx%E4%B8%B4%E6%97%B6%E4%BF%9D%E5%AD%98wav%E5%BD%95%E9%9F%B3%E6%A0%BC%E5%BC%8F%E6%96%87%E4%BB%B6%E8%AF%B4%E6%98%8E/</link>
     <pubDate>Wed, 03 Nov 2021 14:34:02 &#43;0800</pubDate>
