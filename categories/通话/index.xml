@@ -10,13 +10,17 @@
     <pubDate>Wed, 03 Nov 2021 14:34:02 &#43;0800</pubDate>
     <author>作者</author>
     <guid>https://Dazhuwei.github.io/pbx%E4%B8%B4%E6%97%B6%E4%BF%9D%E5%AD%98wav%E5%BD%95%E9%9F%B3%E6%A0%BC%E5%BC%8F%E6%96%87%E4%BB%B6%E8%AF%B4%E6%98%8E/</guid>
-    <description><![CDATA[pbx临时保存wav录音格式文件 用ass合成 1.在server.conf中[server]段内添加需要wav文件的账号： 1 thisAccountNeedWav=N00000000535,N00000001583 多个账号用，(英]]></description>
+    <description><![CDATA[<div class="featured-image">
+                <img src="/images/pbx-wav-logo.jpg" referrerpolicy="no-referrer">
+            </div>pbx临时保存wav录音格式文件 用ass合成 1.在server.conf中[server]段内添加需要wav文件的账号： 1 thisAccountNeedWav=N00000000535,N00000001583 多个账号用，(英]]></description>
 </item><item>
     <title>My First Post</title>
     <link>https://Dazhuwei.github.io/my-first-post/</link>
     <pubDate>Wed, 20 Oct 2021 16:42:12 &#43;0800</pubDate>
     <author>作者</author>
     <guid>https://Dazhuwei.github.io/my-first-post/</guid>
-    <description><![CDATA[sngrep部署文档 安装包为：sngrep-1.4.7 操作步骤： 建议将安装位置放置在数据盘路径 1 2 3 4 5 6 7 8 yum install -y ncurses-devel make libpcap-devel pcre-devel openssl-devel git gcc autoconf automake tar -zxvf sngrep-1.4.7.tar.gz]]></description>
+    <description><![CDATA[<div class="featured-image">
+                <img src="/images/sngrep-log.png" referrerpolicy="no-referrer">
+            </div>sngrep部署文档 安装包为：sngrep-1.4.7 操作步骤： 建议将安装位置放置在数据盘路径 1 2 3 4 5 6 7 8 yum install -y ncurses-devel make libpcap-devel pcre-devel openssl-devel git gcc autoconf automake tar -zxvf sngrep-1.4.7.tar.gz]]></description>
 </item></channel>
 </rss>

@@ -10,6 +10,8 @@
     <pubDate>Wed, 20 Oct 2021 16:42:12 &#43;0800</pubDate>
     <author>作者</author>
     <guid>https://Dazhuwei.github.io/my-first-post/</guid>
-    <description><![CDATA[sngrep部署文档 安装包为：sngrep-1.4.7 操作步骤： 建议将安装位置放置在数据盘路径 1 2 3 4 5 6 7 8 yum install -y ncurses-devel make libpcap-devel pcre-devel openssl-devel git gcc autoconf automake tar -zxvf sngrep-1.4.7.tar.gz]]></description>
+    <description><![CDATA[<div class="featured-image">
+                <img src="/images/sngrep-log.png" referrerpolicy="no-referrer">
+            </div>sngrep部署文档 安装包为：sngrep-1.4.7 操作步骤： 建议将安装位置放置在数据盘路径 1 2 3 4 5 6 7 8 yum install -y ncurses-devel make libpcap-devel pcre-devel openssl-devel git gcc autoconf automake tar -zxvf sngrep-1.4.7.tar.gz]]></description>
 </item></channel>
 </rss>
