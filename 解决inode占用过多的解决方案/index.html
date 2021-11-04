@@ -6,7 +6,7 @@
         <meta name="robots" content="noodp" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
         <title>解决inode占用过多的解决方案 - 菜鸡，随便写写</title><meta name="Description" content="Blog of Zhangdw"><meta property="og:title" content="解决inode占用过多的解决方案" />
-<meta property="og:description" content="解决inode占用过多的方案 前情提要： 某台服务器inode满了，很久没有处理过类似问题了，有点忘记，记录在此。 一、理解inode 要理解ino" />
+<meta property="og:description" content="解决inode占用过多的解决方案 前情提要： ​ 某台服务器inode满了，很久没有处理过类似问题了，有点忘记，记录在此。 一、理解inode ​ 要理" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://Dazhuwei.github.io/%E8%A7%A3%E5%86%B3inode%E5%8D%A0%E7%94%A8%E8%BF%87%E5%A4%9A%E7%9A%84%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/" /><meta property="og:image" content="https://Dazhuwei.github.io/images/logo.png"/><meta property="article:section" content="posts" />
 <meta property="article:published_time" content="2021-11-04T18:29:46+08:00" />
@@ -16,7 +16,7 @@
 <meta name="twitter:image" content="https://Dazhuwei.github.io/images/logo.png"/>
 
 <meta name="twitter:title" content="解决inode占用过多的解决方案"/>
-<meta name="twitter:description" content="解决inode占用过多的方案 前情提要： 某台服务器inode满了，很久没有处理过类似问题了，有点忘记，记录在此。 一、理解inode 要理解ino"/>
+<meta name="twitter:description" content="解决inode占用过多的解决方案 前情提要： ​ 某台服务器inode满了，很久没有处理过类似问题了，有点忘记，记录在此。 一、理解inode ​ 要理"/>
 <meta name="application-name" content="菜鸡，随便写写">
 <meta name="apple-mobile-web-app-title" content="菜鸡，随便写写"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
         <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
@@ -29,7 +29,7 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "https:\/\/Dazhuwei.github.io\/%E8%A7%A3%E5%86%B3inode%E5%8D%A0%E7%94%A8%E8%BF%87%E5%A4%9A%E7%9A%84%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88\/"
-        },"image": ["https:\/\/Dazhuwei.github.io\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "操作系统, linux","wordcount":  997 ,
+        },"image": ["https:\/\/Dazhuwei.github.io\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "操作系统, linux","wordcount":  1007 ,
         "url": "https:\/\/Dazhuwei.github.io\/%E8%A7%A3%E5%86%B3inode%E5%8D%A0%E7%94%A8%E8%BF%87%E5%A4%9A%E7%9A%84%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88\/","datePublished": "2021-11-04T18:29:46+08:00","dateModified": "2021-11-04T18:29:46+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
             "@type": "Organization",
             "name": "Zhangdw","logo": "https:\/\/Dazhuwei.github.io\/leslie.png"},"author": {
@@ -120,8 +120,8 @@
             <div class="toc-content" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animated flipInX">解决inode占用过多的解决方案</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>Zhangdw</a></span>&nbsp;<span class="post-category">收录于 <a href="/categories/linux/"><i class="far fa-folder fa-fw"></i>Linux</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2021-11-04">2021-11-04</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 997 字&nbsp;
-                <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 2 分钟&nbsp;<span id="/%E8%A7%A3%E5%86%B3inode%E5%8D%A0%E7%94%A8%E8%BF%87%E5%A4%9A%E7%9A%84%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/" class="leancloud_visitors" data-flag-title="解决inode占用过多的解决方案">
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2021-11-04">2021-11-04</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 1007 字&nbsp;
+                <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 3 分钟&nbsp;<span id="/%E8%A7%A3%E5%86%B3inode%E5%8D%A0%E7%94%A8%E8%BF%87%E5%A4%9A%E7%9A%84%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/" class="leancloud_visitors" data-flag-title="解决inode占用过多的解决方案">
                         <i class="far fa-eye fa-fw"></i>&nbsp;<span class=leancloud-visitors-count></span>&nbsp;次阅读
                     </span>&nbsp;</div>
         </div><div class="featured-image"><img
@@ -156,22 +156,17 @@
     </li>
   </ul>
 </nav></div>
-            </div><div class="content" id="content"><h1 id="解决inode占用过多的方案">解决inode占用过多的方案</h1>
+            </div><div class="content" id="content"><h1 id="解决inode占用过多的解决方案">解决inode占用过多的解决方案</h1>
 <h2 id="前情提要">前情提要：</h2>
-<pre><code>      某台服务器inode满了，很久没有处理过类似问题了，有点忘记，记录在此。
-</code></pre>
+<p>​	某台服务器inode满了，很久没有处理过类似问题了，有点忘记，记录在此。</p>
 <h1 id="一理解inode">一、理解inode</h1>
-<pre><code>      要理解inode，要从文件存储说起，Linux系统文件在物理上都是存储在硬盘上面的，硬盘存储里面，最小存储单位是&quot;扇区(Sector)&quot;，每个扇区存储512字节。
-
-      操作系统在读取硬盘的时候不会一个一个读取扇区，这样效率很低，而是一次性连续读取多个扇区，多个扇区就组成了一个块(block)，而这种由多个扇区组成的块，就是文件存储的最小单位，块的大小一般为4KB，也就是说8个扇区组成了一个block。
-
-      文件信息存储在block中，如何找到这些block，以及怎么知道这些block存储了哪些内容，如文件的创建人、时间、大小等信息，这些信息又叫元数据，而这种存储元数据的区域就叫做inode，inode就是索引节点。
-
-      也就是说每个文件都需要记录这些元信息，也必然会占用inode，因此inode占用过多，多数是小文件太多导致。
-</code></pre>
+<p>​	要理解inode，要从文件存储说起，Linux系统文件在物理上都是存储在硬盘上面的，硬盘存储里面，最小存储单位是&quot;扇区(Sector)&quot;，每个扇区存储512字节。
+​
+​	操作系统在读取硬盘的时候不会一个一个读取扇区，这样效率很低，而是一次性连续读取多个扇区，多个扇区就组成了一个块(block)，而这种由多个扇区组成的块，就是文件存储的最小单位，块的大小一般为4KB，也就是说8个扇区组成了一个block。</p>
+<p>​	文件信息存储在block中，如何找到这些block，以及怎么知道这些block存储了哪些内容，如文件的创建人、时间、大小等信息，这些信息又叫元数据，而这种存储元数据的区域就叫做inode，inode就是索引节点。</p>
+<p>​	也就是说每个文件都需要记录这些元信息，也必然会占用inode，因此inode占用过多，多数是小文件太多导致。</p>
 <h1 id="二查找哪里占用inode">二、查找哪里占用inode</h1>
-<pre><code>      查看 / 目录 inode满了，导致服务无法正常重启，并且存在大量的僵尸进程造成内存耗尽，知道了inode占用多是文件多导致之后，那么只需要找到哪些目录下小文件过多，然后删除即可
-</code></pre>
+<p>​	查看 / 目录 inode满了，导致服务无法正常重启，并且存在大量的僵尸进程造成内存耗尽，知道了inode占用多是文件多导致之后，那么只需要找到哪些目录下小文件过多，然后删除即可</p>
 <h3 id="1查看哪个盘占用inode"><strong>1.查看哪个盘占用inode</strong></h3>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -181,7 +176,7 @@
 </span><span class="lnt">4
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell">df -ih
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell">df -ih 
 df -ia
 两个命令均可
 top  <span class="c1">##查看异常使用进程</span>
@@ -213,15 +208,13 @@ top  <span class="c1">##查看异常使用进程</span>
 </span><span class="lnt">3
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell">ps -ef <span class="p">|</span> egrep <span class="s2">&#34;sendmail|postdrop&#34;</span> <span class="p">|</span> grep -v grep <span class="p">|</span>xargs <span class="nb">kill</span>
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell">ps -ef <span class="p">|</span> egrep <span class="s2">&#34;sendmail|postdrop&#34;</span> <span class="p">|</span> grep -v grep <span class="p">|</span>xargs <span class="nb">kill</span> 
 或者
 killall postdrop
 </code></pre></td></tr></table>
 </div>
-</div><pre><code>      查到了/var/spool/postfix/maildrop目录下有大量小文件，原来是crond在执行脚本时，会将保持信息以邮件的形式发送给crond用户，而环境的postfix没有正常运行，导致邮件发送失败，都会堆积在/var/spool/postfix/maildrop/目录中，要解决该问题，一是可以启动postfix，让
-</code></pre>
-<p>邮件服务正常运行.另外还可以在/etc/crontab中修改配置MAILTO=&ldquo;&ldquo;发送为空，这样就不会堆积了。</p>
-<p>&lt;200b&gt;          删除占用inode的文件</p>
+</div><p>​	查到了/var/spool/postfix/maildrop目录下有大量小文件，原来是crond在执行脚本时，会将保持信息以邮件的形式发送给crond用户，而环境的postfix没有正常运行，导致邮件发送失败，都会堆积在/var/spool/postfix/maildrop/目录中，要解决该问题，一是可以启动postfix，让邮件服务正常运行.另外还可以在/etc/crontab中修改配置MAILTO=&ldquo;&ldquo;发送为空，这样就不会堆积了。</p>
+<p>​		删除占用inode的文件</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -231,8 +224,8 @@ killall postdrop
 </code></pre></td></tr></table>
 </div>
 </div><h4 id="ps">ps：</h4>
-<p>&lt;200b&gt;  建议正式环境非工作时间操作，避免影响服务器性能。</p>
-<p>&lt;200b&gt;  遍历查找数据盘inode占用最多的目录</p>
+<p>​	建议正式环境非工作时间操作，避免影响服务器性能。</p>
+<p>​	遍历查找数据盘inode占用最多的目录</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1

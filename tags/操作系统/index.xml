@@ -12,6 +12,6 @@
     <guid>https://Dazhuwei.github.io/%E8%A7%A3%E5%86%B3inode%E5%8D%A0%E7%94%A8%E8%BF%87%E5%A4%9A%E7%9A%84%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/</guid>
     <description><![CDATA[<div class="featured-image">
                 <img src="/images/linux-images.jpg" referrerpolicy="no-referrer">
-            </div>解决inode占用过多的方案 前情提要： 某台服务器inode满了，很久没有处理过类似问题了，有点忘记，记录在此。 一、理解inode 要理解ino]]></description>
+            </div>解决inode占用过多的解决方案 前情提要： ​ 某台服务器inode满了，很久没有处理过类似问题了，有点忘记，记录在此。 一、理解inode ​ 要理]]></description>
 </item></channel>
 </rss>
