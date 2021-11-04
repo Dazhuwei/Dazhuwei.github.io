@@ -5,32 +5,32 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="robots" content="noodp" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
-        <title>Pbx临时保存wav录音格式文件说明 - 菜鸡，随便写写</title><meta name="Description" content="Blog of Zhangdw"><meta property="og:title" content="Pbx临时保存wav录音格式文件说明" />
-<meta property="og:description" content="pbx临时保存wav录音格式文件 用ass合成 1.在server.conf中[server]段内添加需要wav文件的账号： 1 thisAccountNeedWav=N00000000535,N00000001583 多个账号用，(英" />
+        <title>解决inode占用过多的解决方案 - 菜鸡，随便写写</title><meta name="Description" content="Blog of Zhangdw"><meta property="og:title" content="解决inode占用过多的解决方案" />
+<meta property="og:description" content="解决inode占用过多的方案 前情提要： 某台服务器inode满了，很久没有处理过类似问题了，有点忘记，记录在此。 一、理解inode 要理解ino" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://Dazhuwei.github.io/pbx%E4%B8%B4%E6%97%B6%E4%BF%9D%E5%AD%98wav%E5%BD%95%E9%9F%B3%E6%A0%BC%E5%BC%8F%E6%96%87%E4%BB%B6%E8%AF%B4%E6%98%8E/" /><meta property="og:image" content="https://Dazhuwei.github.io/images/logo.png"/><meta property="article:section" content="posts" />
-<meta property="article:published_time" content="2021-11-03T14:34:02+08:00" />
-<meta property="article:modified_time" content="2021-11-03T14:34:02+08:00" />
+<meta property="og:url" content="https://Dazhuwei.github.io/%E8%A7%A3%E5%86%B3inode%E5%8D%A0%E7%94%A8%E8%BF%87%E5%A4%9A%E7%9A%84%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/" /><meta property="og:image" content="https://Dazhuwei.github.io/images/logo.png"/><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2021-11-04T18:29:46+08:00" />
+<meta property="article:modified_time" content="2021-11-04T18:29:46+08:00" />
 
 <meta name="twitter:card" content="summary_large_image"/>
 <meta name="twitter:image" content="https://Dazhuwei.github.io/images/logo.png"/>
 
-<meta name="twitter:title" content="Pbx临时保存wav录音格式文件说明"/>
-<meta name="twitter:description" content="pbx临时保存wav录音格式文件 用ass合成 1.在server.conf中[server]段内添加需要wav文件的账号： 1 thisAccountNeedWav=N00000000535,N00000001583 多个账号用，(英"/>
+<meta name="twitter:title" content="解决inode占用过多的解决方案"/>
+<meta name="twitter:description" content="解决inode占用过多的方案 前情提要： 某台服务器inode满了，很久没有处理过类似问题了，有点忘记，记录在此。 一、理解inode 要理解ino"/>
 <meta name="application-name" content="菜鸡，随便写写">
 <meta name="apple-mobile-web-app-title" content="菜鸡，随便写写"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
         <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://Dazhuwei.github.io/pbx%E4%B8%B4%E6%97%B6%E4%BF%9D%E5%AD%98wav%E5%BD%95%E9%9F%B3%E6%A0%BC%E5%BC%8F%E6%96%87%E4%BB%B6%E8%AF%B4%E6%98%8E/" /><link rel="prev" href="https://Dazhuwei.github.io/my-first-post/" /><link rel="next" href="https://Dazhuwei.github.io/%E8%A7%A3%E5%86%B3inode%E5%8D%A0%E7%94%A8%E8%BF%87%E5%A4%9A%E7%9A%84%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/" /><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.13.0/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.7.2/animate.min.css"><script type="application/ld+json">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://Dazhuwei.github.io/%E8%A7%A3%E5%86%B3inode%E5%8D%A0%E7%94%A8%E8%BF%87%E5%A4%9A%E7%9A%84%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/" /><link rel="prev" href="https://Dazhuwei.github.io/pbx%E4%B8%B4%E6%97%B6%E4%BF%9D%E5%AD%98wav%E5%BD%95%E9%9F%B3%E6%A0%BC%E5%BC%8F%E6%96%87%E4%BB%B6%E8%AF%B4%E6%98%8E/" /><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.13.0/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.7.2/animate.min.css"><script type="application/ld+json">
     {
         "@context": "http://schema.org",
         "@type": "BlogPosting",
-        "headline": "Pbx临时保存wav录音格式文件说明",
+        "headline": "解决inode占用过多的解决方案",
         "inLanguage": "zh-CN",
         "mainEntityOfPage": {
             "@type": "WebPage",
-            "@id": "https:\/\/Dazhuwei.github.io\/pbx%E4%B8%B4%E6%97%B6%E4%BF%9D%E5%AD%98wav%E5%BD%95%E9%9F%B3%E6%A0%BC%E5%BC%8F%E6%96%87%E4%BB%B6%E8%AF%B4%E6%98%8E\/"
-        },"image": ["https:\/\/Dazhuwei.github.io\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "呼叫中心, 通话","wordcount":  277 ,
-        "url": "https:\/\/Dazhuwei.github.io\/pbx%E4%B8%B4%E6%97%B6%E4%BF%9D%E5%AD%98wav%E5%BD%95%E9%9F%B3%E6%A0%BC%E5%BC%8F%E6%96%87%E4%BB%B6%E8%AF%B4%E6%98%8E\/","datePublished": "2021-11-03T14:34:02+08:00","dateModified": "2021-11-03T14:34:02+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
+            "@id": "https:\/\/Dazhuwei.github.io\/%E8%A7%A3%E5%86%B3inode%E5%8D%A0%E7%94%A8%E8%BF%87%E5%A4%9A%E7%9A%84%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88\/"
+        },"image": ["https:\/\/Dazhuwei.github.io\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "操作系统, linux","wordcount":  997 ,
+        "url": "https:\/\/Dazhuwei.github.io\/%E8%A7%A3%E5%86%B3inode%E5%8D%A0%E7%94%A8%E8%BF%87%E5%A4%9A%E7%9A%84%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88\/","datePublished": "2021-11-04T18:29:46+08:00","dateModified": "2021-11-04T18:29:46+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
             "@type": "Organization",
             "name": "Zhangdw","logo": "https:\/\/Dazhuwei.github.io\/leslie.png"},"author": {
                 "@type": "Person",
@@ -118,123 +118,165 @@
                 <div class="container"><div class="toc" id="toc-auto">
             <h2 class="toc-title">目录</h2>
             <div class="toc-content" id="toc-content-auto"></div>
-        </div><article class="page single"><h1 class="single-title animated flipInX">Pbx临时保存wav录音格式文件说明</h1><div class="post-meta">
-            <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>Zhangdw</a></span>&nbsp;<span class="post-category">收录于 <a href="/categories/%E9%80%9A%E8%AF%9D/"><i class="far fa-folder fa-fw"></i>通话</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2021-11-03">2021-11-03</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 277 字&nbsp;
-                <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 1 分钟&nbsp;<span id="/pbx%E4%B8%B4%E6%97%B6%E4%BF%9D%E5%AD%98wav%E5%BD%95%E9%9F%B3%E6%A0%BC%E5%BC%8F%E6%96%87%E4%BB%B6%E8%AF%B4%E6%98%8E/" class="leancloud_visitors" data-flag-title="Pbx临时保存wav录音格式文件说明">
+        </div><article class="page single"><h1 class="single-title animated flipInX">解决inode占用过多的解决方案</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>Zhangdw</a></span>&nbsp;<span class="post-category">收录于 <a href="/categories/linux/"><i class="far fa-folder fa-fw"></i>Linux</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2021-11-04">2021-11-04</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 997 字&nbsp;
+                <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 2 分钟&nbsp;<span id="/%E8%A7%A3%E5%86%B3inode%E5%8D%A0%E7%94%A8%E8%BF%87%E5%A4%9A%E7%9A%84%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/" class="leancloud_visitors" data-flag-title="解决inode占用过多的解决方案">
                         <i class="far fa-eye fa-fw"></i>&nbsp;<span class=leancloud-visitors-count></span>&nbsp;次阅读
                     </span>&nbsp;</div>
         </div><div class="featured-image"><img
         class="lazyload"
         src="/svg/loading.min.svg"
-        data-src="/images/pbx-wav-logo.jpg"
-        data-srcset="/images/pbx-wav-logo.jpg, /images/pbx-wav-logo.jpg 1.5x, /images/pbx-wav-logo.jpg 2x"
+        data-src="/images/linux-images.jpg"
+        data-srcset="/images/linux-images.jpg, /images/linux-images.jpg 1.5x, /images/linux-images.jpg 2x"
         data-sizes="auto"
-        alt="/images/pbx-wav-logo.jpg"
-        title="/images/pbx-wav-logo.jpg" /></div><div class="details toc" id="toc-static"  kept="">
+        alt="/images/linux-images.jpg"
+        title="/images/linux-images.jpg" /></div><div class="details toc" id="toc-static"  kept="">
                 <div class="details-summary toc-title">
                     <span>目录</span>
                     <span><i class="details-icon fas fa-angle-right"></i></span>
                 </div>
                 <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
   <ul>
-    <li><a href="#用ass合成">用ass合成</a></li>
+    <li><a href="#前情提要">前情提要：</a></li>
+  </ul>
+
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#1查看哪个盘占用inode"><strong>1.查看哪个盘占用inode</strong></a></li>
+        <li><a href="#2进入该挂载目录然后通过wc--l统计哪些占用多">2.进入该挂载目录，然后通过wc -l统计哪些占用多。</a></li>
+        <li><a href="#3可以看到是varspoolpostfixmaildrop下很多小文件">3.可以看到是/var/spool/postfix/maildrop下很多小文件</a></li>
+        <li><a href="#4解决办法执行以下命令">4.解决办法：执行以下命令</a>
+          <ul>
+            <li><a href="#ps">ps：</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
   </ul>
 </nav></div>
-            </div><div class="content" id="content"><h1 id="pbx临时保存wav录音格式文件">pbx临时保存wav录音格式文件</h1>
-<h2 id="用ass合成">用ass合成</h2>
-<p>1.在server.conf中[server]段内添加需要wav文件的账号：</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="nv">thisAccountNeedWav</span><span class="o">=</span>N00000000535,N00000001583
-</code></pre></td></tr></table>
-</div>
-</div><p>多个账号用，(英文逗号)隔开。</p>
-<p>2.在server.conf中[server]段内添加wav保存的天数：</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="nv">deleteWavs</span><span class="o">=</span><span class="m">3</span> 
-</code></pre></td></tr></table>
-</div>
-</div><p>wav文件比较大，不建议保存太久。</p>
-<p>3.reload 一下ass配置文件：</p>
-<p>(echo &ldquo;Login -u 用户名 -p 密码&rdquo;;sleep 1;echo &ldquo;reload&rdquo; ;sleep 3)|telnet localhost 7877</p>
-<p>4.新加nginx配置文件：</p>
+            </div><div class="content" id="content"><h1 id="解决inode占用过多的方案">解决inode占用过多的方案</h1>
+<h2 id="前情提要">前情提要：</h2>
+<pre><code>      某台服务器inode满了，很久没有处理过类似问题了，有点忘记，记录在此。
+</code></pre>
+<h1 id="一理解inode">一、理解inode</h1>
+<pre><code>      要理解inode，要从文件存储说起，Linux系统文件在物理上都是存储在硬盘上面的，硬盘存储里面，最小存储单位是&quot;扇区(Sector)&quot;，每个扇区存储512字节。
+
+      操作系统在读取硬盘的时候不会一个一个读取扇区，这样效率很低，而是一次性连续读取多个扇区，多个扇区就组成了一个块(block)，而这种由多个扇区组成的块，就是文件存储的最小单位，块的大小一般为4KB，也就是说8个扇区组成了一个block。
+
+      文件信息存储在block中，如何找到这些block，以及怎么知道这些block存储了哪些内容，如文件的创建人、时间、大小等信息，这些信息又叫元数据，而这种存储元数据的区域就叫做inode，inode就是索引节点。
+
+      也就是说每个文件都需要记录这些元信息，也必然会占用inode，因此inode占用过多，多数是小文件太多导致。
+</code></pre>
+<h1 id="二查找哪里占用inode">二、查找哪里占用inode</h1>
+<pre><code>      查看 / 目录 inode满了，导致服务无法正常重启，并且存在大量的僵尸进程造成内存耗尽，知道了inode占用多是文件多导致之后，那么只需要找到哪些目录下小文件过多，然后删除即可
+</code></pre>
+<h3 id="1查看哪个盘占用inode"><strong>1.查看哪个盘占用inode</strong></h3>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
-</span><span class="lnt">5
-</span><span class="lnt">6
-</span><span class="lnt">7
-</span><span class="lnt">8
-</span><span class="lnt">9
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">		location /inOutTempOfWav <span class="o">{</span>
-            root   /var/spool/asterisk/<span class="p">;</span>
-            index  index.html index.htm<span class="p">;</span>
-            <span class="c1">##以下limit配置必须定义limit参数，否则不予以配置##</span>
-            limit_rate_after 10M<span class="p">;</span>
-            limit_rate  800k<span class="p">;</span>
-            limit_conn monitor_down 10<span class="p">;</span>
-            limit_req <span class="nv">zone</span><span class="o">=</span>monitor_down_1 <span class="nv">burst</span><span class="o">=</span><span class="m">20</span> nodelay<span class="p">;</span>
-        <span class="o">}</span>
-</code></pre></td></tr></table>
-</div>
-</div><p>5.reload nginx配置文件：</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">/opt/nginx/sbin/nginx -s reload
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell">df -ih
+df -ia
+两个命令均可
+top  <span class="c1">##查看异常使用进程</span>
 </code></pre></td></tr></table>
 </div>
 </div><p><img
         class="lazyload"
         src="/svg/loading.min.svg"
-        data-src="/images/pbx-wav-01.png"
-        data-srcset="/images/pbx-wav-01.png, /images/pbx-wav-01.png 1.5x, /images/pbx-wav-01.png 2x"
+        data-src="/images/inode-01.png"
+        data-srcset="/images/inode-01.png, /images/inode-01.png 1.5x, /images/inode-01.png 2x"
         data-sizes="auto"
-        alt="/images/pbx-wav-01.png"
-        title="image-20201125114849804" /></p>
-<p>配置完成后让前端运维或客户测试。</p>
+        alt="/images/inode-01.png"
+        title="20818113-8B7E-42DB-9113-529A0D98592B" /></p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="/images/inode-02.png"
+        data-srcset="/images/inode-02.png, /images/inode-02.png 1.5x, /images/inode-02.png 2x"
+        data-sizes="auto"
+        alt="/images/inode-02.png"
+        title="F02B5AB5-C3D1-4462-9665-782798F58E62" /></p>
+<h3 id="2进入该挂载目录然后通过wc--l统计哪些占用多">2.进入该挂载目录，然后通过wc -l统计哪些占用多。</h3>
+<h3 id="3可以看到是varspoolpostfixmaildrop下很多小文件">3.可以看到是/var/spool/postfix/maildrop下很多小文件</h3>
+<h3 id="4解决办法执行以下命令">4.解决办法：执行以下命令</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell">ps -ef <span class="p">|</span> egrep <span class="s2">&#34;sendmail|postdrop&#34;</span> <span class="p">|</span> grep -v grep <span class="p">|</span>xargs <span class="nb">kill</span>
+或者
+killall postdrop
+</code></pre></td></tr></table>
+</div>
+</div><pre><code>      查到了/var/spool/postfix/maildrop目录下有大量小文件，原来是crond在执行脚本时，会将保持信息以邮件的形式发送给crond用户，而环境的postfix没有正常运行，导致邮件发送失败，都会堆积在/var/spool/postfix/maildrop/目录中，要解决该问题，一是可以启动postfix，让
+</code></pre>
+<p>邮件服务正常运行.另外还可以在/etc/crontab中修改配置MAILTO=&ldquo;&ldquo;发送为空，这样就不会堆积了。</p>
+<p>&lt;200b&gt;          删除占用inode的文件</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell">find /var/spool/postfix/maildrop/ -type f <span class="p">|</span>xargs rm -rf
+</code></pre></td></tr></table>
+</div>
+</div><h4 id="ps">ps：</h4>
+<p>&lt;200b&gt;  建议正式环境非工作时间操作，避免影响服务器性能。</p>
+<p>&lt;200b&gt;  遍历查找数据盘inode占用最多的目录</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell">find /data -xdev -printf <span class="s1">&#39;%h\n&#39;</span> <span class="p">|</span> sort <span class="p">|</span> uniq -c <span class="p">|</span> sort -k <span class="m">1</span> -n
+<span class="c1">## /data 目录根据需求进行替换</span>
+</code></pre></td></tr></table>
+</div>
+</div><p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="/images/inode-03.png"
+        data-srcset="/images/inode-03.png, /images/inode-03.png 1.5x, /images/inode-03.png 2x"
+        data-sizes="auto"
+        alt="/images/inode-03.png"
+        title="9B653340-607B-407C-A183-B05C43CAEBA9" /></p>
 </div><div class="post-footer" id="post-footer">
     <div class="post-info">
         <div class="post-info-line">
             <div class="post-info-mod">
-                <span>更新于 2021-11-03</span>
+                <span>更新于 2021-11-04</span>
             </div>
             <div class="post-info-license"></div>
         </div>
         <div class="post-info-line">
             <div class="post-info-md"><span>
-                            <a class="link-to-markdown" href="/pbx%E4%B8%B4%E6%97%B6%E4%BF%9D%E5%AD%98wav%E5%BD%95%E9%9F%B3%E6%A0%BC%E5%BC%8F%E6%96%87%E4%BB%B6%E8%AF%B4%E6%98%8E/index.md" target="_blank">阅读原始文档</a>
+                            <a class="link-to-markdown" href="/%E8%A7%A3%E5%86%B3inode%E5%8D%A0%E7%94%A8%E8%BF%87%E5%A4%9A%E7%9A%84%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/index.md" target="_blank">阅读原始文档</a>
                         </span></div>
             <div class="post-info-share">
-                <span><a href="javascript:void(0);" title="分享到 Twitter" data-sharer="twitter" data-url="https://Dazhuwei.github.io/pbx%E4%B8%B4%E6%97%B6%E4%BF%9D%E5%AD%98wav%E5%BD%95%E9%9F%B3%E6%A0%BC%E5%BC%8F%E6%96%87%E4%BB%B6%E8%AF%B4%E6%98%8E/" data-title="Pbx临时保存wav录音格式文件说明" data-hashtags="呼叫中心,通话"><i class="fab fa-twitter fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Hacker News" data-sharer="hackernews" data-url="https://Dazhuwei.github.io/pbx%E4%B8%B4%E6%97%B6%E4%BF%9D%E5%AD%98wav%E5%BD%95%E9%9F%B3%E6%A0%BC%E5%BC%8F%E6%96%87%E4%BB%B6%E8%AF%B4%E6%98%8E/" data-title="Pbx临时保存wav录音格式文件说明"><i class="fab fa-hacker-news fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Line" data-sharer="line" data-url="https://Dazhuwei.github.io/pbx%E4%B8%B4%E6%97%B6%E4%BF%9D%E5%AD%98wav%E5%BD%95%E9%9F%B3%E6%A0%BC%E5%BC%8F%E6%96%87%E4%BB%B6%E8%AF%B4%E6%98%8E/" data-title="Pbx临时保存wav录音格式文件说明"><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@2.14.0/icons/line.svg"></i></a><a href="javascript:void(0);" title="分享到 微博" data-sharer="weibo" data-url="https://Dazhuwei.github.io/pbx%E4%B8%B4%E6%97%B6%E4%BF%9D%E5%AD%98wav%E5%BD%95%E9%9F%B3%E6%A0%BC%E5%BC%8F%E6%96%87%E4%BB%B6%E8%AF%B4%E6%98%8E/" data-title="Pbx临时保存wav录音格式文件说明" data-image="/images/pbx-wav-logo.jpg"><i class="fab fa-weibo fa-fw"></i></a></span>
+                <span><a href="javascript:void(0);" title="分享到 Twitter" data-sharer="twitter" data-url="https://Dazhuwei.github.io/%E8%A7%A3%E5%86%B3inode%E5%8D%A0%E7%94%A8%E8%BF%87%E5%A4%9A%E7%9A%84%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/" data-title="解决inode占用过多的解决方案" data-hashtags="操作系统,linux"><i class="fab fa-twitter fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Hacker News" data-sharer="hackernews" data-url="https://Dazhuwei.github.io/%E8%A7%A3%E5%86%B3inode%E5%8D%A0%E7%94%A8%E8%BF%87%E5%A4%9A%E7%9A%84%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/" data-title="解决inode占用过多的解决方案"><i class="fab fa-hacker-news fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Line" data-sharer="line" data-url="https://Dazhuwei.github.io/%E8%A7%A3%E5%86%B3inode%E5%8D%A0%E7%94%A8%E8%BF%87%E5%A4%9A%E7%9A%84%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/" data-title="解决inode占用过多的解决方案"><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@2.14.0/icons/line.svg"></i></a><a href="javascript:void(0);" title="分享到 微博" data-sharer="weibo" data-url="https://Dazhuwei.github.io/%E8%A7%A3%E5%86%B3inode%E5%8D%A0%E7%94%A8%E8%BF%87%E5%A4%9A%E7%9A%84%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/" data-title="解决inode占用过多的解决方案" data-image="/images/linux-images.jpg"><i class="fab fa-weibo fa-fw"></i></a></span>
             </div>
         </div>
     </div>
 
     <div class="post-info-more">
-        <section class="post-tags"><i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/%E5%91%BC%E5%8F%AB%E4%B8%AD%E5%BF%83/">呼叫中心</a>,&nbsp;<a href="/tags/%E9%80%9A%E8%AF%9D/">通话</a></section>
+        <section class="post-tags"><i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/">操作系统</a>,&nbsp;<a href="/tags/linux/">linux</a></section>
         <section>
             <span><a href="javascript:void(0);" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
         </section>
     </div>
 
-    <div class="post-nav"><a href="/my-first-post/" class="prev" rel="prev" title="My First Post"><i class="fas fa-angle-left fa-fw"></i>My First Post</a>
-            <a href="/%E8%A7%A3%E5%86%B3inode%E5%8D%A0%E7%94%A8%E8%BF%87%E5%A4%9A%E7%9A%84%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/" class="next" rel="next" title="解决inode占用过多的解决方案">解决inode占用过多的解决方案<i class="fas fa-angle-right fa-fw"></i></a></div>
+    <div class="post-nav"><a href="/pbx%E4%B8%B4%E6%97%B6%E4%BF%9D%E5%AD%98wav%E5%BD%95%E9%9F%B3%E6%A0%BC%E5%BC%8F%E6%96%87%E4%BB%B6%E8%AF%B4%E6%98%8E/" class="prev" rel="prev" title="Pbx临时保存wav录音格式文件说明"><i class="fas fa-angle-left fa-fw"></i>Pbx临时保存wav录音格式文件说明</a></div>
 </div>
 <div id="comments"><div id="valine" class="comment"></div><noscript>
                 Please enable JavaScript to view the comments powered by <a href="https://valine.js.org/">Valine</a>.
