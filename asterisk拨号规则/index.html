@@ -1,0 +1,749 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+        <title>Asterisk拨号规则 - 菜鸡，随便写写</title><meta name="Description" content="Blog of Zhangdw"><meta property="og:title" content="Asterisk拨号规则" />
+<meta property="og:description" content="Asterisk拨号规 一、前言 本文档以asterisk-1.4.32为基础写作而成，可能和其他版本有些区别。其中参考了一些别的书籍和文章。因" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://Dazhuwei.github.io/asterisk%E6%8B%A8%E5%8F%B7%E8%A7%84%E5%88%99/" /><meta property="og:image" content="https://Dazhuwei.github.io/images/logo.png"/><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2021-11-05T15:17:50+08:00" />
+<meta property="article:modified_time" content="2021-11-05T15:17:50+08:00" />
+
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://Dazhuwei.github.io/images/logo.png"/>
+
+<meta name="twitter:title" content="Asterisk拨号规则"/>
+<meta name="twitter:description" content="Asterisk拨号规 一、前言 本文档以asterisk-1.4.32为基础写作而成，可能和其他版本有些区别。其中参考了一些别的书籍和文章。因"/>
+<meta name="application-name" content="菜鸡，随便写写">
+<meta name="apple-mobile-web-app-title" content="菜鸡，随便写写"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://Dazhuwei.github.io/asterisk%E6%8B%A8%E5%8F%B7%E8%A7%84%E5%88%99/" /><link rel="prev" href="https://Dazhuwei.github.io/mongodb4.2arm%E5%B9%B3%E5%8F%B0%E7%BC%96%E8%AF%91/" /><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.13.0/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.7.2/animate.min.css"><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "Asterisk拨号规则",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/Dazhuwei.github.io\/asterisk%E6%8B%A8%E5%8F%B7%E8%A7%84%E5%88%99\/"
+        },"image": ["https:\/\/Dazhuwei.github.io\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "通话, asterisk, 工具","wordcount":  8533 ,
+        "url": "https:\/\/Dazhuwei.github.io\/asterisk%E6%8B%A8%E5%8F%B7%E8%A7%84%E5%88%99\/","datePublished": "2021-11-05T15:17:50+08:00","dateModified": "2021-11-05T15:17:50+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
+            "@type": "Organization",
+            "name": "Zhangdw","logo": "https:\/\/Dazhuwei.github.io\/leslie.png"},"author": {
+                "@type": "Person",
+                "name": "Zhangdw"
+            },"description": ""
+    }
+    </script></head>
+    <body header-desktop="fixed" header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="菜鸡，随便写写"><img
+        class="lazyload logo"
+        src="/svg/loading.min.svg"
+        data-src="/images/logo.png"
+        data-srcset="/images/logo.png, /images/logo.png 1.5x, /images/logo.png 2x"
+        data-sizes="auto"
+        alt="/images/logo.png"
+        title="/images/logo.png" /><span class="header-title-pre"><i class='far fa-kiss-wink-heart fa-fw'></i></span><span id="id-1" class="typeit"></span></a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> 所有文章 </a><a class="menu-item" href="/tags/"> 标签 </a><a class="menu-item" href="/categories/"> 分类 </a><a class="menu-item" href="/categories"> 文档 </a><a class="menu-item" href="/about/"> 关于 </a><a class="menu-item" href="https://github.com/Dazhuwei" title="GitHub" rel="noopener noreffer" target="_blank"><i class='fab fa-github fa-fw'></i>  </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="搜索文章标题或内容..." id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="菜鸡，随便写写"><img
+        class="lazyload logo"
+        src="/svg/loading.min.svg"
+        data-src="/images/logo.png"
+        data-srcset="/images/logo.png, /images/logo.png 1.5x, /images/logo.png 2x"
+        data-sizes="auto"
+        alt="/images/logo.png"
+        title="/images/logo.png" /><span class="header-title-pre"><i class='far fa-kiss-wink-heart fa-fw'></i></span><span id="id-2" class="typeit"></span></a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="搜索文章标题或内容..." id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        取消
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="">所有文章</a><a class="menu-item" href="/tags/" title="">标签</a><a class="menu-item" href="/categories/" title="">分类</a><a class="menu-item" href="/categories" title="">文档</a><a class="menu-item" href="/about/" title="">关于</a><a class="menu-item" href="https://github.com/Dazhuwei" title="GitHub" rel="noopener noreffer" target="_blank"><i class='fab fa-github fa-fw'></i></a><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                <i class="fas fa-adjust fa-fw"></i>
+            </a></div>
+    </div>
+</header>
+<div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div>
+<main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">目录</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animated flipInX">Asterisk拨号规则</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>Zhangdw</a></span>&nbsp;<span class="post-category">收录于 <a href="/categories/%E9%80%9A%E8%AF%9D/"><i class="far fa-folder fa-fw"></i>通话</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2021-11-05">2021-11-05</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 8533 字&nbsp;
+                <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 18 分钟&nbsp;<span id="/asterisk%E6%8B%A8%E5%8F%B7%E8%A7%84%E5%88%99/" class="leancloud_visitors" data-flag-title="Asterisk拨号规则">
+                        <i class="far fa-eye fa-fw"></i>&nbsp;<span class=leancloud-visitors-count></span>&nbsp;次阅读
+                    </span>&nbsp;</div>
+        </div><div class="featured-image"><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="/images/asterisk-logo.png"
+        data-srcset="/images/asterisk-logo.png, /images/asterisk-logo.png 1.5x, /images/asterisk-logo.png 2x"
+        data-sizes="auto"
+        alt="/images/asterisk-logo.png"
+        title="/images/asterisk-logo.png" /></div><div class="details toc" id="toc-static"  kept="">
+                <div class="details-summary toc-title">
+                    <span>目录</span>
+                    <span><i class="details-icon fas fa-angle-right"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#一前言">一、前言</a></li>
+    <li><a href="#二asterisk-dialplan-基本结构">二、Asterisk dialplan 基本结构</a>
+      <ul>
+        <li><a href="#1context">1、context</a></li>
+        <li><a href="#2extensionnum">2、extensionnum</a></li>
+        <li><a href="#3priority">3、priority</a></li>
+        <li><a href="#4action">4、action</a>
+          <ul>
+            <li><a href="#1answer">1)、Answer</a></li>
+            <li><a href="#2playback">2)、Playback</a></li>
+            <li><a href="#3background">3)、BackGround</a></li>
+            <li><a href="#4dial">4)、Dial</a></li>
+            <li><a href="#5hangup">5)、Hangup</a></li>
+            <li><a href="#6goto">6)、Goto</a></li>
+            <li><a href="#7gotoif">7)、GotoIf</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li><a href="#三dialplan中的变量和逻辑表达">三、Dialplan中的变量和逻辑表达</a>
+      <ul>
+        <li><a href="#adialplan中的变量通过变量名来引用和标识变量名不一定要大些但是大些可有助于阅读">a、Dialplan中的变量通过${变量名}来引用和标识，变量名不一定要大些，但是大些可有助于阅读。</a>
+          <ul>
+            <li><a href="#1全局变量">1)、全局变量</a></li>
+            <li><a href="#2通道变量">2)、通道变量</a></li>
+          </ul>
+        </li>
+        <li><a href="#b逻辑表达式">b、逻辑表达式.</a>
+          <ul>
+            <li><a href="#1逻辑运算符">1)、逻辑运算符</a></li>
+            <li><a href="#2数学运算符">2)、数学运算符</a></li>
+            <li><a href="#3正则表达式运算符">3)、正则表达式运算符</a></li>
+            <li><a href="#4三态运算符">4)、三态运算符</a></li>
+          </ul>
+        </li>
+        <li><a href="#c运算符优先级">c、运算符优先级</a></li>
+      </ul>
+    </li>
+    <li><a href="#四拨号方案函数">四、拨号方案函数</a></li>
+    <li><a href="#五include">五、Include</a></li>
+    <li><a href="#六宏macro">六、宏macro</a></li>
+    <li><a href="#七结束语">七、结束语</a></li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><h1 id="asterisk拨号规">Asterisk拨号规</h1>
+<h2 id="一前言">一、前言</h2>
+<p>本文档以asterisk-1.4.32为基础写作而成，可能和其他版本有些区别。其中参考了一些别的书籍和文章。因为写的比较仓促，而且基本都是晚上写的，里面的内容逻辑性和语句没有仔细斟酌，就是想到什么写什么，难免有什么遗漏和错误的地方，大家发现请及时通知我修改。另外这是我第一次写技术性的文章还很嫩涩，算是一个开始，希望大家多多支持。</p>
+<h2 id="二asterisk-dialplan-基本结构">二、Asterisk dialplan 基本结构</h2>
+<p>Asterisk dialplan 的语法可以分为四个关键点，也就是语法结构的四个组成部分，四个部分分别context ，extensionnum ，priority 和 action。由这四个组成部分dialplan的结构为：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"> <span class="o">[</span>context<span class="o">]</span>
+  <span class="nv">exten</span> <span class="o">=</span>&gt; extensionnum,priority,action
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="1context">1、context</h3>
+<p>context是指dialplan的流程块，整个dialplan就是由每个context的内容组成，他们协作完成整个asterisk命令逻辑的运转。context的名字必须放在中括号之中，比如PSTN外线打进系统所执行的流程我们都习惯叫from-pstn，在语法里面就写做&quot;[from-pstn]&quot;。所有属于这个流程的内容都写在这个下面。每一个命令都由换行符来隔开，也就是说每一行就是一个命令，每一行命令都必须由&quot;exten =&gt; &ldquo;（这个里面的空格可以没有）开头。流程的结尾就是遇到到下一个流程标识截止。</p>
+<h3 id="2extensionnum">2、extensionnum</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">  extensionnum是指流程块里面的流程匹配标识（也就是asterisk里面说的extension），这个匹配标识其实通常就是我们要拨的号码（当然这个匹配标识不光是数字也可以是字母或者一些特殊字符）。比如你拨分机101，而你设置的拨分机的流程块是dial-ext，那么asterisk就会在dial-ext流程块里面寻找能匹配101的流程，找到了就会执行。说到匹配大家就会想到通配符吧，哈哈，asterisk里面也有类似的通配符，下面我就介绍一下asterisk里面关于extension的通配符。
+   X和x表示单个0-9的数字
+   N和n表示单个1-9的数字
+   Z和z表示单个2-9的数字
+   .表示单个的任何字符和数字
+   []中括号里面可以是你想任意的匹配的数字或者字母，比如你想匹配1、3或者6，那么你就可以这样[136]或者[1,3,6]，在中括号里面还支持这样[1-8]是指匹配1到8的任意一个数字。
+   当你的extensionnum中含有任何通配符的时候你就要用一个短的下划线&#34;_&#34;来作为extensionnum的开头除了这些以外asterisk还有一些特殊意义的匹配字符，
+   s ：是指Start extension，也就是当没有extension的时候就会执行这个流程（例如在模拟外线进线没有收到callerID的情况下就会转到这个extension来执行），另外在zapata.conf的channels段里面如果设定了immediate=yes程序就会自动找到s这流程来执行。
+   t ：是指timeout extension，也就是说如果等待用户输入超时后就会转到t这个流程来执行，在这里你可以设置一些提示音来告诉客户超时了。
+   i ：是指invalid extension，也就是说如果客户输入无效的时候会转到i这个流程来执行
+   fax ：是指fax calls，也就是说如果asterisk检测到传真信号的时候就会自动转到这个流程里面来执行。
+   h ：是指hangup extension，就是说呼叫终止后执行的流程，在这里通道已经终止，放音、发送DTMF等命令都不可用了，只能做一些呼叫结束后处理的一些工作。
+   需要注意的是，不管你设置的流程是什么都是属于某个流程块的，在不相互包含的情况下，流程块与流程块之间是相互独立的，流程或者变量是不会冲突的。
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="3priority">3、priority</h3>
+<p>priority是指流程里面的命令的执行优先级，除了跳转的情况，都是按照priority值的之从小到大执行的。在流程里面你会经常看见&quot;n&quot;这个priority，它是指next也就是上一个priority+1.我们通常还会给某个priority取个名字，来方便我们流程跳转，也方便流程的阅读。语法是这样的 exten =&gt; extensionnum,priority(name),action ，name就是这个priority的名字。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell">  <span class="nv">exten</span> <span class="o">=</span>&gt; _123409XX,1,GotoIf<span class="o">(</span>$<span class="o">[</span><span class="si">${</span><span class="nv">EXTEN</span><span class="si">}</span><span class="o">=</span>12340910<span class="o">]</span>?ivr1:normal<span class="o">)</span> 
+   <span class="nv">exten</span> <span class="o">=</span>&gt; _123409XX,n<span class="o">(</span>normal<span class="o">)</span>,Dial<span class="o">(</span>SIP/101<span class="o">)</span>
+   <span class="nv">exten</span> <span class="o">=</span>&gt; _123409XX,n,Goto<span class="o">(</span>end<span class="o">)</span>
+   <span class="nv">exten</span> <span class="o">=</span>&gt; _123409XX,n<span class="o">(</span>ivr1<span class="o">)</span>,BackGround<span class="o">(</span>MyVox/Greeting<span class="o">)</span>
+   <span class="nv">exten</span> <span class="o">=</span>&gt; _123409XX,n<span class="o">(</span>end<span class="o">)</span>,Hangup
+</code></pre></td></tr></table>
+</div>
+</div><p>上面这段代码就是当匹配的号码是12340901时就跳转到ivr1这个priority上否则就跳转到normal这个priority上。上面这段流程也可以写成：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell">  <span class="nv">exten</span> <span class="o">=</span>&gt; _123409XX,1,GotoIf<span class="o">(</span>$<span class="o">[</span><span class="si">${</span><span class="nv">EXTEN</span><span class="si">}</span><span class="o">=</span>12340910<span class="o">]</span>?4:2<span class="o">)</span> 
+   <span class="nv">exten</span> <span class="o">=</span>&gt; _123409XX,2,Dial<span class="o">(</span>SIP/101<span class="o">)</span>
+   <span class="nv">exten</span> <span class="o">=</span>&gt; _123409XX,3,Goto<span class="o">(</span>5<span class="o">)</span>
+   <span class="nv">exten</span> <span class="o">=</span>&gt; _123409XX,4,BackGround<span class="o">(</span>MyVox/Greeting<span class="o">)</span>
+   <span class="nv">exten</span> <span class="o">=</span>&gt; _123409XX,5,Hangup
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="4action">4、action</h3>
+<p>action就相对好理解多了就是流程里面你要执行的命令，asterisk支持的命令很多，我就介绍几个比较常用的。所有命令的规则里中括号里面是可选的部分，没有中括号的必须填加的。参数之间的分隔符是&rdquo;|&quot;,其实&quot;,&ldquo;来分隔也可以，但是1.6版本的asterisk不行，1.6的只能用&rdquo;|&quot;。还应该注意的是action的命令名有大小写之分，写错将会出现错误，当命令没有参数时可以不用写小括号。</p>
+<h4 id="1answer">1)、Answer</h4>
+<p>语法：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell">Answer<span class="o">([</span>delay<span class="o">])</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>应答一个振铃的Channel。如果呼叫没有被应答此方法将应答这个呼叫，如果delay这个参数指定那么应答成功后将等待delay秒后再返回执行下条命令，应答不成功就会直接返回错误返回值而不执行delay延迟。这个命令用于呼入的情况，呼出的时候不会真正执行answer操作但是会执行delay延迟。</p>
+<h4 id="2playback">2)、Playback</h4>
+<p>语法：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell">Playback<span class="o">(</span>filename<span class="o">[</span><span class="p">&amp;</span>filename2...<span class="o">][</span><span class="p">|</span>option<span class="o">])</span>
+
+
+  给当前Channel播放语音文件。第一个参数是语音文件，语音文件的格式asterisk默认的是gsm，其他wav、sln、vox、pcm等也都支持，但是最好用gsm格式的文件，如果没有gsm格式的可以用sox这个工具把格式变为gsm的，一般变成gsm格式的语音播放起来就不会有什么问题了。
+  播放的语音文件也可以是多个，每个之间用<span class="s2">&#34;&amp;&#34;</span>来分隔，语音文件的扩展名不用写，语音文件中不能有空格，最好就是字母和数字的组合，为了语义的需要可以用下划线来分隔。
+  当一个语音文件出现问题时命令就会停止，后面的语音文件就不会再被播放了。
+  语音文件是相对地址也可以是绝对地址，相对地址的默认路径是/var/lib/asterisk/sounds/。
+   第二个参数是一些控制变量，这个参数是可选的：
+   skip ：如果这个变量设置，而且当前通道没有UP，命令就会立刻结束，不播放任何语音。
+   noanswer ：如果设置这个变量，在当前通道没有UP的时候，就不会执行anwser来UP这个通道。
+   say ：如果设置这个变量，在播放语音之前会把要播放的语音文件名都出来。
+   j ：如果设置这个变量，当语音文件播放出现问题的时候，流程就会跳转到priority+101这个priority继续执行。
+   通道变量PLAYBACKSTATUS，通道变量的值通常都是一个字符串，当语音播放成功后PLAYBACKSTATUS为SUCCESS，否则为FAILED。当播放多个文件时只要有一个文件播放失败PLAYBACKSTATUS即为FAILED。
+</code></pre></td></tr></table>
+</div>
+</div><h4 id="3background">3)、BackGround</h4>
+<p>语法：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell">Background<span class="o">(</span>filename1<span class="o">[</span><span class="p">&amp;</span>filename2...<span class="o">][</span><span class="p">|</span>options<span class="o">[</span><span class="p">|</span>langoverride<span class="o">][</span><span class="p">|</span>context<span class="o">]])</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>给当前Channel播放语音文件，并等待客户输入，来执行相应的extension。第一个参数是语音文件，这个参数的用法跟Playbcak的第一参数用法一样。
+第二个参数是一些控制变量，这个参数是可选的：
+s ：如果这个变量设置，而且当前通道没有UP，命令就会立刻结束，不播放任何语音。
+n ：播放语音前不用answer这个通道
+m ：只有当用户输入的能和参数context中的流程匹配才结束。
+p ：只播放不接受用户输入。
+第三个参数是指播放声音的语言，这个参数是可选的。
+第四个参数是指当用户输入后要去寻找匹配并执行的context，在多层的IVR中这个参数是关键，这个参数是可选的。</p>
+<h4 id="4dial">4)、Dial</h4>
+<p>语法：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span><span class="lnt">49
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell">Dial<span class="o">(</span>Technology/resource<span class="o">[</span><span class="p">&amp;</span>Tech2/resource2...<span class="o">][</span><span class="p">|</span>timeout<span class="o">][</span><span class="p">|</span>options<span class="o">][</span><span class="p">|</span>URL<span class="o">])</span>
+
+
+  这个命令会是当前通道呼叫一个或多个Channel，其中有一个Channel应答，当前通道就会和这个Channel桥接在一起，其他Channel就会挂断。
+  第一个参数是要呼叫的通道可以是多个每个之间用<span class="s2">&#34;&amp;&#34;</span>来分隔。
+  第二个参数是超时时间，单位为秒，如果不设置超时时间，呼叫就会一直等到对方应答为止。
+  第三个参数是一些控制变量：
+   A<span class="o">(</span>x<span class="o">)</span> ：当被叫方应答的时候给被叫方播放一段语音，x为要播放的语音文件
+   C ：重新设置CDR
+   d ：允许主叫方在等待被叫方应答的时候，按一个数字键跳转到这个数字所能匹配的流程中，新的流程是指定在EXITCONTEXT变量中设置的流程，如果EXITCONTEXT没有被指定那么就在当前context中寻找。
+   D<span class="o">([</span>called<span class="o">][</span>:calling<span class="o">])</span> ：发送DTMF到主叫方或者被叫方，当被叫应答但是通道还没有桥接的时候。
+   f ：强制为被叫方Channel设置CallerID，用当前的extension
+   g ：当对方挂机的后，接着当前的context执行
+   G<span class="o">(</span>context^exten^pri<span class="o">)</span> ：当呼叫被应答之后，将主叫方跳转到指定的priority中执行，被叫跳转到指定的priority+1中执行，指定的priority由G的参数指定。
+   h ：允许被叫方按<span class="s2">&#34;*&#34;</span>结束会话
+   H ：允许主叫方按<span class="s2">&#34;*&#34;</span>结束会话
+   i ：忽略任何forwarding请求
+   j ：当所有呼叫请求都忙的时候跳转到当前priority+101处
+   k ：允许被叫使用parking功能
+   K ：允许主叫使用parking功能
+   L<span class="o">(</span>x<span class="o">[</span>:y<span class="o">][</span>:z<span class="o">])</span> ：限定呼叫<span class="s1">&#39;x&#39;</span>ms，当剩下<span class="s1">&#39;y&#39;</span>ms时播放一个警告，重复这个警告每隔<span class="s1">&#39;z&#39;</span>ms。下面这些变量是用于这个操作：
+      LIMIT_PLAYAUDIO_CALLER  yes<span class="p">|</span>no <span class="o">(</span>default yes<span class="o">)</span> 对主叫播放语音
+      LIMIT_PLAYAUDIO_CALLEE  yes<span class="p">|</span>no   对被叫播放语音
+      LIMIT_TIMEOUT_FILE   时间到的时候播放的语音
+      LIMIT_CONNECT_FILE   呼叫开始时播放的语音
+      LIMIT_WARNING_FILE   y定义的那个警告的语音，一般都是播放还剩多少时间
+   m<span class="o">([</span>class<span class="o">])</span> ：为主叫提供hold music在Channel应答之前。
+   M<span class="o">(</span>x<span class="o">[</span>^arg<span class="o">])</span> ：为被叫Channel执行指定的宏，在还未和主叫桥接之前。被指定的参数可以用<span class="s2">&#34;^&#34;</span>来分隔。宏执行完后后会返回一个变量MACRO_RESULT来指示接下来要执行的命令：
+      ABORT  通话两端都挂断
+      CONGESTION 当线路催挂的时候执行，也就是设置完CONGESTION状态，然后继续执行流程
+      BUSY  当线路忙的时候执行，如果j这个参数被设置则，跳转到priority+101处执行
+      CONTINUE 挂断被叫，主叫继续执行流程
+      GOTO:&lt;context&gt;^&lt;exten&gt;^&lt;priority&gt;  跳转到指定的流程处继续执行
+     注意：TIMEOUT<span class="o">()</span>函数不能用在宏中
+   n<span class="o">([</span>x<span class="o">])</span>和N ：修改screen/privacy模式. ；screen/privacy就是在被叫应答后还没有桥接之前给被叫播放一段IVR来让它做一些操作，其中就有选择是否愿意接受这个呼叫
+   p和P<span class="o">([</span>x<span class="o">])</span> ：设置screen/privacy模式.
+   o ：指定主叫Channel的callerID为被叫Channel的CallerID。
+   O<span class="o">([</span>x<span class="o">])</span> ：设置Operator Services模式，只对zaptel和dahdi通道有效
+   r ：主叫等待应答是为主叫播放回铃音
+   S<span class="o">(</span>x<span class="o">)</span> ：应答后x秒挂断通话
+   t ：允许被叫发送DTMF实现transfer主叫 详细信息在features.conf中设置
+   T ：允许主叫发送DTMF实现transfer被叫 详细信息在features.conf中设置
+   w ：允许被叫发送DTMF为通话录音  详细信息在features.conf中设置
+   W ：允许主叫发送DTMF为通话录音  详细信息在features.conf中设置
+  第四个参数是一个url地址，如果通道支持这个url将发送给被叫
+  通道变量：
+  DIALEDTIME    这个变量是指从呼叫开始到会话结束的时间
+  ANSWEREDTIME  这个变量是指应答开始到会话结束的时间
+  DIALSTATUS   这个变量显示的是呼叫的结果状态有以下一些值CHANUNAVAIL <span class="p">|</span> CONGESTION <span class="p">|</span> NOANSWER <span class="p">|</span> BUSY <span class="p">|</span> ANSWER <span class="p">|</span> CANCEL <span class="p">|</span> DONTCALL <span class="p">|</span> TORTURE <span class="p">|</span> INVALIDARGS ，在Privacy和Screening模式中，被叫选择发送主叫到<span class="s1">&#39;Go Away&#39;</span>脚本时状态变为DONTCALL；发送到<span class="s1">&#39;torture&#39;</span>脚本时状态变为TORTURE。
+</code></pre></td></tr></table>
+</div>
+</div><h4 id="5hangup">5)、Hangup</h4>
+<p>语法：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell">Hangup<span class="o">([</span>causecode<span class="o">])</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>这个命令是挂断一个Channel。可选的参数是指定挂机的原因。</p>
+<h4 id="6goto">6)、Goto</h4>
+<p>语法：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell">Goto<span class="o">([[</span>context<span class="p">|</span><span class="o">]</span>extension<span class="p">|</span><span class="o">]</span>priority<span class="o">)</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>这个命令是跳转到指定priority处执行，默认是当前的context和extension。当输入的context直接挂机，当输入的extension和priority错误会在当前context寻找i流程来执行，如果i不存在就寻找h流程来执行，如果连h也不存在，就挂机。当没有任何参数的时候该通道也会挂机。</p>
+<h4 id="7gotoif">7)、GotoIf</h4>
+<p>语法：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell">GotoIf<span class="o">(</span>condition?<span class="o">[</span>labeliftrue<span class="o">]</span>:<span class="o">[</span>labeliffalse<span class="o">])</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>这个命令是有条件的跳转，跟c语言中的？：语句有点类似，当condition的条件为1时跳转到labeliftrue处，否则跳转到labeliffalse处。label的格式为[[context|]extension|]priority。其他就跟Goto命令一样。
+就先介绍这几个常用的，别的一些会在下一篇中介绍。</p>
+<h2 id="三dialplan中的变量和逻辑表达">三、Dialplan中的变量和逻辑表达</h2>
+<h3 id="adialplan中的变量通过变量名来引用和标识变量名不一定要大些但是大些可有助于阅读">a、Dialplan中的变量通过${变量名}来引用和标识，变量名不一定要大些，但是大些可有助于阅读。</h3>
+<h4 id="1全局变量">1)、全局变量</h4>
+<p>全局变量适用于所有的Context所有的extension。全局变量可以在[globals]段中定义，也可以通过SetGlobalVar()来定义。下面举个例子。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell">	 <span class="o">[</span>globals<span class="o">]</span>
+   <span class="nv">OUTLINE</span><span class="o">=</span>Zap/g1
+   或
+   <span class="o">[</span>from-ext<span class="o">]</span>
+   <span class="nv">exten</span> <span class="o">=</span>&gt; _9XXXXXXX.,1,SetGlobalVar<span class="o">(</span><span class="nv">OUTLINE</span><span class="o">=</span>Zap/g1<span class="o">)</span>
+</code></pre></td></tr></table>
+</div>
+</div><h4 id="2通道变量">2)、通道变量</h4>
+<p>通道变量是特定的呼叫相关的变量，与全局变量不同，通道变量只能在当前呼叫存在期间定义，并只能用于参与该呼叫的通道。有很多预先定义的通道变来那个可以用于Dialplan，在asterisk源程序中的doc子目录下channelvariables.txt文件中有详细的介绍。通道变量可以通过Set()来设置。例如：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"> <span class="nv">exten</span> <span class="o">=</span>&gt; _123409XX,1,Set<span class="o">(</span><span class="nv">INCOMING</span><span class="o">=</span><span class="si">${</span><span class="nv">EXTEN</span><span class="si">}</span><span class="o">)</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>EXTEN就是一个asterisk已经预先定义的变量，他表示的就是当前的extension。既然提到了EXTEN变量在这里顺便就说一下变量的截取，语法是这样的：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="o">{</span>variable_name<span class="o">[</span>:offset<span class="o">[</span>:length<span class="o">]]}</span>。举个例子俩说明一下：
+  <span class="nv">exten</span> <span class="o">=</span>&gt; 12340900,1,Set<span class="o">(</span><span class="nv">INCOMING</span><span class="o">=</span><span class="si">${</span><span class="nv">EXTEN</span><span class="si">}</span><span class="o">)</span>
+  这个里面<span class="si">${</span><span class="nv">EXTEN</span><span class="si">}</span>就是12340900，如果我只想要后四位那怎么办那？<span class="si">${</span><span class="nv">EXTEN</span><span class="p">:</span><span class="nv">4</span><span class="si">}</span>就表示0900了，也就是去掉了<span class="si">${</span><span class="nv">EXTEN</span><span class="si">}</span>的前四位；那要是想要前四位怎么办那？很简单<span class="si">${</span><span class="nv">EXTEN</span><span class="p">:</span><span class="nv">0</span><span class="p">:</span><span class="nv">4</span><span class="si">}</span>就表示1234了。offset和length也可以是负数，offset是负数表示要的是从后面数<span class="p">|</span>offset<span class="p">|</span>个数，length是负数表示要的是除了从后面数的<span class="p">|</span>length<span class="p">|</span>个数。哈哈，说的不太明白举个例子吧。<span class="si">${</span><span class="nv">EXTEN</span><span class="k">:-</span><span class="nv">4</span><span class="si">}</span>也表示0900，<span class="si">${</span><span class="nv">EXTEN</span><span class="k">:-</span><span class="nv">2</span><span class="si">}</span>就表示00，<span class="si">${</span><span class="nv">EXTEN</span><span class="p">:</span><span class="nv">2</span><span class="p">:</span><span class="nv">4</span><span class="si">}</span>表示3409，<span class="si">${</span><span class="nv">EXTEN</span><span class="p">:</span><span class="nv">2</span><span class="k">:-</span><span class="nv">2</span><span class="si">}</span>也表示3409，<span class="si">${</span><span class="nv">EXTEN</span><span class="k">:-</span><span class="nv">6</span><span class="k">:-</span><span class="nv">2</span><span class="si">}</span>也表示3409.
+</code></pre></td></tr></table>
+</div>
+</div><p>3)、环境变量</p>
+<p>环境变量是一种在asterisk里面访问操作系统环境变量的一种方法。这些变量以${ENV(var)}的形式引用，其中var就是要引用的操作系统环境变量。</p>
+<h3 id="b逻辑表达式">b、逻辑表达式.</h3>
+<p>你应该没有忘记${var}表示变量，逻辑表达式和这个差不多$[expression].$[1 + 2]就表示1+2的结果3.中括号中运算符和变量之间最好用空格分开，否则可能会出现错误的结果。当然中括号里面可以是任意运算符。这些预算符包括：</p>
+<h4 id="1逻辑运算符">1)、逻辑运算符</h4>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"> expr1 | expr2   当expr1为真，赋值为expr1的值，否则为expr2的值
+  expr1 &amp; expr2  当expr1和expr2的值都为真时，赋值为expr1的值，否则赋值为0
+  expr1 {=, &gt;, &gt;=, &lt;, &lt;=, !=} expr2  如果自变量都是整数，将得到一个整数的比较结果；否则他们将得到字符串的结果，如果给定的关系是正确的，这个结果是1，否则就是0.
+  ! expr1   取反，当expr1是NULL、0、一个空字符串、或者一个字符串&#34;0&#34;，返回1；否则返回0.
+</code></pre></td></tr></table>
+</div>
+</div><h4 id="2数学运算符">2)、数学运算符</h4>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">  expr1 {+, -, *, /, %} expr2  加减乘除余数
+  \- expr1       取负
+</code></pre></td></tr></table>
+</div>
+</div><h4 id="3正则表达式运算符">3)、正则表达式运算符</h4>
+<p>expr1 : expr2  这个运算符expr2匹配到expr1，expr2必须是个表达式，如果匹配成功，被匹配的表达式包括了至少一个正则表达式的字表达式，整个表达式对应返回(1 or \1);另外，匹配操作符返回字符匹配上的数量。如果匹配失败，返回空值。其他情况返回0.
+expr1 =~ expr2  这个运算符和：很像，唯一区别就是这个可以不从字符串的开始匹配。</p>
+<h4 id="4三态运算符">4)、三态运算符</h4>
+<p>expr1 ? expr2 : expr3  这个用法就不用说了，说说expr1的否的条件就行了，数字的话是0，字符串时&quot;&quot;(空串)。</p>
+<h3 id="c运算符优先级">c、运算符优先级</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">  1)、(,)
+  2)、!,-
+  3)、:,=~
+  4)、*,/,%
+  5)、+,-
+  6)、=,!=,&lt;,&gt;,&lt;=,&gt;=
+  7)、|,&amp;
+  8)、?:
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="四拨号方案函数">四、拨号方案函数</h2>
+<p>拨号方案函数可以增加更多功能到你的表达式中，你可以想象他们运行起来和操作符类似，但是更高级一些。
+语法：FUNCTION_NAME(argument)
+非常像变量，你可以引用函数名，但是你如果要引用函数的值，就要用美元&quot;$&ldquo;放在前面，用花括号&rdquo;{}&ldquo;括起函数表达式。就像这样：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="si">${</span><span class="nv">FUNCTION_NAME</span><span class="p">(argument)</span><span class="si">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>函数也可以嵌套封装其他的函数，如下：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell">  <span class="si">${</span><span class="nv">FUNCTION_NAME</span><span class="p">(</span><span class="si">${</span><span class="nv">FUNCTION_NAME</span><span class="p">(argument)</span><span class="si">}</span><span class="p">)</span><span class="si">}</span>
+举个例子吧：
+  <span class="nv">exten</span> <span class="o">=</span>&gt; 123,1,Set<span class="o">(</span><span class="nv">TEST</span><span class="o">=</span>example<span class="o">)</span>
+  <span class="nv">exten</span> <span class="o">=</span>&gt; 123,2,SayNumber<span class="o">(</span><span class="si">${</span><span class="nv">LEN</span><span class="p">(</span><span class="si">${</span><span class="nv">TEST</span><span class="si">}</span><span class="p">)</span><span class="si">}</span><span class="o">)</span>
+
+
+
+  上面这个例子能算出字符串example有7个字符，将字符串的数量赋值给变量长度，然后将数量送给SayNumber<span class="o">()</span>.
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="五include">五、Include</h2>
+<p>Asterisk允许在一个context中使用另一个context，通过include指令来实现。这用来授予访问权给不同的拨号方案段。介绍一下语法：
+语法：include =&gt; context
+在当前context包含另外的context时，必须注意包含顺序。Asterisk首先试图在当前context中匹配extension。如果不成功，会试图尝试第一个包含进来的context，然后按照包含顺序再去尝试其他的context。就跟把包含的contex拷贝到当前context的后面有点类似。另外还有一种include的应用就是一个dialplan文件包含另一个dialplan文件，意思和上面说的include用法差不多，只不过这回是文件。
+语法：#include FILENAME
+这个在elastrix中应用的比较多，差不多每个关键的配置文件都包含另一个附加的配置文件。举个在elastrix里面的例子，在extensions.conf
+文件中你会发现这样的语句：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"> <span class="c1">#include extensions_additional.conf</span>
+ <span class="c1">#include extensions_custom.conf</span>
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="六宏macro">六、宏macro</h2>
+<p>你如果熟悉计算机编程，那么你对宏就肯定不会陌生，dialplan也支持。你可以定义一个宏指令，它包含多步的指令列表，然后让电话extension指向这个宏指令。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">语法：[macro-MACRONAME]
+   exten =&gt; s,1,action
+   exten =&gt; s,n,action
+   exten =&gt; s,n,action
+ 调用语法：exten =&gt; Macro(macroname,arg1,arg2...)
+</code></pre></td></tr></table>
+</div>
+</div><p>宏指令的名字必须以macro-作为开始。这是他们与常规的context的区别。Dialplan中的宏指令的命令同其他任何命令很相似。唯一的限制因素是宏指令只能用&quot;s&quot;extension。我们先定义一个宏指令：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"> [macro-dial]
+ exten =&gt; s,1,Dial(SIP/101)
+ exten =&gt; s,n,VoiceMail(101)
+ 接下来我们看看怎样调用宏指令：
+  exten =&gt; _123409XX,1,GotoIf(\$[\${EXTEN}=12340910]?4:2) 
+  exten =&gt; _123409XX,2,Macro(dial)
+  exten =&gt; _123409XX,3,Goto(5)
+  exten =&gt; _123409XX,4,BackGround(MyVox/Greeting)
+  exten =&gt; _123409XX,5,Hangup
+</code></pre></td></tr></table>
+</div>
+</div><p>此外Macro()程序也定义了几种特别的变量来为我们使用。它们包括:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"> <span class="si">${</span><span class="nv">MACRO_CONTEXT</span><span class="si">}</span>    这个被调用宏中，初始的context
+  <span class="si">${</span><span class="nv">MACRO_EXTEN</span><span class="si">}</span>   这个被调用宏中，初始的extension
+  <span class="si">${</span><span class="nv">MACRO_PRIORITY</span><span class="si">}</span>  这个被调用宏中，初始的priority
+  <span class="si">${</span><span class="nv">MACRO_OFFSET</span><span class="si">}</span>   宏返回后从<span class="si">${</span><span class="nv">MACRO_OFFSET</span><span class="si">}</span>+n+1的priority处执行
+  <span class="si">${</span><span class="nv">ARGn</span><span class="si">}</span>     传递到宏指令的第n个变量。例如第一个自变量是<span class="si">${</span><span class="nv">ARG1</span><span class="si">}</span>,第二个是<span class="si">${</span><span class="nv">ARG2</span><span class="si">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>为了举个使用变量的例子，我们把上面例子的宏修改一下：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">  [macro-dial]
+  exten =&gt; s,1,Dial(SIP/1${MACRO_EXTEN:6})
+  exten =&gt; s,n,VoiceMail(1${MACRO_EXTEN:6})
+</code></pre></td></tr></table>
+</div>
+</div><p>这样当拨的是12340901时宏就执行Dial(SIP/101),并给并留言到101语音信箱里面。</p>
+<h2 id="七结束语">七、结束语</h2>
+<p>终于结束了(有遗漏的以后再加吧)。其实这篇文章最初想法是写给杨兄的，后来想想既然写了为什么不写成个类似文章样式的，放到自己的空间，给一些希望了解asterisk的人一些帮助。
+中文说asterisk的数很少，据我所和好像只有《asterisk未来电话之路》这本书汉化了，要想让技术发展就得有自由和宽松的风气，就像春秋战国时一样大家勇于发表自己的见解、勇于讨论。我知道国内有很多asterisk的高手,我搞asterisk也才只有两年，只能算个刚入门的新生，所以我希望能有更多的人，能把自己学到的对于asterisk技术见解和技术思路，都写出来大家分享。
+哪怕就像我一样只是汇集翻译个文档。最后希望只要能帮助到大家就好，哈哈，记住转载一定要保留我的名字和出处，谢谢了。(附上作者连接在下方)</p>
+<p>原文档连接：<a href="https://www.cnblogs.com/einyboy/archive/2012/10/17/2727792.html" target="_blank" rel="noopener noreffer">https://www.cnblogs.com/einyboy/archive/2012/10/17/2727792.html</a></p>
+</div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>更新于 2021-11-05</span>
+            </div>
+            <div class="post-info-license"></div>
+        </div>
+        <div class="post-info-line">
+            <div class="post-info-md"><span>
+                            <a class="link-to-markdown" href="/asterisk%E6%8B%A8%E5%8F%B7%E8%A7%84%E5%88%99/index.md" target="_blank">阅读原始文档</a>
+                        </span></div>
+            <div class="post-info-share">
+                <span><a href="javascript:void(0);" title="分享到 Twitter" data-sharer="twitter" data-url="https://Dazhuwei.github.io/asterisk%E6%8B%A8%E5%8F%B7%E8%A7%84%E5%88%99/" data-title="Asterisk拨号规则" data-hashtags="通话,asterisk,工具"><i class="fab fa-twitter fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Hacker News" data-sharer="hackernews" data-url="https://Dazhuwei.github.io/asterisk%E6%8B%A8%E5%8F%B7%E8%A7%84%E5%88%99/" data-title="Asterisk拨号规则"><i class="fab fa-hacker-news fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Line" data-sharer="line" data-url="https://Dazhuwei.github.io/asterisk%E6%8B%A8%E5%8F%B7%E8%A7%84%E5%88%99/" data-title="Asterisk拨号规则"><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@2.14.0/icons/line.svg"></i></a><a href="javascript:void(0);" title="分享到 微博" data-sharer="weibo" data-url="https://Dazhuwei.github.io/asterisk%E6%8B%A8%E5%8F%B7%E8%A7%84%E5%88%99/" data-title="Asterisk拨号规则" data-image="/images/asterisk-logo.png"><i class="fab fa-weibo fa-fw"></i></a></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/%E9%80%9A%E8%AF%9D/">通话</a>,&nbsp;<a href="/tags/asterisk/">asterisk</a>,&nbsp;<a href="/tags/%E5%B7%A5%E5%85%B7/">工具</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/mongodb4.2arm%E5%B9%B3%E5%8F%B0%E7%BC%96%E8%AF%91/" class="prev" rel="prev" title="mongodb4.2 ARM平台编译"><i class="fas fa-angle-left fa-fw"></i>mongodb4.2 ARM平台编译</a></div>
+</div>
+<div id="comments"><div id="valine" class="comment"></div><noscript>
+                Please enable JavaScript to view the comments powered by <a href="https://valine.js.org/">Valine</a>.
+            </noscript></div></article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.88.1">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.10"><i class="far fa-kiss-wink-heart fa-fw"></i> LoveIt</a>
+                </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2021</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank">Zhangdw</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="回到顶部">
+                <i class="fas fa-arrow-up fa-fw"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="查看评论">
+                <i class="fas fa-comment fa-fw"></i>
+            </a>
+        </div><link rel="stylesheet" href="/lib/valine/valine.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/copy-tex.min.css"><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/valine@1.4.14/dist/Valine.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/smooth-scroll@16.1.3/dist/smooth-scroll.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/autocomplete.js@0.37.1/dist/autocomplete.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lunr@2.3.8/lunr.min.js"></script><script type="text/javascript" src="/lib/lunr/lunr.stemmer.support.min.js"></script><script type="text/javascript" src="/lib/lunr/lunr.zh.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lazysizes@5.2.2/lazysizes.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/clipboard.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/sharer.js@0.4.0/sharer.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/typeit@7.0.4/dist/typeit.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/auto-render.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/copy-tex.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/mhchem.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":10},"comment":{"valine":{"appId":"nwj17LwlTxVp8ka4pRduTns0-gzGzoHsz","appKey":"OuDJjyumy6DkSAaQpTwH3oor","avatar":"Zhangdw","el":"#valine","emojiCDN":"https://cdn.jsdelivr.net/npm/emoji-datasource-google@5.0.1/img/google/64/","emojiMaps":{"100":"1f4af.png","alien":"1f47d.png","anger":"1f4a2.png","angry":"1f620.png","anguished":"1f627.png","astonished":"1f632.png","black_heart":"1f5a4.png","blue_heart":"1f499.png","blush":"1f60a.png","bomb":"1f4a3.png","boom":"1f4a5.png","broken_heart":"1f494.png","brown_heart":"1f90e.png","clown_face":"1f921.png","cold_face":"1f976.png","cold_sweat":"1f630.png","confounded":"1f616.png","confused":"1f615.png","cry":"1f622.png","crying_cat_face":"1f63f.png","cupid":"1f498.png","dash":"1f4a8.png","disappointed":"1f61e.png","disappointed_relieved":"1f625.png","dizzy":"1f4ab.png","dizzy_face":"1f635.png","drooling_face":"1f924.png","exploding_head":"1f92f.png","expressionless":"1f611.png","face_vomiting":"1f92e.png","face_with_cowboy_hat":"1f920.png","face_with_hand_over_mouth":"1f92d.png","face_with_head_bandage":"1f915.png","face_with_monocle":"1f9d0.png","face_with_raised_eyebrow":"1f928.png","face_with_rolling_eyes":"1f644.png","face_with_symbols_on_mouth":"1f92c.png","face_with_thermometer":"1f912.png","fearful":"1f628.png","flushed":"1f633.png","frowning":"1f626.png","ghost":"1f47b.png","gift_heart":"1f49d.png","green_heart":"1f49a.png","grimacing":"1f62c.png","grin":"1f601.png","grinning":"1f600.png","hankey":"1f4a9.png","hear_no_evil":"1f649.png","heart":"2764-fe0f.png","heart_decoration":"1f49f.png","heart_eyes":"1f60d.png","heart_eyes_cat":"1f63b.png","heartbeat":"1f493.png","heartpulse":"1f497.png","heavy_heart_exclamation_mark_ornament":"2763-fe0f.png","hole":"1f573-fe0f.png","hot_face":"1f975.png","hugging_face":"1f917.png","hushed":"1f62f.png","imp":"1f47f.png","innocent":"1f607.png","japanese_goblin":"1f47a.png","japanese_ogre":"1f479.png","joy":"1f602.png","joy_cat":"1f639.png","kiss":"1f48b.png","kissing":"1f617.png","kissing_cat":"1f63d.png","kissing_closed_eyes":"1f61a.png","kissing_heart":"1f618.png","kissing_smiling_eyes":"1f619.png","laughing":"1f606.png","left_speech_bubble":"1f5e8-fe0f.png","love_letter":"1f48c.png","lying_face":"1f925.png","mask":"1f637.png","money_mouth_face":"1f911.png","nauseated_face":"1f922.png","nerd_face":"1f913.png","neutral_face":"1f610.png","no_mouth":"1f636.png","open_mouth":"1f62e.png","orange_heart":"1f9e1.png","partying_face":"1f973.png","pensive":"1f614.png","persevere":"1f623.png","pleading_face":"1f97a.png","pouting_cat":"1f63e.png","purple_heart":"1f49c.png","rage":"1f621.png","relaxed":"263a-fe0f.png","relieved":"1f60c.png","revolving_hearts":"1f49e.png","right_anger_bubble":"1f5ef-fe0f.png","robot_face":"1f916.png","rolling_on_the_floor_laughing":"1f923.png","scream":"1f631.png","scream_cat":"1f640.png","see_no_evil":"1f648.png","shushing_face":"1f92b.png","skull":"1f480.png","skull_and_crossbones":"2620-fe0f.png","sleeping":"1f634.png","sleepy":"1f62a.png","slightly_frowning_face":"1f641.png","slightly_smiling_face":"1f642.png","smile":"1f604.png","smile_cat":"1f638.png","smiley":"1f603.png","smiley_cat":"1f63a.png","smiling_face_with_3_hearts":"1f970.png","smiling_imp":"1f608.png","smirk":"1f60f.png","smirk_cat":"1f63c.png","sneezing_face":"1f927.png","sob":"1f62d.png","space_invader":"1f47e.png","sparkling_heart":"1f496.png","speak_no_evil":"1f64a.png","speech_balloon":"1f4ac.png","star-struck":"1f929.png","stuck_out_tongue":"1f61b.png","stuck_out_tongue_closed_eyes":"1f61d.png","stuck_out_tongue_winking_eye":"1f61c.png","sunglasses":"1f60e.png","sweat":"1f613.png","sweat_drops":"1f4a6.png","sweat_smile":"1f605.png","thinking_face":"1f914.png","thought_balloon":"1f4ad.png","tired_face":"1f62b.png","triumph":"1f624.png","two_hearts":"1f495.png","unamused":"1f612.png","upside_down_face":"1f643.png","weary":"1f629.png","white_frowning_face":"2639-fe0f.png","white_heart":"1f90d.png","wink":"1f609.png","woozy_face":"1f974.png","worried":"1f61f.png","yawning_face":"1f971.png","yellow_heart":"1f49b.png","yum":"1f60b.png","zany_face":"1f92a.png","zipper_mouth_face":"1f910.png","zzz":"1f4a4.png"},"enableQQ":false,"highlight":true,"lang":"zh-cn","pageSize":10,"placeholder":"你的评论 ...","recordIP":true,"serverURLs":"https://nwj17lwl.lc-cn-n1-shared.com","visitor":true}},"data":{"id-1":"Dazhuwei","id-2":"Dazhuwei"},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"highlightTag":"em","lunrIndexURL":"/index.json","lunrLanguageCode":"zh","lunrSegmentitURL":"/lib/lunr/lunr.segmentit.js","maxResultLength":10,"noResultsFound":"没有找到结果","snippetLength":50,"type":"lunr"},"typeit":{"cursorChar":"|","cursorSpeed":1000,"data":{"id-1":["id-1"],"id-2":["id-2"]},"duration":-1,"speed":100}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
+</html>
