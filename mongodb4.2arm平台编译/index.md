@@ -2,7 +2,7 @@
 
 
 
-# mongodb4.2 ARM平台编
+# mongodb4.2 ARM平台编译
 
 ## 1.Gcc和依赖软件下载
 

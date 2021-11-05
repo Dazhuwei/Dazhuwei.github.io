@@ -2,7 +2,7 @@
 
 
 
-# Asterisk拨号规
+# Asterisk拨号规则
 
 ##  一、前言
 
