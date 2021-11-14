@@ -3,7 +3,7 @@
 
 
 
-# 容器生命周期管理
+## 容器生命周期管理
 
 ### docker run 命令
 
@@ -30,13 +30,13 @@ docker run [OPTIONS] IMAGE [COMMAND] [ARG...]
 - **-e username="ritchie":** 设置环境变量；
 - **--env-file=[]:** 从指定文件读入环境变量；
 - **--cpuset="0-2" or --cpuset="0,1,2":** 绑定容器到指定CPU运行；
-- **-m :**设置容器使用内存最大值；
+- **-m :** 设置容器使用内存最大值；
 - **--net="bridge":** 指定容器的网络连接类型，支持 bridge/host/none/container: 四种类型；
 - **--link=[]:** 添加链接到另一个容器；
 - **--expose=[]:** 开放一个端口或一组端口；
 - **--volume , -v:** 绑定一个卷
 
-**PS示例**：
+**PS示例:**
 
 使用docker镜像nginx:latest以后台模式启动一个容器,并将容器命名为mynginx。
 
@@ -145,7 +145,7 @@ docker kill [OPTIONS] CONTAINER [CONTAINER...]
 
 OPTIONS说明：
 
-- **-s :**向容器发送一个信号
+- **-s :** 向容器发送一个信号
 
 **PS示例**：
 
@@ -160,7 +160,7 @@ mynginx
 
 ### docker rm 命令
 
-**docker rm ：**删除一个或多个容器。
+ **docker rm ：** 删除一个或多个容器。
 
 **语法**
 
@@ -170,9 +170,9 @@ docker rm [OPTIONS] CONTAINER [CONTAINER...]
 
 OPTIONS说明：
 
-- **-f :**通过 SIGKILL 信号强制删除一个运行中的容器。
-- **-l :**移除容器间的网络连接，而非容器本身。
-- **-v :**删除与容器关联的卷。
+- **-f :** 通过 SIGKILL 信号强制删除一个运行中的容器。
+- **-l :** 移除容器间的网络连接，而非容器本身。
+- **-v :** 删除与容器关联的卷。
 
 **PS示例**
 
@@ -233,7 +233,7 @@ docker unpause db01
 
 ### docker create 命令
 
-**docker create ：**创建一个新的容器但不启动它
+**docker create ：** 创建一个新的容器但不启动它
 
 用法同 [docker run](#docker run 命令)
 
@@ -258,7 +258,7 @@ runoob@runoob:~$ docker create  --name myrunoob  nginx:latest
 
 ### docker exec 命令
 
-**docker exec ：**在运行的容器中执行命令
+**docker exec ：** 在运行的容器中执行命令
 
 **语法**
 
@@ -268,9 +268,9 @@ docker exec [OPTIONS] CONTAINER COMMAND [ARG...]
 
 **OPTIONS说明：**
 
-- **-d :**分离模式: 在后台运行
-- **-i :**即使没有附加也保持STDIN 打开
-- **-t :**分配一个伪终端
+- **-d :** 分离模式: 在后台运行
+- **-i :** 即使没有附加也保持STDIN 打开
+- **-t :** 分配一个伪终端
 
 **PS示例**
 
@@ -323,14 +323,14 @@ docker ps [OPTIONS]
 
 OPTIONS说明：
 
-- **-a :**显示所有的容器，包括未运行的。
-- **-f :**根据条件过滤显示的内容。
-- **--format :**指定返回值的模板文件。
-- **-l :**显示最近创建的容器。
-- **-n :**列出最近创建的n个容器。
-- **--no-trunc :**不截断输出。
-- **-q :**静默模式，只显示容器编号。
-- **-s :**显示总的文件大小。
+- **-a :** 显示所有的容器，包括未运行的。
+- **-f :** 根据条件过滤显示的内容。
+- **--format :** 指定返回值的模板文件。
+- **-l :** 显示最近创建的容器。
+- **-n :** 列出最近创建的n个容器。
+- **--no-trunc :** 不截断输出。
+- **-q :** 静默模式，只显示容器编号。
+- **-s :** 显示总的文件大小。
 
 **PS示例**
 
@@ -412,9 +412,9 @@ docker inspect [OPTIONS] NAME|ID [NAME|ID...]
 
 **OPTIONS说明：**
 
-- **-f :**指定返回值的模板文件。
-- **-s :**显示总的文件大小。
-- **--type :**为指定类型返回JSON。
+- **-f :** 指定返回值的模板文件。
+- **-s :** 显示总的文件大小。
+- **--type :** 为指定类型返回JSON。
 
 **PS示例**
 
@@ -457,7 +457,7 @@ runoob@runoob:~$ docker inspect --format='{{range .NetworkSettings.Networks}}{{.
 
 ### docker top 命令
 
-**docker top :**查看容器中运行的进程信息，支持 ps 命令参数。
+**docker top :** 查看容器中运行的进程信息，支持 ps 命令参数。
 
 **语法**
 
@@ -487,7 +487,7 @@ for i in  `docker ps |grep Up|awk '{print $1}'`;do echo \ &&docker top $i; done
 
 ### docker attach 命令
 
-**docker attach :**连接到正在运行中的容器。
+**docker attach :** 连接到正在运行中的容器。
 
 **语法**
 
@@ -522,9 +522,9 @@ docker events [OPTIONS]
 
 **OPTIONS说明：**
 
-- **-f ：**根据条件过滤事件；
-- **--since ：**从指定的时间戳后显示所有事件;
-- **--until ：**流水时间显示到指定的时间为止；
+- **-f ：** 根据条件过滤事件；
+- **--since ：** 从指定的时间戳后显示所有事件;
+- **--until ：** 流水时间显示到指定的时间为止；
 
 **PS示例**
 
@@ -575,9 +575,9 @@ docker logs [OPTIONS] CONTAINER
 **OPTIONS说明：**
 
 - **-f :** 跟踪日志输出
-- **--since :**显示某个开始时间的所有日志
-- **-t :** 显示时间戳
-- **--tail :**仅列出最新N条容器日志
+- **--since :** 显示某个开始时间的所有日志
+- **-t :**  显示时间戳
+- **--tail :** 仅列出最新N条容器日志
 
 **PS示例**
 
@@ -620,7 +620,7 @@ docker wait CONTAINER
 
 ### docker export 命令
 
-**docker export :**将文件系统作为一个tar归档文件导出到STDOUT。
+**docker export :** 将文件系统作为一个tar归档文件导出到STDOUT。
 
 **语法**
 
@@ -630,7 +630,7 @@ docker export [OPTIONS] CONTAINER
 
 **OPTIONS说明：**
 
-- **-o :**将输入内容写到文件。
+- **-o :** 将输入内容写到文件。
 
 **PS示例**
 
@@ -646,7 +646,7 @@ mysql-20160711.tar
 
 ### docker port 命令
 
-**docker port :**列出指定的容器的端口映射，或者查找将PRIVATE_PORT NAT到面向公众的端口。
+**docker port :** 列出指定的容器的端口映射，或者查找将PRIVATE_PORT NAT到面向公众的端口。
 
 **语法**
 
@@ -669,7 +669,7 @@ runoob@runoob:~$ docker port mymysql
 
 ### docker commit命令
 
-**docker commit :**从容器创建一个新的镜像。
+**docker commit :** 从容器创建一个新的镜像。
 
 **语法**
 
@@ -679,10 +679,10 @@ docker commit [OPTIONS] CONTAINER [REPOSITORY[:TAG]]
 
 **OPTIONS说明：**
 
-- **-a :**提交的镜像作者；
-- **-c :**使用Dockerfile指令来创建镜像；
-- **-m :**提交时的说明文字；
-- **-p :**在commit时，将容器暂停。
+- **-a :** 提交的镜像作者；
+- **-c :** 使用Dockerfile指令来创建镜像；
+- **-m :** 提交时的说明文字；
+- **-p :** 在commit时，将容器暂停。
 
 **PS示例**
 
@@ -700,7 +700,7 @@ mymysql             v1                  37af1236adef        15 seconds ago      
 
 ### docker cp命令
 
-**docker cp :**用于容器与主机之间的数据拷贝。
+**docker cp :** 用于容器与主机之间的数据拷贝。
 
 **语法**
 
@@ -711,7 +711,7 @@ docker cp [OPTIONS] SRC_PATH|- CONTAINER:DEST_PATH
 
 **OPTIONS说明：**
 
-- **-L :**保持源目标中的链接
+- **-L :** 保持源目标中的链接
 
 **PS示例**
 
@@ -779,8 +779,8 @@ docker logout [OPTIONS] [SERVER]
 
 **OPTIONS说明：**
 
-- **-u :**登陆的用户名
-- **-p :**登陆的密码
+- **-u :** 登陆的用户名
+- **-p :** 登陆的密码
 
 **PS示例**
 
@@ -810,8 +810,8 @@ docker pull [OPTIONS] NAME[:TAG|@DIGEST]
 
 **OPTIONS说明：**
 
-- **-a :**拉取所有 tagged 镜像
-- **--disable-content-trust :**忽略镜像的校验,默认开启
+- **-a :** 拉取所有 tagged 镜像
+- **--disable-content-trust :** 忽略镜像的校验,默认开启
 
 **PS示例**
 
@@ -841,7 +841,7 @@ docker push [OPTIONS] NAME[:TAG]
 
 **OPTIONS说明：**
 
-- **--disable-content-trust :**忽略镜像的校验,默认开启
+- **--disable-content-trust :** 忽略镜像的校验,默认开启
 
 **PS示例**
 
@@ -865,9 +865,9 @@ docker search [OPTIONS] TERM
 
 OPTIONS说明：
 
-- **--automated :**只列出 automated build类型的镜像；
-- **--no-trunc :**显示完整的镜像描述；
-- **-f <过滤条件>:**列出收藏数不小于指定值的镜像。
+- **--automated :** 只列出 automated build类型的镜像；
+- **--no-trunc :** 显示完整的镜像描述；
+- **-f <过滤条件>:** 列出收藏数不小于指定值的镜像。
 
 **PS示例**
 
@@ -912,12 +912,12 @@ docker images [OPTIONS] [REPOSITORY[:TAG]]
 
 OPTIONS说明：
 
-- **-a :**列出本地所有的镜像（含中间映像层，默认情况下，过滤掉中间映像层）；
-- **--digests :**显示镜像的摘要信息；
-- **-f :**显示满足条件的镜像；
-- **--format :**指定返回值的模板文件；
-- **--no-trunc :**显示完整的镜像信息；
-- **-q :**只显示镜像ID。
+- **-a :** 列出本地所有的镜像（含中间映像层，默认情况下，过滤掉中间映像层）；
+- **--digests :** 显示镜像的摘要信息；
+- **-f :** 显示满足条件的镜像；
+- **--format :** 指定返回值的模板文件；
+- **--no-trunc :** 显示完整的镜像信息；
+- **-q :** 只显示镜像ID。
 
 **PS示例**
 
@@ -961,8 +961,8 @@ docker rmi [OPTIONS] IMAGE [IMAGE...]
 
 **OPTIONS说明：**
 
-- **-f :**强制删除；
-- **--no-prune :**不移除该镜像的过程镜像，默认移除；
+- **-f :** 强制删除；
+- **--no-prune :** 不移除该镜像的过程镜像，默认移除；
 
 **PS示例**
 
@@ -1012,26 +1012,26 @@ docker build [OPTIONS] PATH | URL | -
 
 **OPTIONS说明：**
 
-- **--build-arg=[] :**设置镜像创建时的变量；
-- **--cpu-shares :**设置 cpu 使用权重；
-- **--cpu-period :**限制 CPU CFS周期；
-- **--cpu-quota :**限制 CPU CFS配额；
-- **--cpuset-cpus :**指定使用的CPU id；
-- **--cpuset-mems :**指定使用的内存 id；
-- **--disable-content-trust :**忽略校验，默认开启；
-- **-f :**指定要使用的Dockerfile路径；
-- **--force-rm :**设置镜像过程中删除中间容器；
-- **--isolation :**使用容器隔离技术；
-- **--label=[] :**设置镜像使用的元数据；
-- **-m :**设置内存最大值；
-- **--memory-swap :**设置Swap的最大值为内存+swap，"-1"表示不限swap；
-- **--no-cache :**创建镜像的过程不使用缓存；
-- **--pull :**尝试去更新镜像的新版本；
-- **--quiet, -q :**安静模式，成功后只输出镜像 ID；
-- **--rm :**设置镜像成功后删除中间容器；
-- **--shm-size :**设置/dev/shm的大小，默认值是64M；
-- **--ulimit :**Ulimit配置。
-- **--squash :**将 Dockerfile 中所有的操作压缩为一层。
+- **--build-arg=[] :** 设置镜像创建时的变量；
+- **--cpu-shares :** 设置 cpu 使用权重；
+- **--cpu-period :** 限制 CPU CFS周期；
+- **--cpu-quota :** 限制 CPU CFS配额；
+- **--cpuset-cpus :** 指定使用的CPU id；
+- **--cpuset-mems :** 指定使用的内存 id；
+- **--disable-content-trust :** 忽略校验，默认开启；
+- **-f :** 指定要使用的Dockerfile路径；
+- **--force-rm :** 设置镜像过程中删除中间容器；
+- **--isolation :** 使用容器隔离技术；
+- **--label=[] :** 设置镜像使用的元数据；
+- **-m :** 设置内存最大值；
+- **--memory-swap :** 设置Swap的最大值为内存+swap，"-1"表示不限swap；
+- **--no-cache :** 创建镜像的过程不使用缓存；
+- **--pull :** 尝试去更新镜像的新版本；
+- **--quiet, -q :** 安静模式，成功后只输出镜像 ID；
+- **--rm :** 设置镜像成功后删除中间容器；
+- **--shm-size :** 设置/dev/shm的大小，默认值是64M；
+- **--ulimit :** Ulimit配置。
+- **--squash :** 将 Dockerfile 中所有的操作压缩为一层。
 - **--tag, -t:** 镜像的名字及标签，通常 name:tag 或者 name 格式；可以在一次构建中为一个镜像设置多个标签。
 - **--network:** 默认 default。在构建期间设置RUN指令的网络模式
 
@@ -1077,9 +1077,9 @@ docker history [OPTIONS] IMAGE
 
 **OPTIONS说明：**
 
-- **-H :**以可读的格式打印镜像大小和日期，默认为true；
-- **--no-trunc :**显示完整的提交记录；
-- **-q :**仅列出提交记录ID。
+- **-H :** 以可读的格式打印镜像大小和日期，默认为true；
+- **--no-trunc :** 显示完整的提交记录；
+- **-q :** 仅列出提交记录ID。
 
 **PS示例**
 
@@ -1108,7 +1108,7 @@ docker save [OPTIONS] IMAGE [IMAGE...]
 
 **OPTIONS 说明：**
 
-- **-o :**输出到的文件。
+- **-o :** 输出到的文件。
 
 **PS示例**
 
@@ -1183,8 +1183,8 @@ docker import [OPTIONS] file|URL|- [REPOSITORY[:TAG]]
 
 **OPTIONS说明：**
 
-- **-c :**应用docker 指令创建镜像；
-- **-m :**提交时的说明文字；
+- **-c :** 应用docker 指令创建镜像；
+- **-m :** 提交时的说明文字；
 
 **PS示例**
 
@@ -1239,7 +1239,7 @@ ID: M5N4:K6WN:PUNC:73ZN:AONJ:AUHL:KSYH:2JPI:CH3K:O4MK:6OCX:5OYW
 
 ### docker version命令
 
-**docker version :**显示 Docker 版本信息。
+**docker version :** 显示 Docker 版本信息。
 
 **语法**
 
@@ -1249,7 +1249,7 @@ docker version [OPTIONS]
 
 OPTIONS说明：
 
-- **-f :**指定返回值的模板文件。
+- **-f :** 指定返回值的模板文件。
 
 **PS示例**
 

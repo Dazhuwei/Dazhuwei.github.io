@@ -29,7 +29,7 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "https:\/\/Dazhuwei.github.io\/docker%E5%91%BD%E4%BB%A4%E5%A4%A7%E5%85%A8\/"
-        },"image": ["https:\/\/Dazhuwei.github.io\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "容器, docker, 工具, 搬运","wordcount":  7043 ,
+        },"image": ["https:\/\/Dazhuwei.github.io\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "容器, docker, 工具, 搬运","wordcount":  6877 ,
         "url": "https:\/\/Dazhuwei.github.io\/docker%E5%91%BD%E4%BB%A4%E5%A4%A7%E5%85%A8\/","datePublished": "2021-11-14T17:12:01+08:00","dateModified": "2021-11-14T17:12:01+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
             "@type": "Organization",
             "name": "Zhangdw","logo": "https:\/\/Dazhuwei.github.io\/leslie.png"},"author": {
@@ -120,8 +120,8 @@
             <div class="toc-content" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animated flipInX">Docker命令大全</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>Zhangdw</a></span>&nbsp;<span class="post-category">收录于 <a href="/categories/%E5%AE%B9%E5%99%A8/"><i class="far fa-folder fa-fw"></i>容器</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2021-11-14">2021-11-14</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 7043 字&nbsp;
-                <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 15 分钟&nbsp;<span id="/docker%E5%91%BD%E4%BB%A4%E5%A4%A7%E5%85%A8/" class="leancloud_visitors" data-flag-title="Docker命令大全">
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2021-11-14">2021-11-14</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 6877 字&nbsp;
+                <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 14 分钟&nbsp;<span id="/docker%E5%91%BD%E4%BB%A4%E5%A4%A7%E5%85%A8/" class="leancloud_visitors" data-flag-title="Docker命令大全">
                         <i class="far fa-eye fa-fw"></i>&nbsp;<span class=leancloud-visitors-count></span>&nbsp;次阅读
                     </span>&nbsp;</div>
         </div><div class="featured-image"><img
@@ -138,7 +138,7 @@
                 </div>
                 <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
   <ul>
-    <li>
+    <li><a href="#容器生命周期管理">容器生命周期管理</a>
       <ul>
         <li><a href="#docker-run-命令">docker run 命令</a></li>
         <li><a href="#docker-startstoprestart-命令">docker start/stop/restart 命令</a></li>
@@ -201,7 +201,7 @@
     </li>
   </ul>
 </nav></div>
-            </div><div class="content" id="content"><h1 id="容器生命周期管理">容器生命周期管理</h1>
+            </div><div class="content" id="content"><h2 id="容器生命周期管理">容器生命周期管理</h2>
 <h3 id="docker-run-命令">docker run 命令</h3>
 <p>**docker run ：**创建一个新的容器并运行一个命令</p>
 <p><strong>语法</strong></p>
@@ -228,13 +228,13 @@
 <li><strong>-e username=&ldquo;ritchie&rdquo;:</strong> 设置环境变量；</li>
 <li><strong>&ndash;env-file=[]:</strong> 从指定文件读入环境变量；</li>
 <li><strong>&ndash;cpuset=&ldquo;0-2&rdquo; or &ndash;cpuset=&ldquo;0,1,2&rdquo;:</strong> 绑定容器到指定CPU运行；</li>
-<li>**-m :**设置容器使用内存最大值；</li>
+<li><strong>-m :</strong> 设置容器使用内存最大值；</li>
 <li><strong>&ndash;net=&ldquo;bridge&rdquo;:</strong> 指定容器的网络连接类型，支持 bridge/host/none/container: 四种类型；</li>
 <li><strong>&ndash;link=[]:</strong> 添加链接到另一个容器；</li>
 <li><strong>&ndash;expose=[]:</strong> 开放一个端口或一组端口；</li>
 <li><strong>&ndash;volume , -v:</strong> 绑定一个卷</li>
 </ul>
-<p><strong>PS示例</strong>：</p>
+<p><strong>PS示例:</strong></p>
 <p>使用docker镜像nginx:latest以后台模式启动一个容器,并将容器命名为mynginx。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -364,7 +364,7 @@ docker restart [OPTIONS] CONTAINER [CONTAINER...]
 </div>
 </div><p>OPTIONS说明：</p>
 <ul>
-<li>**-s :**向容器发送一个信号</li>
+<li><strong>-s :</strong> 向容器发送一个信号</li>
 </ul>
 <p><strong>PS示例</strong>：</p>
 <p>杀掉运行中的容器mynginx</p>
@@ -379,7 +379,7 @@ mynginx
 </code></pre></td></tr></table>
 </div>
 </div><h3 id="docker-rm-命令">docker rm 命令</h3>
-<p>**docker rm ：**删除一个或多个容器。</p>
+<p><strong>docker rm ：</strong> 删除一个或多个容器。</p>
 <p><strong>语法</strong></p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -391,9 +391,9 @@ mynginx
 </div>
 </div><p>OPTIONS说明：</p>
 <ul>
-<li>**-f :**通过 SIGKILL 信号强制删除一个运行中的容器。</li>
-<li>**-l :**移除容器间的网络连接，而非容器本身。</li>
-<li>**-v :**删除与容器关联的卷。</li>
+<li><strong>-f :</strong> 通过 SIGKILL 信号强制删除一个运行中的容器。</li>
+<li><strong>-l :</strong> 移除容器间的网络连接，而非容器本身。</li>
+<li><strong>-v :</strong> 删除与容器关联的卷。</li>
 </ul>
 <p><strong>PS示例</strong></p>
 <p>强制删除容器 db01、db02：</p>
@@ -466,7 +466,7 @@ docker unpause CONTAINER <span class="o">[</span>CONTAINER...<span class="o">]</
 </code></pre></td></tr></table>
 </div>
 </div><h3 id="docker-create-命令">docker create 命令</h3>
-<p>**docker create ：**创建一个新的容器但不启动它</p>
+<p><strong>docker create ：</strong> 创建一个新的容器但不启动它</p>
 <p>用法同 [docker run](#docker run 命令)</p>
 <p><strong>语法</strong></p>
 <div class="highlight"><div class="chroma">
@@ -491,7 +491,7 @@ docker unpause CONTAINER <span class="o">[</span>CONTAINER...<span class="o">]</
 </code></pre></td></tr></table>
 </div>
 </div><h3 id="docker-exec-命令">docker exec 命令</h3>
-<p>**docker exec ：**在运行的容器中执行命令</p>
+<p><strong>docker exec ：</strong> 在运行的容器中执行命令</p>
 <p><strong>语法</strong></p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -503,9 +503,9 @@ docker unpause CONTAINER <span class="o">[</span>CONTAINER...<span class="o">]</
 </div>
 </div><p><strong>OPTIONS说明：</strong></p>
 <ul>
-<li>**-d :**分离模式: 在后台运行</li>
-<li>**-i :**即使没有附加也保持STDIN 打开</li>
-<li>**-t :**分配一个伪终端</li>
+<li><strong>-d :</strong> 分离模式: 在后台运行</li>
+<li><strong>-i :</strong> 即使没有附加也保持STDIN 打开</li>
+<li><strong>-t :</strong> 分配一个伪终端</li>
 </ul>
 <p><strong>PS示例</strong></p>
 <p>在容器 mynginx 中以交互模式执行容器内 /root/runoob.sh 脚本:</p>
@@ -570,14 +570,14 @@ root@b1a0703e41e7:/#
 </div>
 </div><p>OPTIONS说明：</p>
 <ul>
-<li>**-a :**显示所有的容器，包括未运行的。</li>
-<li>**-f :**根据条件过滤显示的内容。</li>
-<li>**&ndash;format :**指定返回值的模板文件。</li>
-<li>**-l :**显示最近创建的容器。</li>
-<li>**-n :**列出最近创建的n个容器。</li>
-<li>**&ndash;no-trunc :**不截断输出。</li>
-<li>**-q :**静默模式，只显示容器编号。</li>
-<li>**-s :**显示总的文件大小。</li>
+<li><strong>-a :</strong> 显示所有的容器，包括未运行的。</li>
+<li><strong>-f :</strong> 根据条件过滤显示的内容。</li>
+<li><strong>&ndash;format :</strong> 指定返回值的模板文件。</li>
+<li><strong>-l :</strong> 显示最近创建的容器。</li>
+<li><strong>-n :</strong> 列出最近创建的n个容器。</li>
+<li><strong>&ndash;no-trunc :</strong> 不截断输出。</li>
+<li><strong>-q :</strong> 静默模式，只显示容器编号。</li>
+<li><strong>-s :</strong> 显示总的文件大小。</li>
 </ul>
 <p><strong>PS示例</strong></p>
 <p>列出所有在运行的容器信息。</p>
@@ -678,9 +678,9 @@ ba52eb632bbd
 </div>
 </div><p><strong>OPTIONS说明：</strong></p>
 <ul>
-<li>**-f :**指定返回值的模板文件。</li>
-<li>**-s :**显示总的文件大小。</li>
-<li>**&ndash;type :**为指定类型返回JSON。</li>
+<li><strong>-f :</strong> 指定返回值的模板文件。</li>
+<li><strong>-s :</strong> 显示总的文件大小。</li>
+<li><strong>&ndash;type :</strong> 为指定类型返回JSON。</li>
 </ul>
 <p><strong>PS示例</strong></p>
 <p>获取镜像mysql:5.6的元信息。</p>
@@ -748,7 +748,7 @@ ba52eb632bbd
 </code></pre></td></tr></table>
 </div>
 </div><h3 id="docker-top-命令">docker top 命令</h3>
-<p>**docker top :**查看容器中运行的进程信息，支持 ps 命令参数。</p>
+<p><strong>docker top :</strong> 查看容器中运行的进程信息，支持 ps 命令参数。</p>
 <p><strong>语法</strong></p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -783,7 +783,7 @@ UID    PID    PPID    C      STIME   TTY  TIME       CMD
 </code></pre></td></tr></table>
 </div>
 </div><h3 id="docker-attach-命令">docker attach 命令</h3>
-<p>**docker attach :**连接到正在运行中的容器。</p>
+<p><strong>docker attach :</strong> 连接到正在运行中的容器。</p>
 <p><strong>语法</strong></p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -820,9 +820,9 @@ UID    PID    PPID    C      STIME   TTY  TIME       CMD
 </div>
 </div><p><strong>OPTIONS说明：</strong></p>
 <ul>
-<li>**-f ：**根据条件过滤事件；</li>
-<li>**&ndash;since ：**从指定的时间戳后显示所有事件;</li>
-<li>**&ndash;until ：**流水时间显示到指定的时间为止；</li>
+<li><strong>-f ：</strong> 根据条件过滤事件；</li>
+<li><strong>&ndash;since ：</strong> 从指定的时间戳后显示所有事件;</li>
+<li><strong>&ndash;until ：</strong> 流水时间显示到指定的时间为止；</li>
 </ul>
 <p><strong>PS示例</strong></p>
 <p>显示docker 2016年7月1日后的所有事件。</p>
@@ -894,9 +894,9 @@ UID    PID    PPID    C      STIME   TTY  TIME       CMD
 </div><p><strong>OPTIONS说明：</strong></p>
 <ul>
 <li><strong>-f :</strong> 跟踪日志输出</li>
-<li>**&ndash;since :**显示某个开始时间的所有日志</li>
-<li><strong>-t :</strong> 显示时间戳</li>
-<li>**&ndash;tail :**仅列出最新N条容器日志</li>
+<li><strong>&ndash;since :</strong> 显示某个开始时间的所有日志</li>
+<li><strong>-t :</strong>  显示时间戳</li>
+<li><strong>&ndash;tail :</strong> 仅列出最新N条容器日志</li>
 </ul>
 <p><strong>PS示例</strong></p>
 <p>跟踪查看容器mynginx的日志输出。</p>
@@ -948,7 +948,7 @@ UID    PID    PPID    C      STIME   TTY  TIME       CMD
 </code></pre></td></tr></table>
 </div>
 </div><h3 id="docker-export-命令">docker export 命令</h3>
-<p>**docker export :**将文件系统作为一个tar归档文件导出到STDOUT。</p>
+<p><strong>docker export :</strong> 将文件系统作为一个tar归档文件导出到STDOUT。</p>
 <p><strong>语法</strong></p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -960,7 +960,7 @@ UID    PID    PPID    C      STIME   TTY  TIME       CMD
 </div>
 </div><p><strong>OPTIONS说明：</strong></p>
 <ul>
-<li>**-o :**将输入内容写到文件。</li>
+<li><strong>-o :</strong> 将输入内容写到文件。</li>
 </ul>
 <p><strong>PS示例</strong></p>
 <p>将id为a404c6c174a2的容器按日期保存为tar文件。</p>
@@ -977,7 +977,7 @@ mysql-20160711.tar
 </code></pre></td></tr></table>
 </div>
 </div><h3 id="docker-port-命令">docker port 命令</h3>
-<p>**docker port :**列出指定的容器的端口映射，或者查找将PRIVATE_PORT NAT到面向公众的端口。</p>
+<p><strong>docker port :</strong> 列出指定的容器的端口映射，或者查找将PRIVATE_PORT NAT到面向公众的端口。</p>
 <p><strong>语法</strong></p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -1001,7 +1001,7 @@ mysql-20160711.tar
 </div>
 </div><h2 id="容器rootfs命令">容器rootfs命令</h2>
 <h3 id="docker-commit命令">docker commit命令</h3>
-<p>**docker commit :**从容器创建一个新的镜像。</p>
+<p><strong>docker commit :</strong> 从容器创建一个新的镜像。</p>
 <p><strong>语法</strong></p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -1013,10 +1013,10 @@ mysql-20160711.tar
 </div>
 </div><p><strong>OPTIONS说明：</strong></p>
 <ul>
-<li>**-a :**提交的镜像作者；</li>
-<li>**-c :**使用Dockerfile指令来创建镜像；</li>
-<li>**-m :**提交时的说明文字；</li>
-<li>**-p :**在commit时，将容器暂停。</li>
+<li><strong>-a :</strong> 提交的镜像作者；</li>
+<li><strong>-c :</strong> 使用Dockerfile指令来创建镜像；</li>
+<li><strong>-m :</strong> 提交时的说明文字；</li>
+<li><strong>-p :</strong> 在commit时，将容器暂停。</li>
 </ul>
 <p><strong>PS示例</strong></p>
 <p>将容器a404c6c174a2 保存为新的镜像,并添加提交人信息和说明信息。</p>
@@ -1037,7 +1037,7 @@ mymysql             v1                  37af1236adef        <span class="m">15</
 </code></pre></td></tr></table>
 </div>
 </div><h3 id="docker-cp命令">docker cp命令</h3>
-<p>**docker cp :**用于容器与主机之间的数据拷贝。</p>
+<p><strong>docker cp :</strong> 用于容器与主机之间的数据拷贝。</p>
 <p><strong>语法</strong></p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -1051,7 +1051,7 @@ docker cp <span class="o">[</span>OPTIONS<span class="o">]</span> SRC_PATH<span 
 </div>
 </div><p><strong>OPTIONS说明：</strong></p>
 <ul>
-<li>**-L :**保持源目标中的链接</li>
+<li><strong>-L :</strong> 保持源目标中的链接</li>
 </ul>
 <p><strong>PS示例</strong></p>
 <p>将主机/www/runoob目录拷贝到容器96f7f14e99ab的/www目录下。</p>
@@ -1133,8 +1133,8 @@ docker logout [OPTIONS] [SERVER]
 </div>
 </div><p><strong>OPTIONS说明：</strong></p>
 <ul>
-<li>**-u :**登陆的用户名</li>
-<li>**-p :**登陆的密码</li>
+<li><strong>-u :</strong> 登陆的用户名</li>
+<li><strong>-p :</strong> 登陆的密码</li>
 </ul>
 <p><strong>PS示例</strong></p>
 <p>登陆到Docker Hub</p>
@@ -1168,8 +1168,8 @@ docker logout [OPTIONS] [SERVER]
 </div>
 </div><p><strong>OPTIONS说明：</strong></p>
 <ul>
-<li>**-a :**拉取所有 tagged 镜像</li>
-<li>**&ndash;disable-content-trust :**忽略镜像的校验,默认开启</li>
+<li><strong>-a :</strong> 拉取所有 tagged 镜像</li>
+<li><strong>&ndash;disable-content-trust :</strong> 忽略镜像的校验,默认开启</li>
 </ul>
 <p><strong>PS示例</strong></p>
 <p>从Docker Hub下载java最新版镜像。</p>
@@ -1203,7 +1203,7 @@ docker logout [OPTIONS] [SERVER]
 </div>
 </div><p><strong>OPTIONS说明：</strong></p>
 <ul>
-<li>**&ndash;disable-content-trust :**忽略镜像的校验,默认开启</li>
+<li><strong>&ndash;disable-content-trust :</strong> 忽略镜像的校验,默认开启</li>
 </ul>
 <p><strong>PS示例</strong></p>
 <p>上传本地镜像myapache:v1到镜像仓库中。</p>
@@ -1228,9 +1228,9 @@ docker logout [OPTIONS] [SERVER]
 </div>
 </div><p>OPTIONS说明：</p>
 <ul>
-<li>**&ndash;automated :**只列出 automated build类型的镜像；</li>
-<li>**&ndash;no-trunc :**显示完整的镜像描述；</li>
-<li>**-f &lt;过滤条件&gt;:**列出收藏数不小于指定值的镜像。</li>
+<li><strong>&ndash;automated :</strong> 只列出 automated build类型的镜像；</li>
+<li><strong>&ndash;no-trunc :</strong> 显示完整的镜像描述；</li>
+<li><strong>-f &lt;过滤条件&gt;:</strong> 列出收藏数不小于指定值的镜像。</li>
 </ul>
 <p><strong>PS示例</strong></p>
 <p>从 Docker Hub 查找所有镜像名包含 java，并且收藏数大于 10 的镜像</p>
@@ -1276,12 +1276,12 @@ nimmis/java-centos    This is docker images of CentOS 7...   <span class="m">13<
 </div>
 </div><p>OPTIONS说明：</p>
 <ul>
-<li>**-a :**列出本地所有的镜像（含中间映像层，默认情况下，过滤掉中间映像层）；</li>
-<li>**&ndash;digests :**显示镜像的摘要信息；</li>
-<li>**-f :**显示满足条件的镜像；</li>
-<li>**&ndash;format :**指定返回值的模板文件；</li>
-<li>**&ndash;no-trunc :**显示完整的镜像信息；</li>
-<li>**-q :**只显示镜像ID。</li>
+<li><strong>-a :</strong> 列出本地所有的镜像（含中间映像层，默认情况下，过滤掉中间映像层）；</li>
+<li><strong>&ndash;digests :</strong> 显示镜像的摘要信息；</li>
+<li><strong>-f :</strong> 显示满足条件的镜像；</li>
+<li><strong>&ndash;format :</strong> 指定返回值的模板文件；</li>
+<li><strong>&ndash;no-trunc :</strong> 显示完整的镜像信息；</li>
+<li><strong>-q :</strong> 只显示镜像ID。</li>
 </ul>
 <p><strong>PS示例</strong></p>
 <p>查看本地镜像列表。</p>
@@ -1343,8 +1343,8 @@ ubuntu              15.10               4e3b13c8a266        <span class="m">3</s
 </div>
 </div><p><strong>OPTIONS说明：</strong></p>
 <ul>
-<li>**-f :**强制删除；</li>
-<li>**&ndash;no-prune :**不移除该镜像的过程镜像，默认移除；</li>
+<li><strong>-f :</strong> 强制删除；</li>
+<li><strong>&ndash;no-prune :</strong> 不移除该镜像的过程镜像，默认移除；</li>
 </ul>
 <p><strong>PS示例</strong></p>
 <p>强制删除本地镜像 runoob/ubuntu:v4。</p>
@@ -1402,26 +1402,26 @@ runoob/ubuntu       v3                  4e3b13c8a266        <span class="m">3</s
 </div>
 </div><p><strong>OPTIONS说明：</strong></p>
 <ul>
-<li>**&ndash;build-arg=[] :**设置镜像创建时的变量；</li>
-<li>**&ndash;cpu-shares :**设置 cpu 使用权重；</li>
-<li>**&ndash;cpu-period :**限制 CPU CFS周期；</li>
-<li>**&ndash;cpu-quota :**限制 CPU CFS配额；</li>
-<li>**&ndash;cpuset-cpus :**指定使用的CPU id；</li>
-<li>**&ndash;cpuset-mems :**指定使用的内存 id；</li>
-<li>**&ndash;disable-content-trust :**忽略校验，默认开启；</li>
-<li>**-f :**指定要使用的Dockerfile路径；</li>
-<li>**&ndash;force-rm :**设置镜像过程中删除中间容器；</li>
-<li>**&ndash;isolation :**使用容器隔离技术；</li>
-<li>**&ndash;label=[] :**设置镜像使用的元数据；</li>
-<li>**-m :**设置内存最大值；</li>
-<li>**&ndash;memory-swap :**设置Swap的最大值为内存+swap，&quot;-1&quot;表示不限swap；</li>
-<li>**&ndash;no-cache :**创建镜像的过程不使用缓存；</li>
-<li>**&ndash;pull :**尝试去更新镜像的新版本；</li>
-<li>**&ndash;quiet, -q :**安静模式，成功后只输出镜像 ID；</li>
-<li>**&ndash;rm :**设置镜像成功后删除中间容器；</li>
-<li>**&ndash;shm-size :**设置/dev/shm的大小，默认值是64M；</li>
-<li>**&ndash;ulimit :**Ulimit配置。</li>
-<li>**&ndash;squash :**将 Dockerfile 中所有的操作压缩为一层。</li>
+<li><strong>&ndash;build-arg=[] :</strong> 设置镜像创建时的变量；</li>
+<li><strong>&ndash;cpu-shares :</strong> 设置 cpu 使用权重；</li>
+<li><strong>&ndash;cpu-period :</strong> 限制 CPU CFS周期；</li>
+<li><strong>&ndash;cpu-quota :</strong> 限制 CPU CFS配额；</li>
+<li><strong>&ndash;cpuset-cpus :</strong> 指定使用的CPU id；</li>
+<li><strong>&ndash;cpuset-mems :</strong> 指定使用的内存 id；</li>
+<li><strong>&ndash;disable-content-trust :</strong> 忽略校验，默认开启；</li>
+<li><strong>-f :</strong> 指定要使用的Dockerfile路径；</li>
+<li><strong>&ndash;force-rm :</strong> 设置镜像过程中删除中间容器；</li>
+<li><strong>&ndash;isolation :</strong> 使用容器隔离技术；</li>
+<li><strong>&ndash;label=[] :</strong> 设置镜像使用的元数据；</li>
+<li><strong>-m :</strong> 设置内存最大值；</li>
+<li><strong>&ndash;memory-swap :</strong> 设置Swap的最大值为内存+swap，&quot;-1&quot;表示不限swap；</li>
+<li><strong>&ndash;no-cache :</strong> 创建镜像的过程不使用缓存；</li>
+<li><strong>&ndash;pull :</strong> 尝试去更新镜像的新版本；</li>
+<li><strong>&ndash;quiet, -q :</strong> 安静模式，成功后只输出镜像 ID；</li>
+<li><strong>&ndash;rm :</strong> 设置镜像成功后删除中间容器；</li>
+<li><strong>&ndash;shm-size :</strong> 设置/dev/shm的大小，默认值是64M；</li>
+<li><strong>&ndash;ulimit :</strong> Ulimit配置。</li>
+<li><strong>&ndash;squash :</strong> 将 Dockerfile 中所有的操作压缩为一层。</li>
 <li><strong>&ndash;tag, -t:</strong> 镜像的名字及标签，通常 name:tag 或者 name 格式；可以在一次构建中为一个镜像设置多个标签。</li>
 <li><strong>&ndash;network:</strong> 默认 default。在构建期间设置RUN指令的网络模式</li>
 </ul>
@@ -1479,9 +1479,9 @@ Error response from daemon: Unknown instruction: RUNCMD
 </div>
 </div><p><strong>OPTIONS说明：</strong></p>
 <ul>
-<li>**-H :**以可读的格式打印镜像大小和日期，默认为true；</li>
-<li>**&ndash;no-trunc :**显示完整的提交记录；</li>
-<li>**-q :**仅列出提交记录ID。</li>
+<li><strong>-H :</strong> 以可读的格式打印镜像大小和日期，默认为true；</li>
+<li><strong>&ndash;no-trunc :</strong> 显示完整的提交记录；</li>
+<li><strong>-q :</strong> 仅列出提交记录ID。</li>
 </ul>
 <p><strong>PS示例</strong></p>
 <p>查看本地镜像runoob/ubuntu:v3的创建历史。</p>
@@ -1516,7 +1516,7 @@ IMAGE             CREATED           CREATED BY                                  
 </div>
 </div><p><strong>OPTIONS 说明：</strong></p>
 <ul>
-<li>**-o :**输出到的文件。</li>
+<li><strong>-o :</strong> 输出到的文件。</li>
 </ul>
 <p><strong>PS示例</strong></p>
 <p>将镜像 runoob/ubuntu:v3 生成 my_ubuntu_v3.tar 文档</p>
@@ -1619,8 +1619,8 @@ fedora              latest              58394af37342        <span class="m">7</s
 </div>
 </div><p><strong>OPTIONS说明：</strong></p>
 <ul>
-<li>**-c :**应用docker 指令创建镜像；</li>
-<li>**-m :**提交时的说明文字；</li>
+<li><strong>-c :</strong> 应用docker 指令创建镜像；</li>
+<li><strong>-m :</strong> 提交时的说明文字；</li>
 </ul>
 <p><strong>PS示例</strong></p>
 <p>从镜像归档文件my_ubuntu_v3.tar创建镜像，命名为runoob/ubuntu:v4</p>
@@ -1693,7 +1693,7 @@ ID: M5N4:K6WN:PUNC:73ZN:AONJ:AUHL:KSYH:2JPI:CH3K:O4MK:6OCX:5OYW
 </code></pre></td></tr></table>
 </div>
 </div><h3 id="docker-version命令">docker version命令</h3>
-<p>**docker version :**显示 Docker 版本信息。</p>
+<p><strong>docker version :</strong> 显示 Docker 版本信息。</p>
 <p><strong>语法</strong></p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -1705,7 +1705,7 @@ ID: M5N4:K6WN:PUNC:73ZN:AONJ:AUHL:KSYH:2JPI:CH3K:O4MK:6OCX:5OYW
 </div>
 </div><p>OPTIONS说明：</p>
 <ul>
-<li>**-f :**指定返回值的模板文件。</li>
+<li><strong>-f :</strong> 指定返回值的模板文件。</li>
 </ul>
 <p><strong>PS示例</strong></p>
 <p>显示 Docker 版本信息。</p>
