@@ -1,0 +1,17 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>容器 - 标签 - 菜鸡，随便写写</title>
+        <link>https://Dazhuwei.github.io/tags/%E5%AE%B9%E5%99%A8/</link>
+        <description>容器 - 标签 - 菜鸡，随便写写</description>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>zhangdawei516@gmail (Zhangdw)</managingEditor>
+            <webMaster>zhangdawei516@gmail (Zhangdw)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Sun, 14 Nov 2021 17:12:01 &#43;0800</lastBuildDate><atom:link href="https://Dazhuwei.github.io/tags/%E5%AE%B9%E5%99%A8/" rel="self" type="application/rss+xml" /><item>
+    <title>Docker命令大全</title>
+    <link>https://Dazhuwei.github.io/docker%E5%91%BD%E4%BB%A4%E5%A4%A7%E5%85%A8/</link>
+    <pubDate>Sun, 14 Nov 2021 17:12:01 &#43;0800</pubDate>
+    <author>作者</author>
+    <guid>https://Dazhuwei.github.io/docker%E5%91%BD%E4%BB%A4%E5%A4%A7%E5%85%A8/</guid>
+    <description><![CDATA[<div class="featured-image">
+                <img src="/images/Docker-logo.jpg" referrerpolicy="no-referrer">
+            </div>容器生命周期管理 docker run 命令 **docker run ：**创建一个新的容器并运行一个命令 语法 1 docker run [OPTIONS] IMAGE [COMMAND] [ARG...] OPTIONS说明： -a stdin: 指定标准输入输出内容类型，可选 STDIN/STDOUT/STDERR 三]]></description>
+</item></channel>
+</rss>

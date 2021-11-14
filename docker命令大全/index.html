@@ -1,0 +1,1792 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+        <title>Docker命令大全 - 菜鸡，随便写写</title><meta name="Description" content="Blog of Zhangdw"><meta property="og:title" content="Docker命令大全" />
+<meta property="og:description" content="容器生命周期管理 docker run 命令 **docker run ：**创建一个新的容器并运行一个命令 语法 1 docker run [OPTIONS] IMAGE [COMMAND] [ARG...] OPTIONS说明： -a stdin: 指定标准输入输出内容类型，可选 STDIN/STDOUT/STDERR 三" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://Dazhuwei.github.io/docker%E5%91%BD%E4%BB%A4%E5%A4%A7%E5%85%A8/" /><meta property="og:image" content="https://Dazhuwei.github.io/images/logo.png"/><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2021-11-14T17:12:01+08:00" />
+<meta property="article:modified_time" content="2021-11-14T17:12:01+08:00" />
+
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://Dazhuwei.github.io/images/logo.png"/>
+
+<meta name="twitter:title" content="Docker命令大全"/>
+<meta name="twitter:description" content="容器生命周期管理 docker run 命令 **docker run ：**创建一个新的容器并运行一个命令 语法 1 docker run [OPTIONS] IMAGE [COMMAND] [ARG...] OPTIONS说明： -a stdin: 指定标准输入输出内容类型，可选 STDIN/STDOUT/STDERR 三"/>
+<meta name="application-name" content="菜鸡，随便写写">
+<meta name="apple-mobile-web-app-title" content="菜鸡，随便写写"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://Dazhuwei.github.io/docker%E5%91%BD%E4%BB%A4%E5%A4%A7%E5%85%A8/" /><link rel="prev" href="https://Dazhuwei.github.io/asterisk%E6%8B%A8%E5%8F%B7%E8%A7%84%E5%88%99/" /><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.13.0/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.7.2/animate.min.css"><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "Docker命令大全",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/Dazhuwei.github.io\/docker%E5%91%BD%E4%BB%A4%E5%A4%A7%E5%85%A8\/"
+        },"image": ["https:\/\/Dazhuwei.github.io\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "容器, docker, 工具, 搬运","wordcount":  7043 ,
+        "url": "https:\/\/Dazhuwei.github.io\/docker%E5%91%BD%E4%BB%A4%E5%A4%A7%E5%85%A8\/","datePublished": "2021-11-14T17:12:01+08:00","dateModified": "2021-11-14T17:12:01+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
+            "@type": "Organization",
+            "name": "Zhangdw","logo": "https:\/\/Dazhuwei.github.io\/leslie.png"},"author": {
+                "@type": "Person",
+                "name": "Zhangdw"
+            },"description": ""
+    }
+    </script></head>
+    <body header-desktop="fixed" header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="菜鸡，随便写写"><img
+        class="lazyload logo"
+        src="/svg/loading.min.svg"
+        data-src="/images/logo.png"
+        data-srcset="/images/logo.png, /images/logo.png 1.5x, /images/logo.png 2x"
+        data-sizes="auto"
+        alt="/images/logo.png"
+        title="/images/logo.png" /><span class="header-title-pre"><i class='far fa-kiss-wink-heart fa-fw'></i></span><span id="id-1" class="typeit"></span></a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> 所有文章 </a><a class="menu-item" href="/tags/"> 标签 </a><a class="menu-item" href="/categories/"> 分类 </a><a class="menu-item" href="/categories"> 文档 </a><a class="menu-item" href="/about/"> 关于 </a><a class="menu-item" href="https://github.com/Dazhuwei" title="GitHub" rel="noopener noreffer" target="_blank"><i class='fab fa-github fa-fw'></i>  </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="搜索文章标题或内容..." id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="菜鸡，随便写写"><img
+        class="lazyload logo"
+        src="/svg/loading.min.svg"
+        data-src="/images/logo.png"
+        data-srcset="/images/logo.png, /images/logo.png 1.5x, /images/logo.png 2x"
+        data-sizes="auto"
+        alt="/images/logo.png"
+        title="/images/logo.png" /><span class="header-title-pre"><i class='far fa-kiss-wink-heart fa-fw'></i></span><span id="id-2" class="typeit"></span></a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="搜索文章标题或内容..." id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        取消
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="">所有文章</a><a class="menu-item" href="/tags/" title="">标签</a><a class="menu-item" href="/categories/" title="">分类</a><a class="menu-item" href="/categories" title="">文档</a><a class="menu-item" href="/about/" title="">关于</a><a class="menu-item" href="https://github.com/Dazhuwei" title="GitHub" rel="noopener noreffer" target="_blank"><i class='fab fa-github fa-fw'></i></a><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                <i class="fas fa-adjust fa-fw"></i>
+            </a></div>
+    </div>
+</header>
+<div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div>
+<main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">目录</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animated flipInX">Docker命令大全</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>Zhangdw</a></span>&nbsp;<span class="post-category">收录于 <a href="/categories/%E5%AE%B9%E5%99%A8/"><i class="far fa-folder fa-fw"></i>容器</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2021-11-14">2021-11-14</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 7043 字&nbsp;
+                <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 15 分钟&nbsp;<span id="/docker%E5%91%BD%E4%BB%A4%E5%A4%A7%E5%85%A8/" class="leancloud_visitors" data-flag-title="Docker命令大全">
+                        <i class="far fa-eye fa-fw"></i>&nbsp;<span class=leancloud-visitors-count></span>&nbsp;次阅读
+                    </span>&nbsp;</div>
+        </div><div class="featured-image"><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="/images/Docker-logo.jpg"
+        data-srcset="/images/Docker-logo.jpg, /images/Docker-logo.jpg 1.5x, /images/Docker-logo.jpg 2x"
+        data-sizes="auto"
+        alt="/images/Docker-logo.jpg"
+        title="/images/Docker-logo.jpg" /></div><div class="details toc" id="toc-static"  kept="">
+                <div class="details-summary toc-title">
+                    <span>目录</span>
+                    <span><i class="details-icon fas fa-angle-right"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#docker-run-命令">docker run 命令</a></li>
+        <li><a href="#docker-startstoprestart-命令">docker start/stop/restart 命令</a></li>
+        <li><a href="#docker-kill-命令">docker kill 命令</a></li>
+        <li><a href="#docker-rm-命令">docker rm 命令</a></li>
+        <li><a href="#docker-pauseunpause-命令">docker pause/unpause 命令</a></li>
+        <li><a href="#docker-create-命令">docker create 命令</a></li>
+        <li><a href="#docker-exec-命令">docker exec 命令</a></li>
+      </ul>
+    </li>
+    <li><a href="#容器操作">容器操作</a>
+      <ul>
+        <li><a href="#docker-ps-命令">docker ps 命令：</a></li>
+        <li><a href="#docker-inspect-命令">docker inspect 命令：</a></li>
+        <li><a href="#docker-top-命令">docker top 命令</a></li>
+        <li><a href="#docker-attach-命令">docker attach 命令</a></li>
+        <li><a href="#docker-events-命令">docker events 命令</a></li>
+        <li><a href="#docker-logs-命令">docker logs 命令</a></li>
+        <li><a href="#docker-wait-命令">docker wait 命令</a></li>
+        <li><a href="#docker-export-命令">docker export 命令</a></li>
+        <li><a href="#docker-port-命令">docker port 命令</a></li>
+      </ul>
+    </li>
+    <li><a href="#容器rootfs命令">容器rootfs命令</a>
+      <ul>
+        <li><a href="#docker-commit命令">docker commit命令</a></li>
+        <li><a href="#docker-cp命令">docker cp命令</a></li>
+        <li><a href="#docker-diff命令">docker diff命令</a></li>
+      </ul>
+    </li>
+    <li><a href="#镜像仓库">镜像仓库</a>
+      <ul>
+        <li><a href="#docker-loginlogout命令">docker login/logout命令</a></li>
+        <li><a href="#docker-pull命令">docker pull命令</a></li>
+        <li><a href="#docker-push-命令">docker push 命令</a></li>
+        <li><a href="#docker-search命令">docker search命令</a>
+          <ul>
+            <li><a href="#参数说明">参数说明：</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li><a href="#本地镜像管理">本地镜像管理</a>
+      <ul>
+        <li><a href="#docker-images命令">docker images命令</a></li>
+        <li><a href="#docker-rmi命令">docker rmi命令</a></li>
+        <li><a href="#docker-tag命令">docker tag命令</a></li>
+        <li><a href="#docker-build命令">docker build命令</a></li>
+        <li><a href="#docker-history命令">docker history命令</a></li>
+        <li><a href="#docker-save命令">docker save命令</a></li>
+        <li><a href="#docker-load-命令">docker load 命令</a></li>
+        <li><a href="#docker-import-命令">docker import 命令</a></li>
+      </ul>
+    </li>
+    <li><a href="#infoversion">info|version</a>
+      <ul>
+        <li><a href="#docker-info命令">docker info命令</a></li>
+        <li><a href="#docker-version命令">docker version命令</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><h1 id="容器生命周期管理">容器生命周期管理</h1>
+<h3 id="docker-run-命令">docker run 命令</h3>
+<p>**docker run ：**创建一个新的容器并运行一个命令</p>
+<p><strong>语法</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">docker run <span class="o">[</span>OPTIONS<span class="o">]</span> IMAGE <span class="o">[</span>COMMAND<span class="o">]</span> <span class="o">[</span>ARG...<span class="o">]</span>
+</code></pre></td></tr></table>
+</div>
+</div><p><strong>OPTIONS说明：</strong></p>
+<ul>
+<li><strong>-a stdin:</strong> 指定标准输入输出内容类型，可选 STDIN/STDOUT/STDERR 三项；</li>
+<li><strong>-d:</strong> 后台运行容器，并返回容器ID；</li>
+<li><strong>-i:</strong> 以交互模式运行容器，通常与 -t 同时使用；</li>
+<li><strong>-P:</strong> 随机端口映射，容器内部端口<strong>随机</strong>映射到主机的端口</li>
+<li><strong>-p:</strong> 指定端口映射，格式为：<strong>主机(宿主)端口:容器端口</strong></li>
+<li><strong>-t:</strong> 为容器重新分配一个伪输入终端，通常与 -i 同时使用；</li>
+<li><strong>&ndash;name=&ldquo;nginx-lb&rdquo;:</strong> 为容器指定一个名称；</li>
+<li><strong>&ndash;dns 8.8.8.8:</strong> 指定容器使用的DNS服务器，默认和宿主一致；</li>
+<li><strong>&ndash;dns-search example.com:</strong> 指定容器DNS搜索域名，默认和宿主一致；</li>
+<li><strong>-h &ldquo;mars&rdquo;:</strong> 指定容器的hostname；</li>
+<li><strong>-e username=&ldquo;ritchie&rdquo;:</strong> 设置环境变量；</li>
+<li><strong>&ndash;env-file=[]:</strong> 从指定文件读入环境变量；</li>
+<li><strong>&ndash;cpuset=&ldquo;0-2&rdquo; or &ndash;cpuset=&ldquo;0,1,2&rdquo;:</strong> 绑定容器到指定CPU运行；</li>
+<li>**-m :**设置容器使用内存最大值；</li>
+<li><strong>&ndash;net=&ldquo;bridge&rdquo;:</strong> 指定容器的网络连接类型，支持 bridge/host/none/container: 四种类型；</li>
+<li><strong>&ndash;link=[]:</strong> 添加链接到另一个容器；</li>
+<li><strong>&ndash;expose=[]:</strong> 开放一个端口或一组端口；</li>
+<li><strong>&ndash;volume , -v:</strong> 绑定一个卷</li>
+</ul>
+<p><strong>PS示例</strong>：</p>
+<p>使用docker镜像nginx:latest以后台模式启动一个容器,并将容器命名为mynginx。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell">docker run --name mynginx -d nginx:latest
+</code></pre></td></tr></table>
+</div>
+</div><p>使用镜像nginx:latest以后台模式启动一个容器,并将容器的80端口映射到主机随机端口。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell">docker run -P -d nginx:latest
+</code></pre></td></tr></table>
+</div>
+</div><p>使用镜像 nginx:latest，以后台模式启动一个容器,将容器的 80 端口映射到主机的 80 端口,主机的目录 /data 映射到容器的 /data。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell">docker run -p 80:80 -v /data:/data -d nginx:latest
+</code></pre></td></tr></table>
+</div>
+</div><p>绑定容器的 8080 端口，并将其映射到本地主机 127.0.0.1 的 80 端口上。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell">$ docker run -p 127.0.0.1:80:8080/tcp ubuntu bash
+</code></pre></td></tr></table>
+</div>
+</div><p>使用镜像nginx:latest以交互模式启动一个容器,在容器内执行/bin/bash命令。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell">runoob@runoob:~$ docker run -it nginx:latest /bin/bash
+root@b8573233d675:/# 
+</code></pre></td></tr></table>
+</div>
+</div><p><strong>node</strong>：</p>
+<p>在 Docker 容器退出时，默认容器内部的文件系统仍然被保留，以方便调试并保留用户数据。</p>
+<p>但是，对于 foreground 容器，由于其只是在开发调试过程中短期运行，其用户数据并无保留的必要，因而可以在容器启动时设置 <strong>&ndash;rm</strong> 选项，这样在容器退出时就能够自动清理容器内部的文件系统。</p>
+<p>示例如下：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">docker run --rm ba-208
+</code></pre></td></tr></table>
+</div>
+</div><p>等价于：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">docker run --rm<span class="o">=</span><span class="nb">true</span> ba-208
+</code></pre></td></tr></table>
+</div>
+</div><p>显然，<strong>&ndash;rm</strong> 选项不能与 <strong>-d</strong> 同时使用（或者说同时使用没有意义），即只能自动清理 foreground 容器，不能自动清理detached容器。</p>
+<p>注意，<strong>&ndash;rm</strong> 选项也会清理容器的匿名data volumes。</p>
+<p>所以，执行 <strong>docker run</strong> 命令带 <strong>&ndash;rm</strong>命令选项，等价于在容器退出后，执行 <strong>docker rm -v</strong></p>
+<h3 id="docker-startstoprestart-命令">docker start/stop/restart 命令</h3>
+<p><strong>docker start</strong> :启动一个或多个已经被停止的容器</p>
+<p><strong>docker stop</strong> :停止一个运行中的容器</p>
+<p><strong>docker restart</strong> :重启容器</p>
+<p><strong>语法</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">docker start [OPTIONS] CONTAINER [CONTAINER...]
+docker stop [OPTIONS] CONTAINER [CONTAINER...]
+docker restart [OPTIONS] CONTAINER [CONTAINER...]
+</code></pre></td></tr></table>
+</div>
+</div><p><strong>PS示例</strong>：</p>
+<p>启动已被停止的容器myrunoob</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell">docker start myrunoob
+</code></pre></td></tr></table>
+</div>
+</div><p>停止运行中的容器myrunoob</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell">docker stop myrunoob
+</code></pre></td></tr></table>
+</div>
+</div><p>重启容器myrunoob</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell">docker restart myrunoob
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="docker-kill-命令">docker kill 命令</h3>
+<p><strong>docker kill</strong> :杀掉一个运行中的容器。</p>
+<p><strong>语法</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">docker kill [OPTIONS] CONTAINER [CONTAINER...]
+</code></pre></td></tr></table>
+</div>
+</div><p>OPTIONS说明：</p>
+<ul>
+<li>**-s :**向容器发送一个信号</li>
+</ul>
+<p><strong>PS示例</strong>：</p>
+<p>杀掉运行中的容器mynginx</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">runoob@runoob:~$ docker <span class="nb">kill</span> -s KILL mynginx
+mynginx
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="docker-rm-命令">docker rm 命令</h3>
+<p>**docker rm ：**删除一个或多个容器。</p>
+<p><strong>语法</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">docker rm [OPTIONS] CONTAINER [CONTAINER...]
+</code></pre></td></tr></table>
+</div>
+</div><p>OPTIONS说明：</p>
+<ul>
+<li>**-f :**通过 SIGKILL 信号强制删除一个运行中的容器。</li>
+<li>**-l :**移除容器间的网络连接，而非容器本身。</li>
+<li>**-v :**删除与容器关联的卷。</li>
+</ul>
+<p><strong>PS示例</strong></p>
+<p>强制删除容器 db01、db02：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">docker rm -f db01 db02
+</code></pre></td></tr></table>
+</div>
+</div><p>移除容器 nginx01 对容器 db01 的连接，连接名 db：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">docker rm -l db 
+</code></pre></td></tr></table>
+</div>
+</div><p>删除容器 nginx01, 并删除容器挂载的数据卷：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">docker rm -v nginx01
+</code></pre></td></tr></table>
+</div>
+</div><p>删除所有已经停止的容器：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">docker rm <span class="k">$(</span>docker ps -a -q<span class="k">)</span>
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="docker-pauseunpause-命令">docker pause/unpause 命令</h3>
+<p><strong>docker pause</strong> :暂停容器中所有的进程。</p>
+<p><strong>docker unpause</strong> :恢复容器中所有的进程。</p>
+<p><strong>语法</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">docker pause CONTAINER <span class="o">[</span>CONTAINER...<span class="o">]</span>
+docker unpause CONTAINER <span class="o">[</span>CONTAINER...<span class="o">]</span>
+</code></pre></td></tr></table>
+</div>
+</div><p><strong>PS示例</strong></p>
+<p>暂停数据库容器db01提供服务。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">docker pause db01
+</code></pre></td></tr></table>
+</div>
+</div><p>恢复数据库容器 db01 提供服务。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">docker unpause db01
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="docker-create-命令">docker create 命令</h3>
+<p>**docker create ：**创建一个新的容器但不启动它</p>
+<p>用法同 [docker run](#docker run 命令)</p>
+<p><strong>语法</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">docker create <span class="o">[</span>OPTIONS<span class="o">]</span> IMAGE <span class="o">[</span>COMMAND<span class="o">]</span> <span class="o">[</span>ARG...<span class="o">]</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>语法同 [docker run](#docker run 命令)</p>
+<p><strong>PS示例</strong></p>
+<p>使用docker镜像nginx:latest创建一个容器,并将容器命名为myrunoob</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">runoob@runoob:~$ docker create  --name myrunoob  nginx:latest      
+09b93464c2f75b7b69f83d56a9cfc23ceb50a48a9db7652ee4c27e3e2cb1961f
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="docker-exec-命令">docker exec 命令</h3>
+<p>**docker exec ：**在运行的容器中执行命令</p>
+<p><strong>语法</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">docker <span class="nb">exec</span> <span class="o">[</span>OPTIONS<span class="o">]</span> CONTAINER COMMAND <span class="o">[</span>ARG...<span class="o">]</span>
+</code></pre></td></tr></table>
+</div>
+</div><p><strong>OPTIONS说明：</strong></p>
+<ul>
+<li>**-d :**分离模式: 在后台运行</li>
+<li>**-i :**即使没有附加也保持STDIN 打开</li>
+<li>**-t :**分配一个伪终端</li>
+</ul>
+<p><strong>PS示例</strong></p>
+<p>在容器 mynginx 中以交互模式执行容器内 /root/runoob.sh 脚本:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">runoob@runoob:~$ docker <span class="nb">exec</span> -it mynginx /bin/sh /root/runoob.sh
+http://www.runoob.com/
+</code></pre></td></tr></table>
+</div>
+</div><p>在容器 mynginx 中开启一个交互模式的终端:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">runoob@runoob:~$ docker <span class="nb">exec</span> -i -t  mynginx /bin/bash
+root@b1a0703e41e7:/#
+</code></pre></td></tr></table>
+</div>
+</div><p>也可以通过 <strong>docker ps -a</strong> 命令查看已经在运行的容器，然后使用容器 ID 进入容器。</p>
+<p>查看已经在运行的容器 ID：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># docker ps -a </span>
+...
+9df70f9a0714        openjdk             <span class="s2">&#34;/usercode/script.sh…&#34;</span> 
+...
+</code></pre></td></tr></table>
+</div>
+</div><p>第一列的 9df70f9a0714 就是容器 ID。</p>
+<p>通过 exec 命令对指定的容器执行 bash:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># docker exec -it 9df70f9a0714 /bin/bash</span>
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="容器操作">容器操作</h2>
+<h3 id="docker-ps-命令">docker ps 命令：</h3>
+<p><strong>docker ps :</strong> 列出容器</p>
+<p><strong>语法</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">docker ps <span class="o">[</span>OPTIONS<span class="o">]</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>OPTIONS说明：</p>
+<ul>
+<li>**-a :**显示所有的容器，包括未运行的。</li>
+<li>**-f :**根据条件过滤显示的内容。</li>
+<li>**&ndash;format :**指定返回值的模板文件。</li>
+<li>**-l :**显示最近创建的容器。</li>
+<li>**-n :**列出最近创建的n个容器。</li>
+<li>**&ndash;no-trunc :**不截断输出。</li>
+<li>**-q :**静默模式，只显示容器编号。</li>
+<li>**-s :**显示总的文件大小。</li>
+</ul>
+<p><strong>PS示例</strong></p>
+<p>列出所有在运行的容器信息。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">runoob@runoob:~$ docker ps
+CONTAINER ID   IMAGE          COMMAND                ...  PORTS                    NAMES
+09b93464c2f7   nginx:latest   <span class="s2">&#34;nginx -g &#39;daemon off&#34;</span> ...  80/tcp, 443/tcp          myrunoob
+96f7f14e99ab   mysql:5.6      <span class="s2">&#34;docker-entrypoint.sh&#34;</span> ...  0.0.0.0:3306-&gt;3306/tcp   mymysql
+</code></pre></td></tr></table>
+</div>
+</div><p>输出详情介绍：</p>
+<p><strong>CONTAINER ID:</strong> 容器 ID。</p>
+<p><strong>IMAGE:</strong> 使用的镜像。</p>
+<p><strong>COMMAND:</strong> 启动容器时运行的命令。</p>
+<p><strong>CREATED:</strong> 容器的创建时间。</p>
+<p><strong>STATUS:</strong> 容器状态。</p>
+<p>状态有7种：</p>
+<ul>
+<li>created（已创建）</li>
+<li>restarting（重启中）</li>
+<li>running（运行中）</li>
+<li>removing（迁移中）</li>
+<li>paused（暂停）</li>
+<li>exited（停止）</li>
+<li>dead（死亡）</li>
+</ul>
+<p><strong>PORTS:</strong> 容器的端口信息和使用的连接类型（tcp\udp）。</p>
+<p><strong>NAMES:</strong> 自动分配的容器名称。</p>
+<p>列出最近创建的5个容器信息。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">runoob@runoob:~$ docker ps -n <span class="m">5</span>
+CONTAINER ID        IMAGE               COMMAND                   CREATED           
+09b93464c2f7        nginx:latest        <span class="s2">&#34;nginx -g &#39;daemon off&#34;</span>    <span class="m">2</span> days ago   ...     
+b8573233d675        nginx:latest        <span class="s2">&#34;/bin/bash&#34;</span>               <span class="m">2</span> days ago   ...     
+b1a0703e41e7        nginx:latest        <span class="s2">&#34;nginx -g &#39;daemon off&#34;</span>    <span class="m">2</span> days ago   ...    
+f46fb1dec520        5c6e1090e771        <span class="s2">&#34;/bin/sh -c &#39;set -x \t&#34;</span>   <span class="m">2</span> days ago   ...   
+a63b4a5597de        860c279d2fec        <span class="s2">&#34;bash&#34;</span>                    <span class="m">2</span> days ago   ...
+</code></pre></td></tr></table>
+</div>
+</div><p>列出所有创建的容器ID。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">runoob@runoob:~$ docker ps -a -q
+09b93464c2f7
+b8573233d675
+b1a0703e41e7
+f46fb1dec520
+a63b4a5597de
+6a4aa42e947b
+de7bb36e7968
+43a432b73776
+664a8ab1a585
+ba52eb632bbd
+...
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="docker-inspect-命令">docker inspect 命令：</h3>
+<p><strong>docker inspect :</strong> 获取容器/镜像的元数据。</p>
+<p><strong>语法</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">docker inspect <span class="o">[</span>OPTIONS<span class="o">]</span> NAME<span class="p">|</span>ID <span class="o">[</span>NAME<span class="p">|</span>ID...<span class="o">]</span>
+</code></pre></td></tr></table>
+</div>
+</div><p><strong>OPTIONS说明：</strong></p>
+<ul>
+<li>**-f :**指定返回值的模板文件。</li>
+<li>**-s :**显示总的文件大小。</li>
+<li>**&ndash;type :**为指定类型返回JSON。</li>
+</ul>
+<p><strong>PS示例</strong></p>
+<p>获取镜像mysql:5.6的元信息。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">runoob@runoob:~$ docker inspect mysql:5.6
+<span class="o">[</span>
+    <span class="o">{</span>
+        <span class="s2">&#34;Id&#34;</span>: <span class="s2">&#34;sha256:2c0964ec182ae9a045f866bbc2553087f6e42bfc16074a74fb820af235f070ec&#34;</span>,
+        <span class="s2">&#34;RepoTags&#34;</span>: <span class="o">[</span>
+            <span class="s2">&#34;mysql:5.6&#34;</span>
+        <span class="o">]</span>,
+        <span class="s2">&#34;RepoDigests&#34;</span>: <span class="o">[]</span>,
+        <span class="s2">&#34;Parent&#34;</span>: <span class="s2">&#34;&#34;</span>,
+        <span class="s2">&#34;Comment&#34;</span>: <span class="s2">&#34;&#34;</span>,
+        <span class="s2">&#34;Created&#34;</span>: <span class="s2">&#34;2016-05-24T04:01:41.168371815Z&#34;</span>,
+        <span class="s2">&#34;Container&#34;</span>: <span class="s2">&#34;e0924bc460ff97787f34610115e9363e6363b30b8efa406e28eb495ab199ca54&#34;</span>,
+        <span class="s2">&#34;ContainerConfig&#34;</span>: <span class="o">{</span>
+            <span class="s2">&#34;Hostname&#34;</span>: <span class="s2">&#34;b0cf605c7757&#34;</span>,
+            <span class="s2">&#34;Domainname&#34;</span>: <span class="s2">&#34;&#34;</span>,
+            <span class="s2">&#34;User&#34;</span>: <span class="s2">&#34;&#34;</span>,
+            <span class="s2">&#34;AttachStdin&#34;</span>: false,
+            <span class="s2">&#34;AttachStdout&#34;</span>: false,
+            <span class="s2">&#34;AttachStderr&#34;</span>: false,
+            <span class="s2">&#34;ExposedPorts&#34;</span>: <span class="o">{</span>
+                <span class="s2">&#34;3306/tcp&#34;</span>: <span class="o">{}</span>
+            <span class="o">}</span>,
+...
+</code></pre></td></tr></table>
+</div>
+</div><p>获取正在运行的容器mymysql的 IP。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">runoob@runoob:~$ docker inspect --format<span class="o">=</span><span class="s1">&#39;{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}&#39;</span> mymysql
+172.17.0.3
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="docker-top-命令">docker top 命令</h3>
+<p>**docker top :**查看容器中运行的进程信息，支持 ps 命令参数。</p>
+<p><strong>语法</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell">docker top <span class="o">[</span>OPTIONS<span class="o">]</span> CONTAINER <span class="o">[</span>ps OPTIONS<span class="o">]</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>容器运行时不一定有/bin/bash终端来交互执行top命令，而且容器还不一定有top命令，可以使用docker top来实现查看container中正在运行的进程。</p>
+<p><strong>PS示例</strong></p>
+<p>查看容器mymysql的进程信息。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell">runoob@runoob:~/mysql$ docker top mymysql
+UID    PID    PPID    C      STIME   TTY  TIME       CMD
+<span class="m">999</span>    <span class="m">40347</span>  <span class="m">40331</span>   <span class="m">18</span>     00:58   ?    00:00:02   mysqld
+</code></pre></td></tr></table>
+</div>
+</div><p>查看所有运行容器的进程信息。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="k">for</span> i in  <span class="sb">`</span>docker ps <span class="p">|</span>grep Up<span class="p">|</span>awk <span class="s1">&#39;{print $1}&#39;</span><span class="sb">`</span><span class="p">;</span><span class="k">do</span> <span class="nb">echo</span> <span class="se">\ </span><span class="o">&amp;&amp;</span>docker top <span class="nv">$i</span><span class="p">;</span> <span class="k">done</span>
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="docker-attach-命令">docker attach 命令</h3>
+<p>**docker attach :**连接到正在运行中的容器。</p>
+<p><strong>语法</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">docker attach <span class="o">[</span>OPTIONS<span class="o">]</span> CONTAINER
+</code></pre></td></tr></table>
+</div>
+</div><p>要attach上去的容器必须正在运行，可以同时连接上同一个container来共享屏幕（与screen命令的attach类似）。</p>
+<p>官方文档中说attach后可以通过CTRL-C来detach，但实际上经过我的测试，如果container当前在运行bash，CTRL-C自然是当前行的输入，没有退出；如果container当前正在前台运行进程，如输出nginx的access.log日志，CTRL-C不仅会导致退出容器，而且还stop了。这不是我们想要的，detach的意思按理应该是脱离容器终端，但容器依然运行。好在attach是可以带上&ndash;sig-proxy=false来确保CTRL-D或CTRL-C不会关闭容器。</p>
+<p><strong>PS示例</strong></p>
+<p>容器mynginx将访问日志指到标准输出，连接到容器查看访问信息。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">runoob@runoob:~$ docker attach --sig-proxy<span class="o">=</span><span class="nb">false</span> mynginx
+192.168.239.1 - - <span class="o">[</span>10/Jul/2016:16:54:26 +0000<span class="o">]</span> <span class="s2">&#34;GET / HTTP/1.1&#34;</span> <span class="m">304</span> <span class="m">0</span> <span class="s2">&#34;-&#34;</span> <span class="s2">&#34;Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/45.0.2454.93 Safari/537.36&#34;</span> <span class="s2">&#34;-&#34;</span>
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="docker-events-命令">docker events 命令</h3>
+<p><strong>docker events :</strong> 从服务器获取实时事件</p>
+<p><strong>语法</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">docker events [OPTIONS]
+</code></pre></td></tr></table>
+</div>
+</div><p><strong>OPTIONS说明：</strong></p>
+<ul>
+<li>**-f ：**根据条件过滤事件；</li>
+<li>**&ndash;since ：**从指定的时间戳后显示所有事件;</li>
+<li>**&ndash;until ：**流水时间显示到指定的时间为止；</li>
+</ul>
+<p><strong>PS示例</strong></p>
+<p>显示docker 2016年7月1日后的所有事件。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell">runoob@runoob:~/mysql$ docker events  --since<span class="o">=</span><span class="s2">&#34;1467302400&#34;</span>
+2016-07-08T19:44:54.501277677+08:00 network connect 66f958fd13dc4314ad20034e576d5c5eba72e0849dcc38ad9e8436314a4149d4 <span class="o">(</span><span class="nv">container</span><span class="o">=</span>b8573233d675705df8c89796a2c2687cd8e36e03646457a15fb51022db440e64, <span class="nv">name</span><span class="o">=</span>bridge, <span class="nv">type</span><span class="o">=</span>bridge<span class="o">)</span>
+2016-07-08T19:44:54.723876221+08:00 container start b8573233d675705df8c89796a2c2687cd8e36e03646457a15fb51022db440e64 <span class="o">(</span><span class="nv">image</span><span class="o">=</span>nginx:latest, <span class="nv">name</span><span class="o">=</span>elegant_albattani<span class="o">)</span>
+2016-07-08T19:44:54.726110498+08:00 container resize b8573233d675705df8c89796a2c2687cd8e36e03646457a15fb51022db440e64 <span class="o">(</span><span class="nv">height</span><span class="o">=</span>39, <span class="nv">image</span><span class="o">=</span>nginx:latest, <span class="nv">name</span><span class="o">=</span>elegant_albattani, <span class="nv">width</span><span class="o">=</span>167<span class="o">)</span>
+2016-07-08T19:46:22.137250899+08:00 container die b8573233d675705df8c89796a2c2687cd8e36e03646457a15fb51022db440e64 <span class="o">(</span><span class="nv">exitCode</span><span class="o">=</span>0, <span class="nv">image</span><span class="o">=</span>nginx:latest, <span class="nv">name</span><span class="o">=</span>elegant_albattani<span class="o">)</span>
+...
+</code></pre></td></tr></table>
+</div>
+</div><p>显示docker 镜像为mysql:5.6 2016年7月1日后的相关事件。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell">runoob@runoob:~/mysql$ docker events -f <span class="s2">&#34;image&#34;</span><span class="o">=</span><span class="s2">&#34;mysql:5.6&#34;</span> --since<span class="o">=</span><span class="s2">&#34;1467302400&#34;</span> 
+2016-07-11T00:38:53.975174837+08:00 container start 96f7f14e99ab9d2f60943a50be23035eda1623782cc5f930411bbea407a2bb10 <span class="o">(</span><span class="nv">image</span><span class="o">=</span>mysql:5.6, <span class="nv">name</span><span class="o">=</span>mymysql<span class="o">)</span>
+2016-07-11T00:51:17.022572452+08:00 container <span class="nb">kill</span> 96f7f14e99ab9d2f60943a50be23035eda1623782cc5f930411bbea407a2bb10 <span class="o">(</span><span class="nv">image</span><span class="o">=</span>mysql:5.6, <span class="nv">name</span><span class="o">=</span>mymysql, <span class="nv">signal</span><span class="o">=</span>9<span class="o">)</span>
+2016-07-11T00:51:17.132532080+08:00 container die 96f7f14e99ab9d2f60943a50be23035eda1623782cc5f930411bbea407a2bb10 <span class="o">(</span><span class="nv">exitCode</span><span class="o">=</span>137, <span class="nv">image</span><span class="o">=</span>mysql:5.6, <span class="nv">name</span><span class="o">=</span>mymysql<span class="o">)</span>
+2016-07-11T00:51:17.514661357+08:00 container destroy 96f7f14e99ab9d2f60943a50be23035eda1623782cc5f930411bbea407a2bb10 <span class="o">(</span><span class="nv">image</span><span class="o">=</span>mysql:5.6, <span class="nv">name</span><span class="o">=</span>mymysql<span class="o">)</span>
+2016-07-11T00:57:18.551984549+08:00 container create c8f0a32f12f5ec061d286af0b1285601a3e33a90a08ff1706de619ac823c345c <span class="o">(</span><span class="nv">image</span><span class="o">=</span>mysql:5.6, <span class="nv">name</span><span class="o">=</span>mymysql<span class="o">)</span>
+2016-07-11T00:57:18.557405864+08:00 container attach c8f0a32f12f5ec061d286af0b1285601a3e33a90a08ff1706de619ac823c345c <span class="o">(</span><span class="nv">image</span><span class="o">=</span>mysql:5.6, <span class="nv">name</span><span class="o">=</span>mymysql<span class="o">)</span>
+2016-07-11T00:57:18.844134112+08:00 container start c8f0a32f12f5ec061d286af0b1285601a3e33a90a08ff1706de619ac823c345c <span class="o">(</span><span class="nv">image</span><span class="o">=</span>mysql:5.6, <span class="nv">name</span><span class="o">=</span>mymysql<span class="o">)</span>
+2016-07-11T00:57:19.140141428+08:00 container die c8f0a32f12f5ec061d286af0b1285601a3e33a90a08ff1706de619ac823c345c <span class="o">(</span><span class="nv">exitCode</span><span class="o">=</span>1, <span class="nv">image</span><span class="o">=</span>mysql:5.6, <span class="nv">name</span><span class="o">=</span>mymysql<span class="o">)</span>
+2016-07-11T00:58:05.941019136+08:00 container destroy c8f0a32f12f5ec061d286af0b1285601a3e33a90a08ff1706de619ac823c345c <span class="o">(</span><span class="nv">image</span><span class="o">=</span>mysql:5.6, <span class="nv">name</span><span class="o">=</span>mymysql<span class="o">)</span>
+2016-07-11T00:58:07.965128417+08:00 container create a404c6c174a21c52f199cfce476e041074ab020453c7df2a13a7869b48f2f37e <span class="o">(</span><span class="nv">image</span><span class="o">=</span>mysql:5.6, <span class="nv">name</span><span class="o">=</span>mymysql<span class="o">)</span>
+2016-07-11T00:58:08.188734598+08:00 container start a404c6c174a21c52f199cfce476e041074ab020453c7df2a13a7869b48f2f37e <span class="o">(</span><span class="nv">image</span><span class="o">=</span>mysql:5.6, <span class="nv">name</span><span class="o">=</span>mymysql<span class="o">)</span>
+2016-07-11T00:58:20.010876777+08:00 container top a404c6c174a21c52f199cfce476e041074ab020453c7df2a13a7869b48f2f37e <span class="o">(</span><span class="nv">image</span><span class="o">=</span>mysql:5.6, <span class="nv">name</span><span class="o">=</span>mymysql<span class="o">)</span>
+2016-07-11T01:06:01.395365098+08:00 container top a404c6c174a21c52f199cfce476e041074ab020453c7df2a13a7869b48f2f37e <span class="o">(</span><span class="nv">image</span><span class="o">=</span>mysql:5.6, <span class="nv">name</span><span class="o">=</span>mymysql<span class="o">)</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>如果指定的时间是到秒级的，需要将时间转成时间戳。如果时间为日期的话，可以直接使用，如&ndash;since=&ldquo;2016-07-01&rdquo;。</p>
+<h3 id="docker-logs-命令">docker logs 命令</h3>
+<p><strong>docker logs :</strong> 获取容器的日志</p>
+<p><strong>语法</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">docker logs [OPTIONS] CONTAINER
+</code></pre></td></tr></table>
+</div>
+</div><p><strong>OPTIONS说明：</strong></p>
+<ul>
+<li><strong>-f :</strong> 跟踪日志输出</li>
+<li>**&ndash;since :**显示某个开始时间的所有日志</li>
+<li><strong>-t :</strong> 显示时间戳</li>
+<li>**&ndash;tail :**仅列出最新N条容器日志</li>
+</ul>
+<p><strong>PS示例</strong></p>
+<p>跟踪查看容器mynginx的日志输出。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">runoob@runoob:~$ docker logs -f mynginx
+192.168.239.1 - - <span class="o">[</span>10/Jul/2016:16:53:33 +0000<span class="o">]</span> <span class="s2">&#34;GET / HTTP/1.1&#34;</span> <span class="m">200</span> <span class="m">612</span> <span class="s2">&#34;-&#34;</span> <span class="s2">&#34;Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/45.0.2454.93 Safari/537.36&#34;</span> <span class="s2">&#34;-&#34;</span>
+2016/07/10 16:53:33 <span class="o">[</span>error<span class="o">]</span> 5#5: *1 open<span class="o">()</span> <span class="s2">&#34;/usr/share/nginx/html/favicon.ico&#34;</span> failed <span class="o">(</span>2: No such file or directory<span class="o">)</span>, client: 192.168.239.1, server: localhost, request: <span class="s2">&#34;GET /favicon.ico HTTP/1.1&#34;</span>, host: <span class="s2">&#34;192.168.239.130&#34;</span>, referrer: <span class="s2">&#34;http://192.168.239.130/&#34;</span>
+192.168.239.1 - - <span class="o">[</span>10/Jul/2016:16:53:33 +0000<span class="o">]</span> <span class="s2">&#34;GET /favicon.ico HTTP/1.1&#34;</span> <span class="m">404</span> <span class="m">571</span> <span class="s2">&#34;http://192.168.239.130/&#34;</span> <span class="s2">&#34;Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/45.0.2454.93 Safari/537.36&#34;</span> <span class="s2">&#34;-&#34;</span>
+192.168.239.1 - - <span class="o">[</span>10/Jul/2016:16:53:59 +0000<span class="o">]</span> <span class="s2">&#34;GET / HTTP/1.1&#34;</span> <span class="m">304</span> <span class="m">0</span> <span class="s2">&#34;-&#34;</span> <span class="s2">&#34;Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/45.0.2454.93 Safari/537.36&#34;</span> <span class="s2">&#34;-&#34;</span>
+...
+</code></pre></td></tr></table>
+</div>
+</div><p>查看容器mynginx从2016年7月1日后的最新10条日志。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">docker logs --since<span class="o">=</span><span class="s2">&#34;2016-07-01&#34;</span> --tail<span class="o">=</span><span class="m">10</span> mynginx
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="docker-wait-命令">docker wait 命令</h3>
+<p><strong>docker wait :</strong> 阻塞运行直到容器停止，然后打印出它的退出代码。</p>
+<p><strong>语法</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">docker <span class="nb">wait</span> <span class="o">[</span>OPTIONS<span class="o">]</span> CONTAINER <span class="o">[</span>CONTAINER...<span class="o">]</span>
+</code></pre></td></tr></table>
+</div>
+</div><p><strong>PS示例</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">docker <span class="nb">wait</span> CONTAINER
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="docker-export-命令">docker export 命令</h3>
+<p>**docker export :**将文件系统作为一个tar归档文件导出到STDOUT。</p>
+<p><strong>语法</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">docker export [OPTIONS] CONTAINER
+</code></pre></td></tr></table>
+</div>
+</div><p><strong>OPTIONS说明：</strong></p>
+<ul>
+<li>**-o :**将输入内容写到文件。</li>
+</ul>
+<p><strong>PS示例</strong></p>
+<p>将id为a404c6c174a2的容器按日期保存为tar文件。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">runoob@runoob:~$ docker <span class="nb">export</span> -o mysql-<span class="sb">`</span>date +%Y%m%d<span class="sb">`</span>.tar a404c6c174a2
+runoob@runoob:~$ ls mysql-<span class="sb">`</span>date +%Y%m%d<span class="sb">`</span>.tar
+mysql-20160711.tar
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="docker-port-命令">docker port 命令</h3>
+<p>**docker port :**列出指定的容器的端口映射，或者查找将PRIVATE_PORT NAT到面向公众的端口。</p>
+<p><strong>语法</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">docker port [OPTIONS] CONTAINER [PRIVATE_PORT[/PROTO]]
+</code></pre></td></tr></table>
+</div>
+</div><p><strong>PS示例</strong></p>
+<p>查看容器mynginx的端口映射情况。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">runoob@runoob:~$ docker port mymysql
+3306/tcp -&gt; 0.0.0.0:3306
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="容器rootfs命令">容器rootfs命令</h2>
+<h3 id="docker-commit命令">docker commit命令</h3>
+<p>**docker commit :**从容器创建一个新的镜像。</p>
+<p><strong>语法</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">docker commit [OPTIONS] CONTAINER [REPOSITORY[:TAG]]
+</code></pre></td></tr></table>
+</div>
+</div><p><strong>OPTIONS说明：</strong></p>
+<ul>
+<li>**-a :**提交的镜像作者；</li>
+<li>**-c :**使用Dockerfile指令来创建镜像；</li>
+<li>**-m :**提交时的说明文字；</li>
+<li>**-p :**在commit时，将容器暂停。</li>
+</ul>
+<p><strong>PS示例</strong></p>
+<p>将容器a404c6c174a2 保存为新的镜像,并添加提交人信息和说明信息。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">runoob@runoob:~$ docker commit -a <span class="s2">&#34;runoob.com&#34;</span> -m <span class="s2">&#34;my apache&#34;</span> a404c6c174a2  mymysql:v1 
+sha256:37af1236adef1544e8886be23010b66577647a40bc02c0885a6600b33ee28057
+runoob@runoob:~$ docker images mymysql:v1
+REPOSITORY          TAG                 IMAGE ID            CREATED             SIZE
+mymysql             v1                  37af1236adef        <span class="m">15</span> seconds ago      <span class="m">329</span> MB
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="docker-cp命令">docker cp命令</h3>
+<p>**docker cp :**用于容器与主机之间的数据拷贝。</p>
+<p><strong>语法</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">docker cp <span class="o">[</span>OPTIONS<span class="o">]</span> CONTAINER:SRC_PATH DEST_PATH<span class="p">|</span>-
+docker cp <span class="o">[</span>OPTIONS<span class="o">]</span> SRC_PATH<span class="p">|</span>- CONTAINER:DEST_PATH
+</code></pre></td></tr></table>
+</div>
+</div><p><strong>OPTIONS说明：</strong></p>
+<ul>
+<li>**-L :**保持源目标中的链接</li>
+</ul>
+<p><strong>PS示例</strong></p>
+<p>将主机/www/runoob目录拷贝到容器96f7f14e99ab的/www目录下。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">docker cp /www/runoob 96f7f14e99ab:/www/
+</code></pre></td></tr></table>
+</div>
+</div><p>将主机/www/runoob目录拷贝到容器96f7f14e99ab中，目录重命名为www。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">docker cp /www/runoob 96f7f14e99ab:/www
+</code></pre></td></tr></table>
+</div>
+</div><p>将容器96f7f14e99ab的/www目录拷贝到主机的/tmp目录中。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">docker cp  96f7f14e99ab:/www /tmp/
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="docker-diff命令">docker diff命令</h3>
+<p><strong>docker diff :</strong> 检查容器里文件结构的更改。</p>
+<p><strong>语法</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">docker diff <span class="o">[</span>OPTIONS<span class="o">]</span> CONTAINER
+</code></pre></td></tr></table>
+</div>
+</div><p><strong>PS示例</strong></p>
+<p>查看容器mymysql的文件结构更改。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">runoob@runoob:~$ docker diff mymysql
+A /logs
+A /mysql_data
+C /run
+C /run/mysqld
+A /run/mysqld/mysqld.pid
+A /run/mysqld/mysqld.sock
+C /tmp
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="镜像仓库">镜像仓库</h2>
+<h3 id="docker-loginlogout命令">docker login/logout命令</h3>
+<p><strong>docker login :</strong> 登陆到一个Docker镜像仓库，如果未指定镜像仓库地址，默认为官方仓库 Docker Hub</p>
+<p><strong>docker logout :</strong> 登出一个Docker镜像仓库，如果未指定镜像仓库地址，默认为官方仓库 Docker Hub</p>
+<p><strong>语法</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">docker login [OPTIONS] [SERVER]
+docker logout [OPTIONS] [SERVER]
+</code></pre></td></tr></table>
+</div>
+</div><p><strong>OPTIONS说明：</strong></p>
+<ul>
+<li>**-u :**登陆的用户名</li>
+<li>**-p :**登陆的密码</li>
+</ul>
+<p><strong>PS示例</strong></p>
+<p>登陆到Docker Hub</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">docker login -u 用户名 -p 密码
+</code></pre></td></tr></table>
+</div>
+</div><p>登出Docker Hub</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">docker <span class="nb">logout</span>
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="docker-pull命令">docker pull命令</h3>
+<p><strong>docker pull :</strong> 从镜像仓库中拉取或者更新指定镜像</p>
+<p><strong>语法</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">docker pull [OPTIONS] NAME[:TAG|@DIGEST]
+</code></pre></td></tr></table>
+</div>
+</div><p><strong>OPTIONS说明：</strong></p>
+<ul>
+<li>**-a :**拉取所有 tagged 镜像</li>
+<li>**&ndash;disable-content-trust :**忽略镜像的校验,默认开启</li>
+</ul>
+<p><strong>PS示例</strong></p>
+<p>从Docker Hub下载java最新版镜像。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">docker pull java
+</code></pre></td></tr></table>
+</div>
+</div><p>从Docker Hub下载REPOSITORY为java的所有镜像。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">docker pull -a java
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="docker-push-命令">docker push 命令</h3>
+<p><strong>docker push :</strong> 将本地的镜像上传到镜像仓库,要先登陆到镜像仓库</p>
+<p><strong>语法</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">docker push [OPTIONS] NAME[:TAG]
+</code></pre></td></tr></table>
+</div>
+</div><p><strong>OPTIONS说明：</strong></p>
+<ul>
+<li>**&ndash;disable-content-trust :**忽略镜像的校验,默认开启</li>
+</ul>
+<p><strong>PS示例</strong></p>
+<p>上传本地镜像myapache:v1到镜像仓库中。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">docker push myapache:v1
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="docker-search命令">docker search命令</h3>
+<p><strong>docker search :</strong> 从Docker Hub查找镜像</p>
+<p><strong>语法</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">docker search [OPTIONS] TERM
+</code></pre></td></tr></table>
+</div>
+</div><p>OPTIONS说明：</p>
+<ul>
+<li>**&ndash;automated :**只列出 automated build类型的镜像；</li>
+<li>**&ndash;no-trunc :**显示完整的镜像描述；</li>
+<li>**-f &lt;过滤条件&gt;:**列出收藏数不小于指定值的镜像。</li>
+</ul>
+<p><strong>PS示例</strong></p>
+<p>从 Docker Hub 查找所有镜像名包含 java，并且收藏数大于 10 的镜像</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell">runoob@runoob:~$ docker search -f <span class="nv">stars</span><span class="o">=</span><span class="m">10</span> java
+NAME                  DESCRIPTION                           STARS   OFFICIAL   AUTOMATED
+java                  Java is a concurrent, class-based...   <span class="m">1037</span>    <span class="o">[</span>OK<span class="o">]</span>       
+anapsix/alpine-java   Oracle Java <span class="m">8</span> <span class="o">(</span>and 7<span class="o">)</span> with GLIBC ...   <span class="m">115</span>                <span class="o">[</span>OK<span class="o">]</span>
+develar/java                                                 <span class="m">46</span>                 <span class="o">[</span>OK<span class="o">]</span>
+isuper/java-oracle    This repository contains all java...   <span class="m">38</span>                 <span class="o">[</span>OK<span class="o">]</span>
+lwieske/java-8        Oracle Java <span class="m">8</span> Container - Full + ...   <span class="m">27</span>                 <span class="o">[</span>OK<span class="o">]</span>
+nimmis/java-centos    This is docker images of CentOS 7...   <span class="m">13</span>                 <span class="o">[</span>OK<span class="o">]</span>
+</code></pre></td></tr></table>
+</div>
+</div><h4 id="参数说明">参数说明：</h4>
+<p><strong>NAME:</strong> 镜像仓库源的名称</p>
+<p><strong>DESCRIPTION:</strong> 镜像的描述</p>
+<p><strong>OFFICIAL:</strong> 是否 docker 官方发布</p>
+<p><strong>stars:</strong> 类似 Github 里面的 star，表示点赞、喜欢的意思。</p>
+<p><strong>AUTOMATED:</strong> 自动构建。</p>
+<h2 id="本地镜像管理">本地镜像管理</h2>
+<h3 id="docker-images命令">docker images命令</h3>
+<p><strong>docker images :</strong> 列出本地镜像。</p>
+<p><strong>语法</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">docker images [OPTIONS] [REPOSITORY[:TAG]]
+</code></pre></td></tr></table>
+</div>
+</div><p>OPTIONS说明：</p>
+<ul>
+<li>**-a :**列出本地所有的镜像（含中间映像层，默认情况下，过滤掉中间映像层）；</li>
+<li>**&ndash;digests :**显示镜像的摘要信息；</li>
+<li>**-f :**显示满足条件的镜像；</li>
+<li>**&ndash;format :**指定返回值的模板文件；</li>
+<li>**&ndash;no-trunc :**显示完整的镜像信息；</li>
+<li>**-q :**只显示镜像ID。</li>
+</ul>
+<p><strong>PS示例</strong></p>
+<p>查看本地镜像列表。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">runoob@runoob:~$ docker images
+REPOSITORY              TAG                 IMAGE ID            CREATED             SIZE
+mymysql                 v1                  37af1236adef        <span class="m">5</span> minutes ago       <span class="m">329</span> MB
+runoob/ubuntu           v4                  1c06aa18edee        <span class="m">2</span> days ago          142.1 MB
+&lt;none&gt;                  &lt;none&gt;              5c6e1090e771        <span class="m">2</span> days ago          165.9 MB
+httpd                   latest              ed38aaffef30        <span class="m">11</span> days ago         195.1 MB
+alpine                  latest              4e38e38c8ce0        <span class="m">2</span> weeks ago         4.799 MB
+mongo                   3.2                 282fd552add6        <span class="m">3</span> weeks ago         336.1 MB
+redis                   latest              4465e4bcad80        <span class="m">3</span> weeks ago         185.7 MB
+php                     5.6-fpm             025041cd3aa5        <span class="m">3</span> weeks ago         456.3 MB
+python                  3.5                 045767ddf24a        <span class="m">3</span> weeks ago         684.1 MB
+...
+</code></pre></td></tr></table>
+</div>
+</div><p>列出本地镜像中REPOSITORY为ubuntu的镜像列表。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">root@runoob:~# docker images  ubuntu
+REPOSITORY          TAG                 IMAGE ID            CREATED             SIZE
+ubuntu              14.04               90d5884b1ee0        <span class="m">9</span> weeks ago         <span class="m">188</span> MB
+ubuntu              15.10               4e3b13c8a266        <span class="m">3</span> months ago        136.3 MB
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="docker-rmi命令">docker rmi命令</h3>
+<p><strong>docker rmi :</strong> 删除本地一个或多个镜像。</p>
+<p><strong>语法</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">docker rmi [OPTIONS] IMAGE [IMAGE...]
+</code></pre></td></tr></table>
+</div>
+</div><p><strong>OPTIONS说明：</strong></p>
+<ul>
+<li>**-f :**强制删除；</li>
+<li>**&ndash;no-prune :**不移除该镜像的过程镜像，默认移除；</li>
+</ul>
+<p><strong>PS示例</strong></p>
+<p>强制删除本地镜像 runoob/ubuntu:v4。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">root@runoob:~# docker rmi -f runoob/ubuntu:v4
+Untagged: runoob/ubuntu:v4
+Deleted: sha256:1c06aa18edee44230f93a90a7d88139235de12cd4c089d41eed8419b503072be
+Deleted: sha256:85feb446e89a28d58ee7d80ea5ce367eebb7cec70f0ec18aa4faa874cbd97c73
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="docker-tag命令">docker tag命令</h3>
+<p><strong>docker tag :</strong> 标记本地镜像，将其归入某一仓库。</p>
+<p><strong>语法</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">docker tag [OPTIONS] IMAGE[:TAG] [REGISTRYHOST/][USERNAME/]NAME[:TAG]
+</code></pre></td></tr></table>
+</div>
+</div><p><strong>PS示例</strong></p>
+<p>将镜像ubuntu:15.10标记为 runoob/ubuntu:v3 镜像。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">root@runoob:~# docker tag ubuntu:15.10 runoob/ubuntu:v3
+root@runoob:~# docker images   runoob/ubuntu:v3
+REPOSITORY          TAG                 IMAGE ID            CREATED             SIZE
+runoob/ubuntu       v3                  4e3b13c8a266        <span class="m">3</span> months ago        136.3 MB
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="docker-build命令">docker build命令</h3>
+<p><strong>docker build</strong> 命令用于使用 Dockerfile 创建镜像。</p>
+<p><strong>语法</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">docker build [OPTIONS] PATH | URL | -
+</code></pre></td></tr></table>
+</div>
+</div><p><strong>OPTIONS说明：</strong></p>
+<ul>
+<li>**&ndash;build-arg=[] :**设置镜像创建时的变量；</li>
+<li>**&ndash;cpu-shares :**设置 cpu 使用权重；</li>
+<li>**&ndash;cpu-period :**限制 CPU CFS周期；</li>
+<li>**&ndash;cpu-quota :**限制 CPU CFS配额；</li>
+<li>**&ndash;cpuset-cpus :**指定使用的CPU id；</li>
+<li>**&ndash;cpuset-mems :**指定使用的内存 id；</li>
+<li>**&ndash;disable-content-trust :**忽略校验，默认开启；</li>
+<li>**-f :**指定要使用的Dockerfile路径；</li>
+<li>**&ndash;force-rm :**设置镜像过程中删除中间容器；</li>
+<li>**&ndash;isolation :**使用容器隔离技术；</li>
+<li>**&ndash;label=[] :**设置镜像使用的元数据；</li>
+<li>**-m :**设置内存最大值；</li>
+<li>**&ndash;memory-swap :**设置Swap的最大值为内存+swap，&quot;-1&quot;表示不限swap；</li>
+<li>**&ndash;no-cache :**创建镜像的过程不使用缓存；</li>
+<li>**&ndash;pull :**尝试去更新镜像的新版本；</li>
+<li>**&ndash;quiet, -q :**安静模式，成功后只输出镜像 ID；</li>
+<li>**&ndash;rm :**设置镜像成功后删除中间容器；</li>
+<li>**&ndash;shm-size :**设置/dev/shm的大小，默认值是64M；</li>
+<li>**&ndash;ulimit :**Ulimit配置。</li>
+<li>**&ndash;squash :**将 Dockerfile 中所有的操作压缩为一层。</li>
+<li><strong>&ndash;tag, -t:</strong> 镜像的名字及标签，通常 name:tag 或者 name 格式；可以在一次构建中为一个镜像设置多个标签。</li>
+<li><strong>&ndash;network:</strong> 默认 default。在构建期间设置RUN指令的网络模式</li>
+</ul>
+<p><strong>PS示例</strong></p>
+<p>使用当前目录的 Dockerfile 创建镜像，标签为 runoob/ubuntu:v1。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">docker build -t runoob/ubuntu:v1 . 
+</code></pre></td></tr></table>
+</div>
+</div><p>使用URL <strong>github.com/creack/docker-firefox</strong> 的 Dockerfile 创建镜像。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">docker build github.com/creack/docker-firefox
+</code></pre></td></tr></table>
+</div>
+</div><p>也可以通过 -f Dockerfile 文件的位置：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">$ docker build -f /path/to/a/Dockerfile .
+</code></pre></td></tr></table>
+</div>
+</div><p>在 Docker 守护进程执行 Dockerfile 中的指令前，首先会对 Dockerfile 进行语法检查，有语法错误时会返回：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">$ docker build -t test/myapp .
+Sending build context to Docker daemon 2.048 kB
+Error response from daemon: Unknown instruction: RUNCMD
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="docker-history命令">docker history命令</h3>
+<p><strong>docker history :</strong> 查看指定镜像的创建历史。</p>
+<p><strong>语法</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">docker history [OPTIONS] IMAGE
+</code></pre></td></tr></table>
+</div>
+</div><p><strong>OPTIONS说明：</strong></p>
+<ul>
+<li>**-H :**以可读的格式打印镜像大小和日期，默认为true；</li>
+<li>**&ndash;no-trunc :**显示完整的提交记录；</li>
+<li>**-q :**仅列出提交记录ID。</li>
+</ul>
+<p><strong>PS示例</strong></p>
+<p>查看本地镜像runoob/ubuntu:v3的创建历史。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">root@runoob:~# docker <span class="nb">history</span> runoob/ubuntu:v3
+IMAGE             CREATED           CREATED BY                                      SIZE      COMMENT
+4e3b13c8a266      <span class="m">3</span> months ago      /bin/sh -c <span class="c1">#(nop) CMD [&#34;/bin/bash&#34;]             0 B                 </span>
+&lt;missing&gt;         <span class="m">3</span> months ago      /bin/sh -c sed -i <span class="s1">&#39;s/^#\s*\(deb.*universe\)$/   1.863 kB            
+</span><span class="s1">&lt;missing&gt;         3 months ago      /bin/sh -c set -xe   &amp;&amp; echo &#39;</span><span class="c1">#!/bin/sh&#39; &gt; /u   701 B               </span>
+&lt;missing&gt;         <span class="m">3</span> months ago      /bin/sh -c <span class="c1">#(nop) ADD file:43cb048516c6b80f22   136.3 MB</span>
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="docker-save命令">docker save命令</h3>
+<p><strong>docker save :</strong> 将指定镜像保存成 tar 归档文件。</p>
+<p><strong>语法</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">docker save [OPTIONS] IMAGE [IMAGE...]
+</code></pre></td></tr></table>
+</div>
+</div><p><strong>OPTIONS 说明：</strong></p>
+<ul>
+<li>**-o :**输出到的文件。</li>
+</ul>
+<p><strong>PS示例</strong></p>
+<p>将镜像 runoob/ubuntu:v3 生成 my_ubuntu_v3.tar 文档</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">runoob@runoob:~$ docker save -o my_ubuntu_v3.tar runoob/ubuntu:v3
+runoob@runoob:~$ ll my_ubuntu_v3.tar
+-rw------- <span class="m">1</span> runoob runoob <span class="m">142102016</span> Jul <span class="m">11</span> 01:37 my_ubuntu_v3.ta
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="docker-load-命令">docker load 命令</h3>
+<p><strong>docker load :</strong> 导入使用 <a href="https://www.runoob.com/docker/docker-save-command.html" target="_blank" rel="noopener noreffer">docker save</a> 命令导出的镜像。</p>
+<p><strong>语法</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">docker load [OPTIONS]
+</code></pre></td></tr></table>
+</div>
+</div><p><strong>OPTIONS 说明：</strong></p>
+<ul>
+<li><strong>&ndash;input , -i :</strong> 指定导入的文件，代替 STDIN。</li>
+<li><strong>&ndash;quiet , -q :</strong> 精简输出信息。</li>
+</ul>
+<p><strong>PS示例</strong></p>
+<p>导入镜像：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">$ docker image ls
+
+REPOSITORY          TAG                 IMAGE ID            CREATED             SIZE
+
+$ docker load &lt; busybox.tar.gz
+
+Loaded image: busybox:latest
+$ docker images
+REPOSITORY          TAG                 IMAGE ID            CREATED             SIZE
+busybox             latest              769b9341d937        <span class="m">7</span> weeks ago         2.489 MB
+
+$ docker load --input fedora.tar
+
+Loaded image: fedora:rawhide
+
+Loaded image: fedora:20
+
+$ docker images
+
+REPOSITORY          TAG                 IMAGE ID            CREATED             SIZE
+busybox             latest              769b9341d937        <span class="m">7</span> weeks ago         2.489 MB
+fedora              rawhide             0d20aec6529d        <span class="m">7</span> weeks ago         <span class="m">387</span> MB
+fedora              <span class="m">20</span>                  58394af37342        <span class="m">7</span> weeks ago         385.5 MB
+fedora              heisenbug           58394af37342        <span class="m">7</span> weeks ago         385.5 MB
+fedora              latest              58394af37342        <span class="m">7</span> weeks ago         385.5 MB
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="docker-import-命令">docker import 命令</h3>
+<p><strong>docker import :</strong> 从归档文件中创建镜像。</p>
+<p><strong>语法</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">docker import [OPTIONS] file|URL|- [REPOSITORY[:TAG]]
+</code></pre></td></tr></table>
+</div>
+</div><p><strong>OPTIONS说明：</strong></p>
+<ul>
+<li>**-c :**应用docker 指令创建镜像；</li>
+<li>**-m :**提交时的说明文字；</li>
+</ul>
+<p><strong>PS示例</strong></p>
+<p>从镜像归档文件my_ubuntu_v3.tar创建镜像，命名为runoob/ubuntu:v4</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">runoob@runoob:~$ docker import  my_ubuntu_v3.tar runoob/ubuntu:v4  
+sha256:63ce4a6d6bc3fabb95dbd6c561404a309b7bdfc4e21c1d59fe9fe4299cbfea39
+runoob@runoob:~$ docker images runoob/ubuntu:v4
+REPOSITORY          TAG                 IMAGE ID            CREATED             SIZE
+runoob/ubuntu       v4                  63ce4a6d6bc3        <span class="m">20</span> seconds ago      142.1 MB
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="infoversion">info|version</h2>
+<h3 id="docker-info命令">docker info命令</h3>
+<p><strong>docker info :</strong> 显示 Docker 系统信息，包括镜像和容器数。。</p>
+<p><strong>语法</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">docker info [OPTIONS]
+</code></pre></td></tr></table>
+</div>
+</div><p><strong>PS示例</strong></p>
+<p>查看docker系统信息。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">$ docker info
+Containers: <span class="m">12</span>
+Images: <span class="m">41</span>
+Storage Driver: aufs
+ Root Dir: /var/lib/docker/aufs
+ Backing Filesystem: extfs
+ Dirs: <span class="m">66</span>
+ Dirperm1 Supported: <span class="nb">false</span>
+Execution Driver: native-0.2
+Logging Driver: json-file
+Kernel Version: 3.13.0-32-generic
+Operating System: Ubuntu 14.04.1 LTS
+CPUs: <span class="m">1</span>
+Total Memory: 1.954 GiB
+Name: iZ23mtq8bs1Z
+ID: M5N4:K6WN:PUNC:73ZN:AONJ:AUHL:KSYH:2JPI:CH3K:O4MK:6OCX:5OYW
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="docker-version命令">docker version命令</h3>
+<p>**docker version :**显示 Docker 版本信息。</p>
+<p><strong>语法</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">docker version [OPTIONS]
+</code></pre></td></tr></table>
+</div>
+</div><p>OPTIONS说明：</p>
+<ul>
+<li>**-f :**指定返回值的模板文件。</li>
+</ul>
+<p><strong>PS示例</strong></p>
+<p>显示 Docker 版本信息。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">$ docker version
+Client:
+ Version:      1.8.2
+ API version:  1.20
+ Go version:   go1.4.2
+ Git commit:   0a8c2e3
+ Built:        Thu Sep <span class="m">10</span> 19:19:00 UTC <span class="m">2015</span>
+ OS/Arch:      linux/amd64
+
+Server:
+ Version:      1.8.2
+ API version:  1.20
+ Go version:   go1.4.2
+ Git commit:   0a8c2e3
+ Built:        Thu Sep <span class="m">10</span> 19:19:00 UTC <span class="m">2015</span>
+ OS/Arch:      linux/amd64
+</code></pre></td></tr></table>
+</div>
+</div></div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>更新于 2021-11-14</span>
+            </div>
+            <div class="post-info-license"></div>
+        </div>
+        <div class="post-info-line">
+            <div class="post-info-md"><span>
+                            <a class="link-to-markdown" href="/docker%E5%91%BD%E4%BB%A4%E5%A4%A7%E5%85%A8/index.md" target="_blank">阅读原始文档</a>
+                        </span></div>
+            <div class="post-info-share">
+                <span><a href="javascript:void(0);" title="分享到 Twitter" data-sharer="twitter" data-url="https://Dazhuwei.github.io/docker%E5%91%BD%E4%BB%A4%E5%A4%A7%E5%85%A8/" data-title="Docker命令大全" data-hashtags="容器,docker,工具,搬运"><i class="fab fa-twitter fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Hacker News" data-sharer="hackernews" data-url="https://Dazhuwei.github.io/docker%E5%91%BD%E4%BB%A4%E5%A4%A7%E5%85%A8/" data-title="Docker命令大全"><i class="fab fa-hacker-news fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Line" data-sharer="line" data-url="https://Dazhuwei.github.io/docker%E5%91%BD%E4%BB%A4%E5%A4%A7%E5%85%A8/" data-title="Docker命令大全"><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@2.14.0/icons/line.svg"></i></a><a href="javascript:void(0);" title="分享到 微博" data-sharer="weibo" data-url="https://Dazhuwei.github.io/docker%E5%91%BD%E4%BB%A4%E5%A4%A7%E5%85%A8/" data-title="Docker命令大全" data-image="/images/Docker-logo.jpg"><i class="fab fa-weibo fa-fw"></i></a></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/%E5%AE%B9%E5%99%A8/">容器</a>,&nbsp;<a href="/tags/docker/">docker</a>,&nbsp;<a href="/tags/%E5%B7%A5%E5%85%B7/">工具</a>,&nbsp;<a href="/tags/%E6%90%AC%E8%BF%90/">搬运</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/asterisk%E6%8B%A8%E5%8F%B7%E8%A7%84%E5%88%99/" class="prev" rel="prev" title="Asterisk拨号规则"><i class="fas fa-angle-left fa-fw"></i>Asterisk拨号规则</a></div>
+</div>
+<div id="comments"><div id="valine" class="comment"></div><noscript>
+                Please enable JavaScript to view the comments powered by <a href="https://valine.js.org/">Valine</a>.
+            </noscript></div></article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.88.1">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.10"><i class="far fa-kiss-wink-heart fa-fw"></i> LoveIt</a>
+                </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2021</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank">Zhangdw</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="回到顶部">
+                <i class="fas fa-arrow-up fa-fw"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="查看评论">
+                <i class="fas fa-comment fa-fw"></i>
+            </a>
+        </div><link rel="stylesheet" href="/lib/valine/valine.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/copy-tex.min.css"><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/valine@1.4.14/dist/Valine.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/smooth-scroll@16.1.3/dist/smooth-scroll.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/autocomplete.js@0.37.1/dist/autocomplete.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lunr@2.3.8/lunr.min.js"></script><script type="text/javascript" src="/lib/lunr/lunr.stemmer.support.min.js"></script><script type="text/javascript" src="/lib/lunr/lunr.zh.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lazysizes@5.2.2/lazysizes.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/clipboard.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/sharer.js@0.4.0/sharer.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/typeit@7.0.4/dist/typeit.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/auto-render.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/copy-tex.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/mhchem.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":10},"comment":{"valine":{"appId":"nwj17LwlTxVp8ka4pRduTns0-gzGzoHsz","appKey":"OuDJjyumy6DkSAaQpTwH3oor","avatar":"Zhangdw","el":"#valine","emojiCDN":"https://cdn.jsdelivr.net/npm/emoji-datasource-google@5.0.1/img/google/64/","emojiMaps":{"100":"1f4af.png","alien":"1f47d.png","anger":"1f4a2.png","angry":"1f620.png","anguished":"1f627.png","astonished":"1f632.png","black_heart":"1f5a4.png","blue_heart":"1f499.png","blush":"1f60a.png","bomb":"1f4a3.png","boom":"1f4a5.png","broken_heart":"1f494.png","brown_heart":"1f90e.png","clown_face":"1f921.png","cold_face":"1f976.png","cold_sweat":"1f630.png","confounded":"1f616.png","confused":"1f615.png","cry":"1f622.png","crying_cat_face":"1f63f.png","cupid":"1f498.png","dash":"1f4a8.png","disappointed":"1f61e.png","disappointed_relieved":"1f625.png","dizzy":"1f4ab.png","dizzy_face":"1f635.png","drooling_face":"1f924.png","exploding_head":"1f92f.png","expressionless":"1f611.png","face_vomiting":"1f92e.png","face_with_cowboy_hat":"1f920.png","face_with_hand_over_mouth":"1f92d.png","face_with_head_bandage":"1f915.png","face_with_monocle":"1f9d0.png","face_with_raised_eyebrow":"1f928.png","face_with_rolling_eyes":"1f644.png","face_with_symbols_on_mouth":"1f92c.png","face_with_thermometer":"1f912.png","fearful":"1f628.png","flushed":"1f633.png","frowning":"1f626.png","ghost":"1f47b.png","gift_heart":"1f49d.png","green_heart":"1f49a.png","grimacing":"1f62c.png","grin":"1f601.png","grinning":"1f600.png","hankey":"1f4a9.png","hear_no_evil":"1f649.png","heart":"2764-fe0f.png","heart_decoration":"1f49f.png","heart_eyes":"1f60d.png","heart_eyes_cat":"1f63b.png","heartbeat":"1f493.png","heartpulse":"1f497.png","heavy_heart_exclamation_mark_ornament":"2763-fe0f.png","hole":"1f573-fe0f.png","hot_face":"1f975.png","hugging_face":"1f917.png","hushed":"1f62f.png","imp":"1f47f.png","innocent":"1f607.png","japanese_goblin":"1f47a.png","japanese_ogre":"1f479.png","joy":"1f602.png","joy_cat":"1f639.png","kiss":"1f48b.png","kissing":"1f617.png","kissing_cat":"1f63d.png","kissing_closed_eyes":"1f61a.png","kissing_heart":"1f618.png","kissing_smiling_eyes":"1f619.png","laughing":"1f606.png","left_speech_bubble":"1f5e8-fe0f.png","love_letter":"1f48c.png","lying_face":"1f925.png","mask":"1f637.png","money_mouth_face":"1f911.png","nauseated_face":"1f922.png","nerd_face":"1f913.png","neutral_face":"1f610.png","no_mouth":"1f636.png","open_mouth":"1f62e.png","orange_heart":"1f9e1.png","partying_face":"1f973.png","pensive":"1f614.png","persevere":"1f623.png","pleading_face":"1f97a.png","pouting_cat":"1f63e.png","purple_heart":"1f49c.png","rage":"1f621.png","relaxed":"263a-fe0f.png","relieved":"1f60c.png","revolving_hearts":"1f49e.png","right_anger_bubble":"1f5ef-fe0f.png","robot_face":"1f916.png","rolling_on_the_floor_laughing":"1f923.png","scream":"1f631.png","scream_cat":"1f640.png","see_no_evil":"1f648.png","shushing_face":"1f92b.png","skull":"1f480.png","skull_and_crossbones":"2620-fe0f.png","sleeping":"1f634.png","sleepy":"1f62a.png","slightly_frowning_face":"1f641.png","slightly_smiling_face":"1f642.png","smile":"1f604.png","smile_cat":"1f638.png","smiley":"1f603.png","smiley_cat":"1f63a.png","smiling_face_with_3_hearts":"1f970.png","smiling_imp":"1f608.png","smirk":"1f60f.png","smirk_cat":"1f63c.png","sneezing_face":"1f927.png","sob":"1f62d.png","space_invader":"1f47e.png","sparkling_heart":"1f496.png","speak_no_evil":"1f64a.png","speech_balloon":"1f4ac.png","star-struck":"1f929.png","stuck_out_tongue":"1f61b.png","stuck_out_tongue_closed_eyes":"1f61d.png","stuck_out_tongue_winking_eye":"1f61c.png","sunglasses":"1f60e.png","sweat":"1f613.png","sweat_drops":"1f4a6.png","sweat_smile":"1f605.png","thinking_face":"1f914.png","thought_balloon":"1f4ad.png","tired_face":"1f62b.png","triumph":"1f624.png","two_hearts":"1f495.png","unamused":"1f612.png","upside_down_face":"1f643.png","weary":"1f629.png","white_frowning_face":"2639-fe0f.png","white_heart":"1f90d.png","wink":"1f609.png","woozy_face":"1f974.png","worried":"1f61f.png","yawning_face":"1f971.png","yellow_heart":"1f49b.png","yum":"1f60b.png","zany_face":"1f92a.png","zipper_mouth_face":"1f910.png","zzz":"1f4a4.png"},"enableQQ":false,"highlight":true,"lang":"zh-cn","pageSize":10,"placeholder":"你的评论 ...","recordIP":true,"serverURLs":"https://nwj17lwl.lc-cn-n1-shared.com","visitor":true}},"data":{"id-1":"Dazhuwei","id-2":"Dazhuwei"},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"highlightTag":"em","lunrIndexURL":"/index.json","lunrLanguageCode":"zh","lunrSegmentitURL":"/lib/lunr/lunr.segmentit.js","maxResultLength":10,"noResultsFound":"没有找到结果","snippetLength":50,"type":"lunr"},"typeit":{"cursorChar":"|","cursorSpeed":1000,"data":{"id-1":["id-1"],"id-2":["id-2"]},"duration":-1,"speed":100}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
+</html>
