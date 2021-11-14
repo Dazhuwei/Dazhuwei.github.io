@@ -7,7 +7,7 @@
 
 ### docker run 命令
 
-**docker run ：**创建一个新的容器并运行一个命令
+**docker run ：** 创建一个新的容器并运行一个命令
 
 **语法**
 
@@ -1273,6 +1273,5 @@ Server:
  Built:        Thu Sep 10 19:19:00 UTC 2015
  OS/Arch:      linux/amd64
 ```
-
 
 
