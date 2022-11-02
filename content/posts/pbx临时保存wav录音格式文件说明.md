@@ -4,6 +4,8 @@ date: 2021-11-03T14:34:02+08:00
 draft: true
 tags: [呼叫中心,通话]
 categories: [通话]
+featuredImage: "/images/pbx-wav-logo.jpg"
+featuredImagePreview: "/images/pbx-wav-logo.jpg"
 
 ---
 
