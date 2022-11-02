@@ -4,12 +4,12 @@
         <link>https://Dazhuwei.github.io/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/</link>
         <description>数据库 - 标签 - 菜鸡，随便写写</description>
         <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>zhangdawei516@gmail (Zhangdw)</managingEditor>
-            <webMaster>zhangdawei516@gmail (Zhangdw)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Wed, 02 Nov 2022 10:34:02 &#43;0800</lastBuildDate><atom:link href="https://Dazhuwei.github.io/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/" rel="self" type="application/rss+xml" /><item>
-    <title>Doris 0.15.1升级至1.1.1版本操作说明</title>
-    <link>https://Dazhuwei.github.io/doris-0.15.1%E5%8D%87%E7%BA%A7%E8%87%B31.1.1%E7%89%88%E6%9C%AC%E6%93%8D%E4%BD%9C%E8%AF%B4%E6%98%8Ev1.2/</link>
-    <pubDate>Wed, 02 Nov 2022 10:34:02 &#43;0800</pubDate>
+            <webMaster>zhangdawei516@gmail (Zhangdw)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Wed, 02 Nov 2022 12:58:16 &#43;0800</lastBuildDate><atom:link href="https://Dazhuwei.github.io/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/" rel="self" type="application/rss+xml" /><item>
+    <title>Doris0.15.1升级至1.1.1版本操作说明v1</title>
+    <link>https://Dazhuwei.github.io/doris0.15.1%E5%8D%87%E7%BA%A7%E8%87%B31.1.1%E7%89%88%E6%9C%AC%E6%93%8D%E4%BD%9C%E8%AF%B4%E6%98%8Ev1.2/</link>
+    <pubDate>Wed, 02 Nov 2022 12:58:16 &#43;0800</pubDate>
     <author>作者</author>
-    <guid>https://Dazhuwei.github.io/doris-0.15.1%E5%8D%87%E7%BA%A7%E8%87%B31.1.1%E7%89%88%E6%9C%AC%E6%93%8D%E4%BD%9C%E8%AF%B4%E6%98%8Ev1.2/</guid>
+    <guid>https://Dazhuwei.github.io/doris0.15.1%E5%8D%87%E7%BA%A7%E8%87%B31.1.1%E7%89%88%E6%9C%AC%E6%93%8D%E4%BD%9C%E8%AF%B4%E6%98%8Ev1.2/</guid>
     <description><![CDATA[<div class="featured-image">
                 <img src="/images/doris.png" referrerpolicy="no-referrer">
             </div>Doris 0.15.1升级至1.1.1版本操作说明 一、环境信息 名称 ip 备注/其他 Doris-de01 172.31.24.184 Doris-de02 172.31.16.119 Doris-de03 172.31.30.174 Doris-de04 172.31.23.38 Doris-de05 172.31.22.228 Doris-de06 172.31.45.123 Doris-de07 172.31.43.42 Doris-fe01 172.31.21.232 IsMaster Doris-fe02 172.31.17.196 Doris-fe03 172.31.17.204 OBSERVER Doris-fe04 172.31.11.169 二、具体操作步骤及说明]]></description>
