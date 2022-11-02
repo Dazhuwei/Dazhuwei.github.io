@@ -29,7 +29,7 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "https:\/\/Dazhuwei.github.io\/doris0.15.1%E5%8D%87%E7%BA%A7%E8%87%B31.1.1%E7%89%88%E6%9C%AC%E6%93%8D%E4%BD%9C%E8%AF%B4%E6%98%8Ev1.2\/"
-        },"image": ["https:\/\/Dazhuwei.github.io\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "Doris, 中间件, 数据库","wordcount":  1963 ,
+        },"image": ["https:\/\/Dazhuwei.github.io\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "Doris, 中间件, 数据库","wordcount":  1957 ,
         "url": "https:\/\/Dazhuwei.github.io\/doris0.15.1%E5%8D%87%E7%BA%A7%E8%87%B31.1.1%E7%89%88%E6%9C%AC%E6%93%8D%E4%BD%9C%E8%AF%B4%E6%98%8Ev1.2\/","datePublished": "2022-11-02T12:58:16+08:00","dateModified": "2022-11-02T12:58:16+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
             "@type": "Organization",
             "name": "Zhangdw","logo": "https:\/\/Dazhuwei.github.io\/leslie.png"},"author": {
@@ -120,7 +120,7 @@
             <div class="toc-content" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animated flipInX">Doris0.15.1升级至1.1.1版本操作说明v1</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>Zhangdw</a></span>&nbsp;<span class="post-category">收录于 <a href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/"><i class="far fa-folder fa-fw"></i>数据库</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2022-11-02">2022-11-02</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 1963 字&nbsp;
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2022-11-02">2022-11-02</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 1957 字&nbsp;
                 <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 4 分钟&nbsp;<span id="/doris0.15.1%E5%8D%87%E7%BA%A7%E8%87%B31.1.1%E7%89%88%E6%9C%AC%E6%93%8D%E4%BD%9C%E8%AF%B4%E6%98%8Ev1.2/" class="leancloud_visitors" data-flag-title="Doris0.15.1升级至1.1.1版本操作说明v1">
                         <i class="far fa-eye fa-fw"></i>&nbsp;<span class=leancloud-visitors-count></span>&nbsp;次阅读
                     </span>&nbsp;</div>
@@ -225,7 +225,14 @@
 <p>关闭集群副本修复和均衡功能</p>
 <p>升级过程中会有节点重启，所以可能会触发不必要的集群均衡和副本修复逻辑。可以先通过以下命令关闭：</p>
 <p>优先查看下集群默认参数：</p>
-<p>![image-20220825170322568](/Users/zhangdawei/Library/Application Support/typora-user-images/image-20220825170322568.png)</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="/images/doris01.png"
+        data-srcset="/images/doris01.png, /images/doris01.png 1.5x, /images/doris01.png 2x"
+        data-sizes="auto"
+        alt="/images/doris01.png"
+        title="image-20220825170322568" /></p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -436,7 +443,14 @@ sh /opt/doris-fe-0.15.1/bin/start_fe.sh --daemon
 </code></pre></td></tr></table>
 </div>
 </div><p>2、检查进程启动及日志。</p>
-<p>![l2p3OXWDqd](/Users/zhangdawei/Library/Application Support/LarkShell/sdk_storage/242809214bfd58425e3f89823c700afd/resources/images/l2p3OXWDqd.jpg)</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="/images/doris02.jpg"
+        data-srcset="/images/doris02.jpg, /images/doris02.jpg 1.5x, /images/doris02.jpg 2x"
+        data-sizes="auto"
+        alt="/images/doris02.jpg"
+        title="l2p3OXWDqd" /></p>
 <p>3、回滚be节点，与fe节点操作方式一致，所有机器全部执行完回滚操作在进行重启动作**==(文件名、文件路径根据线上环境进行修改)==**</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -454,7 +468,14 @@ sh /opt/be-0.15.1/bin/stop_be.sh
 sh /opt/be-0.15.1/bin/start_be.sh --daemon
 </code></pre></td></tr></table>
 </div>
-</div><p>![VnNCIDWKFE](/Users/zhangdawei/Library/Application Support/LarkShell/sdk_storage/242809214bfd58425e3f89823c700afd/resources/images/VnNCIDWKFE.jpg)</p>
+</div><p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="/images/doris03.jpg"
+        data-srcset="/images/doris03.jpg, /images/doris03.jpg 1.5x, /images/doris03.jpg 2x"
+        data-sizes="auto"
+        alt="/images/doris03.jpg"
+        title="VnNCIDWKFE" /></p>
 <p>回滚后doris集群状态正常，但服务连接报错不可用，根据官方建议不建议回滚。</p>
 </div><div class="post-footer" id="post-footer">
     <div class="post-info">

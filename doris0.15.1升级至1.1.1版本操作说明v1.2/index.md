@@ -30,7 +30,7 @@
 
    优先查看下集群默认参数：
 
-   ![image-20220825170322568](/Users/zhangdawei/Library/Application Support/typora-user-images/image-20220825170322568.png)
+   ![image-20220825170322568](/images/doris01.png)
 
    ```shell
    # 关闭副本均衡逻辑。关闭后，不会再触发普通表副本的均衡操作。
@@ -179,7 +179,7 @@ sh /opt/doris-fe-0.15.1/bin/start_fe.sh --daemon
 
 2、检查进程启动及日志。
 
-![l2p3OXWDqd](/Users/zhangdawei/Library/Application Support/LarkShell/sdk_storage/242809214bfd58425e3f89823c700afd/resources/images/l2p3OXWDqd.jpg)
+![l2p3OXWDqd](/images/doris02.jpg)
 
 3、回滚be节点，与fe节点操作方式一致，所有机器全部执行完回滚操作在进行重启动作**==(文件名、文件路径根据线上环境进行修改)==**
 
@@ -191,7 +191,7 @@ sh /opt/be-0.15.1/bin/stop_be.sh
 sh /opt/be-0.15.1/bin/start_be.sh --daemon
 ```
 
-![VnNCIDWKFE](/Users/zhangdawei/Library/Application Support/LarkShell/sdk_storage/242809214bfd58425e3f89823c700afd/resources/images/VnNCIDWKFE.jpg)
+![VnNCIDWKFE](/images/doris03.jpg)
 
  回滚后doris集群状态正常，但服务连接报错不可用，根据官方建议不建议回滚。
 
