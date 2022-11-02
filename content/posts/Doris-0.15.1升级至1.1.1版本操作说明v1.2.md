@@ -4,8 +4,8 @@ date: 2022-11-02T10:34:02+08:00
 draft: true
 tags: [Doris,中间件,数据库]
 categories: [数据库]
-featuredImage: "/images/doris.jpg"
-featuredImagePreview: "/images/doris.jpg"
+featuredImage: "/images/doris.png"
+featuredImagePreview: "/images/doris.png"
 
 ---
 
