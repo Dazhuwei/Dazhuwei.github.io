@@ -111,7 +111,7 @@ aws route53domains accept-domain-transfer-from-another-aws-account \
 
 #### 4、后续页面在Route53-----托管区域-----创建托管区域。
 
-![image-20221012214918227](/Users/zhangdawei/Documents/Hugo/quickstart/static/images/route53-01.png)
+![image-20221012214918227](/images/route53-01.png)
 
 ### 后续：
 
