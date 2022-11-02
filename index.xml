@@ -4,9 +4,18 @@
         <link>https://Dazhuwei.github.io/</link>
         <description>Blog of Zhangdw</description>
         <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>zhangdawei516@gmail (Zhangdw)</managingEditor>
-            <webMaster>zhangdawei516@gmail (Zhangdw)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Wed, 02 Nov 2022 12:58:16 &#43;0800</lastBuildDate>
+            <webMaster>zhangdawei516@gmail (Zhangdw)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Wed, 02 Nov 2022 16:58:16 &#43;0800</lastBuildDate>
             <atom:link href="https://Dazhuwei.github.io/index.xml" rel="self" type="application/rss+xml" />
         <item>
+    <title>AWS-cloud不通账户间ROUTE53注册域及托管区域配置说明V1.0</title>
+    <link>https://Dazhuwei.github.io/aws-cloud%E4%B8%8D%E9%80%9A%E8%B4%A6%E6%88%B7%E9%97%B4route53%E6%B3%A8%E5%86%8C%E5%9F%9F%E5%8F%8A%E6%89%98%E7%AE%A1%E5%8C%BA%E5%9F%9F%E9%85%8D%E7%BD%AE%E8%AF%B4%E6%98%8Ev1.0/</link>
+    <pubDate>Wed, 02 Nov 2022 16:58:16 &#43;0800</pubDate>
+    <author>作者</author>
+    <guid>https://Dazhuwei.github.io/aws-cloud%E4%B8%8D%E9%80%9A%E8%B4%A6%E6%88%B7%E9%97%B4route53%E6%B3%A8%E5%86%8C%E5%9F%9F%E5%8F%8A%E6%89%98%E7%AE%A1%E5%8C%BA%E5%9F%9F%E9%85%8D%E7%BD%AE%E8%AF%B4%E6%98%8Ev1.0/</guid>
+    <description><![CDATA[<div class="featured-image">
+                <img src="/images/aws-route53.png" referrerpolicy="no-referrer">
+            </div>AWS-cloud不通账户间ROUTE53注册域及托管区域配置说明V1.0 前期说明： ​ A、B两个账户均为AWS-Cloud账户，目前域名xx]]></description>
+</item><item>
     <title>Doris0.15.1升级至1.1.1版本操作说明v1</title>
     <link>https://Dazhuwei.github.io/doris0.15.1%E5%8D%87%E7%BA%A7%E8%87%B31.1.1%E7%89%88%E6%9C%AC%E6%93%8D%E4%BD%9C%E8%AF%B4%E6%98%8Ev1.2/</link>
     <pubDate>Wed, 02 Nov 2022 12:58:16 &#43;0800</pubDate>
